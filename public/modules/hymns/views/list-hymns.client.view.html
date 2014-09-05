@@ -1,0 +1,38 @@
+<section data-ng-controller="HymnsController" data-ng-init="loadHymns()">
+	<div class="hymnbook-name" data-ng-repeat="name in hymnbook.names">
+		{{name.name}}
+	</div>
+	<div class="page-header">
+		Hymns
+		<i class="fa fa-plus" tooltip="Create New" tooltip-placement="right" ng-click="show.newSection = !show.newSection" data-ng-show="authentication.user" />
+	</div>
+	<div data-ng-show="show.newSection">
+		<form role="form" ng-submit="createHymn()" name="newHymnForm">
+			<div class="form-group" data-ng-repeat="name in newHymn.names">
+				<label>{{name.lang}}</label>
+				<input type="text" name="name" ng-model="name.name" />
+			</div>
+			<div>
+				<label>Languages</label>
+				<div data-ng-repeat="lyricLang in newHymn.lyricLangs" >
+					<input id="lyricLang-{{lyricLang.lang}}" type="checkbox" name="lyricLangs" ng-model="lyricLang.checked">
+					<label for="lyricLang-{{lyricLang.lang}}">{{lyricLang.displayName}}</label>
+				</div>				
+			</div>
+			<input type="submit" value="Save" />
+		</form>
+	</div>
+	<div class="list-group">
+		<div class="list-entry" data-ng-repeat="hymn in hymns">
+			<div class="hymn-name" data-ng-repeat="nameEntry in hymn.names">
+				<a class="underline" data-ng-href="#!/hymns/{{hymn._id}}">
+					{{nameEntry.name}}
+				</a>
+			</div>
+			<div class="hymn-count">0</div>
+		</div>
+	</div>
+	<div class="alert alert-warning text-center" data-ng-if="hymns.$resolved && !hymns.length">
+		No hymns yet, why don't you create one?
+	</div>
+</section>

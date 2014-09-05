@@ -1,0 +1,61 @@
+<div class="color-code pull-right" dropdown-toggle="#color-code-info">
+	<div class="color red pull-left"></div>
+	<div class="color blue pull-left"></div>
+	<div class="clear"></div>
+	<div class="color purple pull-left"></div>
+	<div class="color yellow pull-left"></div>
+</div>
+<div id="color-code-info" class="f-dropdown color-code-info">
+	<div class="row list-group">
+		<div class="large-6 columns">
+			<div class="list-entry dummy-card en"></div>
+			<div>English</div>
+		</div>
+		<div class="large-6 columns">
+			<div class="list-entry dummy-card zh-CAN"></div>
+			<div>粵語</div>
+		</div>
+	</div>
+	<div class="row list-group">
+		<div class="large-6 columns">
+			<div class="list-entry dummy-card zh-MAN"></div>
+			<div>國語</div>
+		</div>
+		<div class="large-6 columns">
+			<div class="list-entry dummy-card zh-CAN zh-MAN"></div>
+			<div>國-粵語</div>
+		</div>
+	</div>
+	<div class="row list-group">
+		<div class="large-6 columns">
+			<div class="list-entry dummy-card en zh-CAN"></div>
+			<div>English - 粵語</div>
+		</div>
+		<div class="large-6 columns">
+			<div class="list-entry dummy-card en zh-MAN"></div>
+			<div>English - 國語</div>
+		</div>
+	</div>
+	<div class="row list-group">
+		<div class="large-12 columns">
+			<div class="list-entry dummy-card en zh-CAN zh-MAN"></div>
+			<div>English, 國-粵語</div>
+		</div>
+	</div>
+</div>
+<div class="info pull_right" dropdown-toggle="#info-dropdown" ng-show="publisher">
+	<span class="fa-stack">
+		<i class="fa fa-circle-thin fa-stack-2x"></i>
+		<i class="fa fa-info fa-stack-1x"></i>
+	</span>
+</div>
+<div id="info-dropdown" class="f-dropdown info-dropdown">
+	<h6>Publisher <small><a href="#!/publishers" class="underline">view all</a></small></h6>
+	<dl class="publisher-name" ng-repeat="name in publisher.names">
+		<dt>
+			<span ng-show="name.lang==='zh'">中文名稱</span>
+			<span ng-show="name.lang==='en'">English Name</span>
+		</dt>
+		<dd><a href="#!/publishers/{{publisher._id}}/hymnbooks" class="underline">{{name.name}}</a></dd>
+	</dl>
+</div>
