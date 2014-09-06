@@ -7,7 +7,7 @@
 				<input type="text" ng-model="search.name" name="name" />
 			</label>
 		</div>
-		<div class="{{publisher && 'large-6' || 'large-4'}}  columns" ng-hide="publisher">
+		<div class="{{publisher && 'large-6' || 'large-4'}} columns" ng-if="!publisher">
 			<label>
 				Publisher
 				<select ui-select2="publisherSelectOption" ng-model="search.publisherId">
@@ -16,7 +16,7 @@
 				</select>
 			</label>
 		</div>
-		<div class="{{publisher && 'large-6' || 'large-4'}}  columns">
+		<div class="{{publisher && 'large-6' || 'large-4'}} columns">
 			<label>Languages</label>
 			<input id="lyricLang-en" type="checkbox" ng-model="search.langs.en">
 			<label for="lyricLang-en">English</label>

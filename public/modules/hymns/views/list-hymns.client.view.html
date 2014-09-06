@@ -1,38 +1,93 @@
 <section data-ng-controller="HymnsController" data-ng-init="loadHymns()">
-	<div class="hymnbook-name" data-ng-repeat="name in hymnbook.names">
-		{{name.name}}
-	</div>
+	<ng-include src="'/modules/hymns/views/info-panel.client.view.html'"></ng-include>
 	<div class="page-header">
 		Hymns
-		<i class="fa fa-plus" tooltip="Create New" tooltip-placement="right" ng-click="show.newSection = !show.newSection" data-ng-show="authentication.user" />
+		<i class="fa fa-plus-square-o create-new" tooltip="Create New" tooltip-placement="right" ng-click="show.newSection = !show.newSection" ng-if="authentication.user && !show.newSection" />
+		<i class="fa fa-minus-square-o create-new close" tooltip="Close New Form" tooltip-placement="right" ng-click="show.newSection = !show.newSection" ng-if="authentication.user && show.newSection" />
+		<i class="fa fa-filter filter-toggler" tooltip="{{show.filterSection && 'Hide Filter' || 'Show Filter'}}" tooltip-placement="right" ng-click="show.filterSection = !show.filterSection" />
 	</div>
-	<div data-ng-show="show.newSection">
+	<div class="new-form" ng-show="show.newSection">
 		<form role="form" ng-submit="createHymn()" name="newHymnForm">
-			<div class="form-group" data-ng-repeat="name in newHymn.names">
-				<label>{{name.lang}}</label>
-				<input type="text" name="name" ng-model="name.name" />
+			<div class="sub-header">New Hymn</div>
+			<div class="row form-group" ng-class="{'error padding_top padding_bottom': !newHymnForm.name.$valid}">
+				<div class="large-6 columns" data-ng-repeat="name in newHymn.names">
+					<label ng-switch="name.lang" ng-class="{error: !newHymnForm.name.$valid}">
+						<span ng-switch-when="zh">中文名稱</span>
+						<span ng-switch-when="en">English Title</span>
+						<span ng-switch-default>Name</span>
+						<input type="text" ng-model="name.name" name="name" />
+					</label>
+				</div>
 			</div>
-			<div>
-				<label>Languages</label>
-				<div data-ng-repeat="lyricLang in newHymn.lyricLangs" >
-					<input id="lyricLang-{{lyricLang.lang}}" type="checkbox" name="lyricLangs" ng-model="lyricLang.checked">
-					<label for="lyricLang-{{lyricLang.lang}}">{{lyricLang.displayName}}</label>
-				</div>				
+			<div class="row" ng-show="!newHymnForm.name.$valid">
+				<div class="large-12 columns form-error">You must enter at least one name.</div>
 			</div>
-			<input type="submit" value="Save" />
+			<div class="row">
+				<div class="large-6 columns padding_none">
+					<div class="row form-group">
+						<div class="large-12 columns">
+							<label>
+								Hymn Index
+								<input type="text" name="hymnIndex" ng-model="newHymn.hymnIndex" />
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="large-6 columns padding_none">
+					<div class="row form-group" ng-class="{'error padding_top padding_bottom': !newHymnForm.lyricLangs.$valid}">
+						<div class="large-12 columns">
+							<label>Languages</label>
+							<div class="checkbox" data-ng-repeat="lyricLang in newHymn.lyricLangs" >
+								<input id="lyricLang-{{lyricLang.lang}}" type="checkbox" name="lyricLangs" ng-model="lyricLang.checked">
+								<label for="lyricLang-{{lyricLang.lang}}">{{lyricLang.displayName}}</label>
+							</div>
+						</div>
+					</div>
+					<div class="row form-group" ng-show="!newHymnForm.lyricLangs.$valid">
+						<div class="large-12 columns form-error">You must select at least one language</div>
+					</div>
+				</div>
+			</div>
+			<div class="row" ng-if="!hymnbook">
+				<div class="large-6 columns">
+					<label>
+						Publisher
+						<select ui-select2="hymnbookSelectOption" ng-model="newHymn.hymnbookId">
+							<option value=""></option>
+						    <option value="{{hymnbook._id}}" ng-repeat="hymnbook in hymnbooksList">{{hymnbook.names|concatNames}}</option>
+						</select>
+					</label>
+				</div>
+			</div>
+			<div class="row padding_top_half padding_bottom_half">
+				<div class="large-12 columns">
+					<input type="submit" value="Save" class="button success tiny radius" />
+					<input type="button" value="Cancel" class="button secondary tiny radius" ng-click="cancelNew()" />
+				</div>
+			</div>
 		</form>
 	</div>
+	<ng-include src="'/modules/hymns/views/filter-hymnbook.client.view.html'"></ng-include>
 	<div class="list-group">
-		<div class="list-entry" data-ng-repeat="hymn in hymns">
-			<div class="hymn-name" data-ng-repeat="nameEntry in hymn.names">
-				<a class="underline" data-ng-href="#!/hymns/{{hymn._id}}">
-					{{nameEntry.name}}
-				</a>
+		<div class="list-entry hymn {{hymn.lyricLangs|lyricLangsCssClass}}" data-ng-repeat="hymn in hymns | filterHymnOrHymnbook:search">
+			<div class="entry-header">
+				<div data-ng-repeat="nameEntry in hymn.names">
+					<a class="underline" data-ng-href="#!/hymns/{{hymn._id}}">
+						{{nameEntry.name}}
+					</a>
+				</div>
 			</div>
-			<div class="hymn-count">0</div>
+			<div class="action-icons" ng-if="authentication.user && authentication.user._id == hymn.user._id">
+				<div class="action-icon left" tooltip="Edit" tooltip-placement="right">
+					<i class="fa fa-edit" ng-click="edit(hymn)" />
+				</div>
+				<div class="action-icon right" tooltip="Delete" tooltip-placement="left">
+					<i class="fa fa-trash" ng-click="delete(hymn)" />
+				</div>
+			</div>
 		</div>
 	</div>
 	<div class="alert alert-warning text-center" data-ng-if="hymns.$resolved && !hymns.length">
-		No hymns yet, why don't you create one?
+		No hymns yet, why don't you <a class="underline" ng-click="show.newSection = !show.newSection">create one</a>?
 	</div>
 </section>

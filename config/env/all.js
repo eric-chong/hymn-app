@@ -17,7 +17,8 @@ module.exports = {
 				//'public/lib/bootstrap/dist/css/bootstrap-theme.css',
 				'public/lib/foundation/css/foundation.css',
 				'public/lib/font-awesome/css/font-awesome.css',
-				'public/lib/select2/select2.css'
+				'public/lib/select2/select2.css',
+				'public/lib/animate.css/animate.css'
 			],
 			js: [
 				'public/lib/fastclick/lib.fastclick.js',

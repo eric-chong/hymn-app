@@ -57,25 +57,27 @@ HymnSchema.post('save', function (doc) {
 	var concatedLangs = [];
 	Hymn.find({hymnbook: savedHymnbook}).populate('hymnbook').exec(function(err, hymns) {
 		if (!err) {
-			var hymnbookToLookUp;
-			if (hymns.length > 0) hymnbookToLookUp = hymns[0].hymnbook;
-			hymns.forEach(function(elem) {
-				listOfAllLangs.push(elem.lyricLangs);
-			});
-			var hymnsCount = hymns.length;
-			concatedLangs = _(listOfAllLangs).flatten().uniq().value();
-			Hymnbook.findById(hymnbookToLookUp._id).exec(function(err, hymnbook) {
-				hymnbook.hymnsCount = hymnsCount;
-				hymnbook.lyricLangs = concatedLangs;
-				hymnbook.save(function(err) {
-					if(!err) {
-						console.log('hymnbook(' + hymnbook._id + ') lyricLangs updated.');
-					}
-					else {
-						console.log('Error: could not update hymnbook(' + hymnbook._id + ') lyricLangs');
-					}
+			if (hymns[0].hymnbook) {
+				var hymnbookToLookUp;
+				if (hymns.length > 0) hymnbookToLookUp = hymns[0].hymnbook;
+				hymns.forEach(function(elem) {
+					listOfAllLangs.push(elem.lyricLangs);
 				});
-			});
+				var hymnsCount = hymns.length;
+				concatedLangs = _(listOfAllLangs).flatten().uniq().value();
+				Hymnbook.findById(hymnbookToLookUp._id).exec(function(err, hymnbook) {
+					hymnbook.hymnsCount = hymnsCount;
+					hymnbook.lyricLangs = concatedLangs;
+					hymnbook.save(function(err) {
+						if(!err) {
+							console.log('hymnbook(' + hymnbook._id + ') lyricLangs updated.');
+						}
+						else {
+							console.log('Error: could not update hymnbook(' + hymnbook._id + ') lyricLangs');
+						}
+					});
+				});
+			}
 		}
 	});
 });

@@ -5,6 +5,10 @@
 body {
 	font-family: Hua, "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 }
+section[data-ui-view].ng-enter {
+    -webkit-animation: bounce 2.5s;
+    animation: bounce 2.5s;
+}
 .content {
 	margin-top: 50px;
 }
@@ -85,7 +89,7 @@ body {
 
 .page-header i.create-new,
 .page-header i.filter-toggler {
-	font-size: 0.75rem;
+	font-size: 1rem;
 	margin-left: 0.25rem;
 	color: #999;
 	cursor: pointer;
@@ -100,6 +104,7 @@ body {
 }
 .list-group .list-entry {
 	display: inline-block;
+	position: relative;
 	margin-right: 20px;
 	background: #eee;
 	width: 12rem;
@@ -112,6 +117,9 @@ body {
 	border-radius: 0.25rem;
 	text-align: center;
 	margin-bottom: 1.5rem;
+}
+.list-group .list-entry.hymn {
+	height: 6rem;
 }
 .list-group .list-entry:hover {
 	background: #fff;
@@ -184,6 +192,23 @@ body {
 	height: 2.5rem;
 	color: rgb(36, 145, 31);
 }
+.list-group .list-entry .action-icon {
+	position: absolute;
+	bottom: 0;
+}
+.list-group .list-entry .action-icon i {
+	cursor: pointer;
+	color: #999;
+}
+.list-group .list-entry .action-icon i:hover {
+	color: #333;
+}
+.list-group .list-entry .action-icon.left {
+	left: 0.25rem;
+}
+.list-group .list-entry .action-icon.right {
+	right: 0.25rem;
+}
 .list-group .list-entry .entry-stats.zero {
 	color: #CD3948;
 }
@@ -205,6 +230,28 @@ a.underline:hover {
     padding: 1rem;
     padding-top: 2rem;
     position: relative;
+}
+.new-form.ng-hide-remove {
+    -webkit-animation: zoomInDown 1s;
+    -moz-animation: zoomInDown 1s;
+    animation: zoomInDown 1s;
+}
+.new-form.ng-hide-add {
+    -webkit-animation: zoomOutUp 1s;
+    -moz-animation: zoomOutUp 1s;
+    animation: zoomOutUp 1s;
+    display: block !important;
+}
+.filter-section.ng-hide-remove {
+    -webkit-animation: flipInX 1s;
+    -moz-animation: flipInX 1s;
+    animation: flipInX 1s;
+}
+.filter-section.ng-hide-add {
+    -webkit-animation: flipOutX 1s;
+    -moz-animation: flipOutX 1s;
+    animation: filpOutX 1s;
+    display: block !important;
 }
 .new-form .sub-header,
 .filter-section .sub-header {

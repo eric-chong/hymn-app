@@ -1,14 +1,12 @@
 <section data-ng-controller="PublishersController" data-ng-init="loadPublishers()">
 	<div class="page-header">
 		Publishers
-		<i class="fa fa-plus-square-o create-new" tooltip="Create New" tooltip-placement="right" ng-hide="show.newSection" ng-click="show.newSection = !show.newSection" data-ng-show="authentication.user" />
-		<i class="fa fa-minus-square-o create-new close" tooltip="Close New Form" tooltip-placement="right" ng-show="show.newSection" ng-click="show.newSection = !show.newSection" data-ng-show="authentication.user" />
+		<i class="fa fa-plus-square-o create-new" tooltip="Create New" tooltip-placement="right" ng-click="show.newSection = !show.newSection" ng-if="authentication.user && !show.newSection" />
+		<i class="fa fa-minus-square-o create-new close" tooltip="Close New Form" tooltip-placement="right" ng-click="show.newSection = !show.newSection" ng-if="authentication.user && show.newSection" />
 	</div>
 	<div class="new-form" data-ng-show="show.newSection">
 		<form role="form" ng-submit="createPublisher()" name="newPublisherForm">
-			<div class="row">
-				<div class="large-12 columns">New Publisher</div>
-			</div>
+			<div class="sub-header">New Publisher</div>
 			<div class="row" ng-class="{'error padding_top padding_bottom': !newPublisherForm.name.$valid}">
 				<div class="large-6 columns" data-ng-repeat="name in newPublisherNames">
 					<label ng-switch="name.lang" ng-class="{error: !newPublisherForm.name.$valid}">
@@ -44,6 +42,14 @@
 				<span ng-show="publishers.$resolved" tooltip="Number of hymn books" tooltip-placement="bottom">
 					{{publisher.hymnbooksCount}}
 				</span>
+			</div>
+			<div class="action-icons" ng-if="authentication.user && authentication.user._id == publisher.user._id">
+				<div class="action-icon left" tooltip="Edit" tooltip-placement="right">
+					<i class="fa fa-edit" ng-click="edit(publisher)" />
+				</div>
+				<div class="action-icon right" tooltip="Delete" tooltip-placement="left">
+					<i class="fa fa-trash" ng-click="delete(publisher)" />
+				</div>
 			</div>
 		</div>
 	</div>

@@ -5,7 +5,7 @@ angular.module('hymns')
         return function(array) {
             if (!_.isArray(array)) return '';
 
-            return array.toString().replace(',', ' ');
+            return array.toString().replace(/,/g, ' ');
         };
     })
 
