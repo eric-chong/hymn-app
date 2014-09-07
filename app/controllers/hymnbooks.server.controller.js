@@ -30,7 +30,7 @@ exports.create = function(req, res) {
 };
 
 /**
- * Show the current article
+ * Show the current hymnbook
  */
 exports.read = function(req, res) {
 	res.jsonp(req.hymnbook);
