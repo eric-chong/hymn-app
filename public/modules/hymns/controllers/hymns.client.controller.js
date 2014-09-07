@@ -88,9 +88,15 @@ angular.module('hymns')
 				langs: {}
 			};
 
+			$scope.parentInfo = {
+				parent: 'publishers',
+				child: 'hymnbooks',
+				title: 'Publisher'
+			}
+
 			$scope.loadHymnbooks = function() {
 				if ($scope.currentState.name === 'listHymnbooksInPublisher') {
-					$scope.publisher = Publishers.get({
+					$scope.parentInfo.obj = Publishers.get({
 						publisherId: $stateParams.publisherId
 					});
 					$scope.hymnbooks = Hymnbooks.query({
@@ -208,9 +214,15 @@ angular.module('hymns')
 				newSection: false
 			};
 
+			$scope.parentInfo = {
+				parent: 'hymnbooks',
+				child: 'hymns',
+				title: 'Hymn Book'
+			}
+
 			$scope.loadHymns = function() {
 				if ($scope.currentState.name === 'listHymnsInHymnbook') {
-					$scope.hymnbook = Hymnbooks.getOne({
+					$scope.parentInfo.obj = Hymnbooks.getOne({
 						hymnbookId: $stateParams.hymnbookId
 					});
 					$scope.hymns = Hymns.query({

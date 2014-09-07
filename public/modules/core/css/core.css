@@ -285,7 +285,8 @@ form .row .row.form-group .columns {
 	display: inline-block;
 }
 
-.publisher-name {
+.info-dropdown .name,
+.hymnbook-name {
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
@@ -361,17 +362,17 @@ form .row .row.form-group .columns {
 	right: 70px;
 	left: auto;	
 }
-dl.publisher-name {
+.info-dropdown dl.name {
 	display: inline-block;
 	margin: 0 10px;
 }
-dt {
+.info-dropdown dt {
 	text-transform: uppercase;
 	font-size: 0.75rem;
 	text-align: left;
 	color: #ccc;
 }
-dd {
+.info-dropdown dd {
 	font-size: 0.9rem;
 	margin-left: 1rem;
 }

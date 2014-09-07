@@ -43,19 +43,19 @@
 		</div>
 	</div>
 </div>
-<div class="info pull_right" dropdown-toggle="#info-dropdown" ng-show="publisher">
+<div class="info pull_right" dropdown-toggle="#info-dropdown" ng-show="parentInfo.obj">
 	<span class="fa-stack">
 		<i class="fa fa-circle-thin fa-stack-2x"></i>
 		<i class="fa fa-info fa-stack-1x"></i>
 	</span>
 </div>
 <div id="info-dropdown" class="f-dropdown info-dropdown">
-	<h6>Publisher <small><a href="#!/publishers" class="underline">view all</a></small></h6>
-	<dl class="publisher-name" ng-repeat="name in publisher.names">
+	<h6>{{parentInfo.title}} <small><a href="#!/{{parentInfo.parent}}" class="underline">view all</a></small></h6>
+	<dl class="name" ng-repeat="name in parentInfo.obj.names">
 		<dt>
 			<span ng-show="name.lang==='zh'">中文名稱</span>
 			<span ng-show="name.lang==='en'">English Name</span>
 		</dt>
-		<dd><a href="#!/publishers/{{publisher._id}}/hymnbooks" class="underline">{{name.name}}</a></dd>
+		<dd><a href="#!/{{parentInfo.parent}}/{{parentInfo.obj._id}}/{{parentInfo.child}}" class="underline">{{name.name}}</a></dd>
 	</dl>
 </div>
