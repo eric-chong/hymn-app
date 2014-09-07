@@ -70,8 +70,8 @@ angular.module('hymns')
 			resetNewPublisherList();
 		}])
 
-	.controller('HymnbooksController', ['$scope', '$state', '$stateParams', 'Authentication', 'Publishers', 'Hymnbooks',
-		function($scope, $state, $stateParams, Authentication, Publishers, Hymnbooks){
+	.controller('HymnbooksController', ['$scope', '$state', '$stateParams', '$modal', 'Authentication', 'Publishers', 'Hymnbooks',
+		function($scope, $state, $stateParams, $modal, Authentication, Publishers, Hymnbooks){
 			$scope.currentState = $state.current;
 			$scope.authentication = Authentication;
 
@@ -158,6 +158,25 @@ angular.module('hymns')
 				}
 			};
 
+			$scope.delete = function(hymnbook) {
+				var modalInstance = $modal.open({
+					templateUrl: 'modules/hymns/views/modal-delete-item.client.view.html',
+					controller: 'DeleteItemController',
+					windowClass: 'delete-item-modal',
+					resolve: {
+						itemToDelete: function () {
+							return hymnbook;
+						}
+					}
+				});
+
+				modalInstance.result.then(function (hymnbook) {
+					hymnbook.$delete(function(response) {
+						$scope.loadHymnbooks();
+					});
+				});
+			};
+
 			$scope.cancelNew = function() {
 				$scope.show.newSection = false;
 				resetNewHymnbookObj();
@@ -180,8 +199,8 @@ angular.module('hymns')
 			resetNewHymnbookObj();
 		}])
 
-	.controller('HymnsController', ['$scope', '$state', '$stateParams', 'Authentication', 'Hymnbooks', 'Hymns',
-		function($scope, $state, $stateParams, Authentication, Hymnbooks, Hymns){
+	.controller('HymnsController', ['$scope', '$state', '$stateParams', '$modal', 'Authentication', 'Hymnbooks', 'Hymns',
+		function($scope, $state, $stateParams, $modal, Authentication, Hymnbooks, Hymns){
 			$scope.currentState = $state.current;
 			$scope.authentication = Authentication;
 
@@ -234,6 +253,30 @@ angular.module('hymns')
 					});
 
 				}
+			};
+
+			$scope.delete = function(hymn) {
+				var modalInstance = $modal.open({
+					templateUrl: 'modules/hymns/views/modal-delete-item.client.view.html',
+					controller: 'DeleteItemController',
+					windowClass: 'delete-item-modal',
+					resolve: {
+						itemToDelete: function () {
+							return hymn;
+						}
+					}
+				});
+
+				modalInstance.result.then(function (hymn) {
+					hymn.$delete(function(response) {
+						$scope.loadHymns();
+					});
+				});
+			};
+
+			$scope.cancelNew = function() {
+				$scope.show.newSection = false;
+				resetNewHymnObj();
 			};
 
 			function resetNewHymnObj() {

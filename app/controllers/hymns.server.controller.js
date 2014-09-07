@@ -44,6 +44,49 @@ exports.listByHymnbook = function(req, res) {
 };
 
 /**
+ * Show the current hyn
+ */
+exports.read = function(req, res) {
+	res.jsonp(req.hymn);
+};
+
+/**
+ * Update a hymn
+ */
+exports.update = function(req, res) {
+	var hymn = req.hymn;
+
+	hymn = _.extend(hymn, req.body);
+
+	hymn.save(function(err) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			res.jsonp(hymn);
+		}
+	});
+};
+
+/**
+ * Delete an hymn
+ */
+exports.delete = function(req, res) {
+	var hymn = req.hymn;
+
+	hymn.remove(function(err) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			res.jsonp(hymn);
+		}
+	});
+};
+
+/**
  * Hymnbooks count by publisher
  */
 exports.countByHymnbook = function(req, res) {
@@ -68,7 +111,7 @@ exports.countByHymnbook = function(req, res) {
 exports.hymnById = function(req, res, next, id) {
 	Hymn.findById(id).populate('user').populate('hymnbook').exec(function(err, hymn) {
 		if (err) return next(err);
-		if (!hymn) return next(new Error('Failed to load hymnbook ' + id));
+		if (!hymn) return next(new Error('Failed to load hymn ' + id));
 		req.hymn = hymn;
 		next();
 	});

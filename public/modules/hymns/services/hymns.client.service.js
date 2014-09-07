@@ -28,6 +28,10 @@ angular.module('hymns')
 				update: {
 					method: 'PUT'
 				},
+				delete: {
+					method: 'DELETE',
+					url: 'hymnbooks/:hymnbookId'
+				},
 				getAll: {
 					method: 'GET',
 					url: 'hymnbooks',
@@ -57,6 +61,10 @@ angular.module('hymns')
 			}, {
 				update: {
 					method: 'PUT'
+				},
+				delete: {
+					method: 'DELETE',
+					url: 'hymns/:hymnId'
 				}
 			});
 		}
