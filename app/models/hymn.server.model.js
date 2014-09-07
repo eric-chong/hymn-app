@@ -8,6 +8,37 @@ var mongoose = require('mongoose'),
 	_ = require('lodash'),
 	commonUtils = require('../utils/commonUtils.js');
 
+function updateHymnbook(hymnDoc) {
+	var Hymn = mongoose.model('Hymn');
+	var Hymnbook = mongoose.model('Hymnbook');
+	var savedHymnbook = hymnDoc.hymnbook;
+	if (savedHymnbook) {
+		var listOfAllLangs = [];
+		var concatedLangs = [];
+		Hymn.find({hymnbook: savedHymnbook}).populate('hymnbook').exec(function(err, hymns) {
+			if (!err) {
+				hymns.forEach(function(elem) {
+					listOfAllLangs.push(elem.lyricLangs);
+				});
+				var hymnsCount = hymns.length;
+				concatedLangs = _(listOfAllLangs).flatten().uniq().value();
+				Hymnbook.findById(savedHymnbook).exec(function(err, hymnbook) {
+					hymnbook.hymnsCount = hymnsCount;
+					hymnbook.lyricLangs = concatedLangs;
+					hymnbook.save(function(err) {
+						if(!err) {
+							console.log('hymnbook(' + hymnbook._id + ') updated.');
+						}
+						else {
+							console.log('Error: could not update hymnbook(' + hymnbook._id + ')');
+						}
+					});
+				});
+			}
+		});
+	}
+}
+
 /**
  * Hymn Schema
  */
@@ -50,39 +81,10 @@ HymnSchema.pre('save', function (next) {
 	next();
 });
 HymnSchema.post('save', function (doc) {
-	var Hymn = mongoose.model('Hymn');
-	var Hymnbook = mongoose.model('Hymnbook');
-	var savedHymnbook = doc.hymnbook;
-	var listOfAllLangs = [];
-	var concatedLangs = [];
-	Hymn.find({hymnbook: savedHymnbook}).populate('hymnbook').exec(function(err, hymns) {
-		if (!err) {
-			if (hymns[0].hymnbook) {
-				var hymnbookToLookUp;
-				if (hymns.length > 0) hymnbookToLookUp = hymns[0].hymnbook;
-				hymns.forEach(function(elem) {
-					listOfAllLangs.push(elem.lyricLangs);
-				});
-				var hymnsCount = hymns.length;
-				concatedLangs = _(listOfAllLangs).flatten().uniq().value();
-				Hymnbook.findById(hymnbookToLookUp._id).exec(function(err, hymnbook) {
-					hymnbook.hymnsCount = hymnsCount;
-					hymnbook.lyricLangs = concatedLangs;
-					hymnbook.save(function(err) {
-						if(!err) {
-							console.log('hymnbook(' + hymnbook._id + ') lyricLangs updated.');
-						}
-						else {
-							console.log('Error: could not update hymnbook(' + hymnbook._id + ') lyricLangs');
-						}
-					});
-				});
-			}
-		}
-	});
+	updateHymnbook(doc);
 });
-HymnSchema.virtual('nameObj').get(function() {
-	return commonUtils.arrayToObject( this.names, 'lang', 'name' );
+HymnSchema.post('remove', function(doc) {
+	updateHymnbook(doc);
 });
 
 mongoose.model('Hymn', HymnSchema);

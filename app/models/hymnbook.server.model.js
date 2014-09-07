@@ -15,9 +15,6 @@ function updatePublisher(hymnbookDoc) {
 		var publisherId = savedPublisher._id;	
 		Hymnbook.find({publisher: savedPublisher}).populate('publisher').exec(function(err, hymnbooks) {
 			if (!err) {
-				//var publisherId = hymnbooks[0].publisher._id;
-				//console.log(savedPublisher);
-				//console.log(publisherId);
 				var hymnbooksCount = hymnbooks.length;
 				Publisher.findById(savedPublisher).exec(function(err, publisher) {
 					publisher.hymnbooksCount = hymnbooksCount;
