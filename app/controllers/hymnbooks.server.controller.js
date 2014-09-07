@@ -37,7 +37,7 @@ exports.read = function(req, res) {
 };
 
 /**
- * Update a publisher
+ * Update a hymnbook
  */
 exports.update = function(req, res) {
 	var hymnbook = req.hymnbook;
@@ -56,7 +56,7 @@ exports.update = function(req, res) {
 };
 
 /**
- * Delete an publisher
+ * Delete an hymnbook
  */
 exports.delete = function(req, res) {
 	var hymnbook = req.hymnbook;
