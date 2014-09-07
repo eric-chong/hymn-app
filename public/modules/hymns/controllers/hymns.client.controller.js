@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('hymns')
-	.controller('PublishersController', ['$scope', 'Authentication', 'Publishers', 
-		function($scope, Authentication, Publishers) {
+	.controller('PublishersController', ['$scope', '$modal', 'Authentication', 'Publishers', 
+		function($scope, $modal, Authentication, Publishers) {
 			$scope.authentication = Authentication;
 
 			$scope.show = {
@@ -14,7 +14,7 @@ angular.module('hymns')
 			};
 
 			$scope.createPublisher = function() {
-				if (!$scope.newPublisherNames[0].name || !$scope.newPublisherNames[1].name) {
+				if (!$scope.newPublisherNames[0].name && !$scope.newPublisherNames[1].name) {
 					$scope.newPublisherForm.name.$setValidity('oneRequired', false);
 				} else {
 					$scope.newPublisherForm.name.$setValidity('oneRequired', true);
@@ -34,6 +34,25 @@ angular.module('hymns')
 						//  Add error message
 					});					
 				}
+			};
+
+			$scope.delete = function(publisher) {
+				var modalInstance = $modal.open({
+					templateUrl: 'modules/hymns/views/modal-delete-item.client.view.html',
+					controller: 'DeleteItemController',
+					windowClass: 'delete-item-modal',
+					resolve: {
+						itemToDelete: function () {
+							return publisher;
+						}
+					}
+				});
+
+				modalInstance.result.then(function (publisher) {
+					publisher.$delete(function(response) {
+						$scope.loadPublishers();
+					});
+				});
 			};
 
 			$scope.cancelNew = function() {
@@ -232,6 +251,19 @@ angular.module('hymns')
 			}
 
 			resetNewHymnObj();
+		}])
+
+	.controller('DeleteItemController', ['$scope', '$modalInstance', 'itemToDelete', 
+		function($scope, $modalInstance, itemToDelete) {
+			$scope.itemToDelete = itemToDelete;
+
+			$scope.confirm = function() {
+				$modalInstance.close($scope.itemToDelete);
+			};
+
+			$scope.cancel = function () {
+				$modalInstance.dismiss('cancel');
+			};
 		}])
 
 	.controller('ArticlesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Articles',

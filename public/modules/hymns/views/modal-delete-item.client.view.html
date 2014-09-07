@@ -1,0 +1,11 @@
+<div class="header">
+	<span>Confirm delete this item?</span>
+	<i class="fa fa-close" ng-click="cancel()" />
+</div>
+<div class="body">
+	<span>{{itemToDelete.names | concatNames}}</span>
+</div>
+<div class="footer">
+	<button class="button success tiny radius" ng-click="confirm()">Confirm</button>
+	<button class="button secondary tiny radius" ng-click="cancel()">Cancel</button>
+</div>
