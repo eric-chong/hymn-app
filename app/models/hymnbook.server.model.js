@@ -7,6 +7,34 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema,
 	commonUtils = require('../utils/commonUtils.js');
 
+function updatePublisher(hymnbookDoc) {
+	var Hymnbook = mongoose.model('Hymnbook');
+	var Publisher = mongoose.model('Publisher');
+	var savedPublisher = hymnbookDoc.publisher;
+	if (savedPublisher) {
+		var publisherId = savedPublisher._id;	
+		Hymnbook.find({publisher: savedPublisher}).populate('publisher').exec(function(err, hymnbooks) {
+			if (!err) {
+				//var publisherId = hymnbooks[0].publisher._id;
+				//console.log(savedPublisher);
+				//console.log(publisherId);
+				var hymnbooksCount = hymnbooks.length;
+				Publisher.findById(savedPublisher).exec(function(err, publisher) {
+					publisher.hymnbooksCount = hymnbooksCount;
+					publisher.save(function(err) {
+						if(!err) {
+							console.log('publisher(' + publisher._id + ') hymnbooksCount updated.');
+						}
+						else {
+							console.log('Error: could not update publisher(' + publisher._id + ') hymnbooksCount');
+						}
+					});
+				});				
+			}
+		});
+
+	}
+}
 /**
  * Hymnbook Schema
  */
@@ -38,28 +66,10 @@ HymnbookSchema.virtual('nameObj').get(function() {
 	return commonUtils.arrayToObject( this.names, 'lang', 'name' );
 });
 HymnbookSchema.post('save', function (doc) {
-	var Hymnbook = mongoose.model('Hymnbook');
-	var Publisher = mongoose.model('Publisher');
-	var savedPublisher = doc.publisher;
-	Hymnbook.find({publisher: savedPublisher}).populate('publisher').exec(function(err, hymnbooks) {
-		if (!err) {
-			if (hymnbooks[0].publisher) {
-				var publisherId = hymnbooks[0].publisher._id;
-				var hymnbooksCount = hymnbooks.length;
-				Publisher.findById(publisherId).exec(function(err, publisher) {
-					publisher.hymnbooksCount = hymnbooksCount;
-					publisher.save(function(err) {
-						if(!err) {
-							console.log('publisher(' + publisher._id + ') hymnbooksCount updated.');
-						}
-						else {
-							console.log('Error: could not update publisher(' + publisher._id + ') hymnbooksCount');
-						}
-					});
-				});				
-			}
-		}
-	});
+	updatePublisher(doc);
+});
+HymnbookSchema.post('remove', function (doc) {
+	updatePublisher(doc);
 });
 
 mongoose.model('Hymnbook', HymnbookSchema);
