@@ -219,6 +219,7 @@ a.underline:hover {
 }
 /* form css */
 .new-form,
+.edit-form,
 .filter-section {
     border: 1px solid #ccc;
     border-radius: 0.25rem;
@@ -226,6 +227,11 @@ a.underline:hover {
     padding: 1rem;
     padding-top: 2rem;
     position: relative;
+}
+.edit-form {
+	padding: 0;
+	padding-top: 2rem;
+	margin: 0;
 }
 .new-form.ng-hide-remove {
     -webkit-animation: zoomInDown 1s;
@@ -250,6 +256,7 @@ a.underline:hover {
     display: block !important;
 }
 .new-form .sub-header,
+.edit-form .sub-header,
 .filter-section .sub-header {
     position: absolute;
     left: 0;
@@ -390,6 +397,13 @@ form .select2-container,
 .reveal-modal.delete-item-modal {
 	width: 30rem;
 }
+.reveal-modal.edit-item-modal .edit-form .body {
+	padding: 0.5rem 0.5rem;
+}
+.reveal-modal.edit-item-modal .edit-form .footer {
+	padding-top: 0;
+}
+
 .reveal-modal .header {
 	position: relative;
 }
@@ -407,7 +421,7 @@ form .select2-container,
 	right: 1.25rem;
 	top: 1.25rem;
 }
-.reveal-modal .footer button {
+.reveal-modal .footer .button {
 	margin-bottom: 0;
 }
 .reveal-modal.fade {

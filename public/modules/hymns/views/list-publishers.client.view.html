@@ -8,7 +8,7 @@
 		<form role="form" ng-submit="createPublisher()" name="newPublisherForm">
 			<div class="sub-header">New Publisher</div>
 			<div class="row" ng-class="{'error padding_top padding_bottom': !newPublisherForm.name.$valid}">
-				<div class="large-6 columns" data-ng-repeat="name in newPublisherNames">
+				<div class="large-6 columns" data-ng-repeat="name in newPublisher.names">
 					<label ng-switch="name.lang" ng-class="{error: !newPublisherForm.name.$valid}">
 						<span ng-switch-when="zh">中文名稱</span>
 						<span ng-switch-when="en">English Name</span>

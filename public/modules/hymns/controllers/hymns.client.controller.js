@@ -14,16 +14,17 @@ angular.module('hymns')
 			};
 
 			$scope.createPublisher = function() {
-				if (!$scope.newPublisherNames[0].name && !$scope.newPublisherNames[1].name) {
-					$scope.newPublisherForm.name.$setValidity('oneRequired', false);
-				} else {
-					$scope.newPublisherForm.name.$setValidity('oneRequired', true);
-				}
+				validatePublisherForm($scope.newPublisherForm, $scope.newPublisher);
+				// if (!$scope.newPublisher.names[0].name && !$scope.newPublisher.names[1].name) {
+				// 	$scope.newPublisherForm.name.$setValidity('oneRequired', false);
+				// } else {
+				// 	$scope.newPublisherForm.name.$setValidity('oneRequired', true);
+				// }
 				if ($scope.newPublisherForm.$valid) {
 					var publisherToSave = new Publishers({
 						names: []
 					});
-					$scope.newPublisherNames.forEach(function(elem) {
+					$scope.newPublisher.names.forEach(function(elem) {
 						if (elem.name) publisherToSave.names.push(elem);
 					});
 					publisherToSave.$save(function(response) {
@@ -55,16 +56,48 @@ angular.module('hymns')
 				});
 			};
 
+			$scope.edit = function(publisher) {
+				var modalInstance = $modal.open({
+					templateUrl: 'modules/hymns/views/modal-edit-publisher.client.view.html',
+					controller: 'EditItemController',
+					windowClass: 'edit-item-modal',
+					resolve: {
+						itemToEdit: function () {
+							return publisher;
+						},
+						validateFn: function() {
+							return validatePublisherForm;
+						}
+					}
+				});
+
+				modalInstance.result.then(function (publisher) {
+					publisher.$update(function(response) {
+						$scope.loadPublishers();
+					});
+				});
+			};
+
 			$scope.cancelNew = function() {
 				$scope.show.newSection = false;
 				resetNewPublisherList();
 			};
 
 			function resetNewPublisherList() {
-				$scope.newPublisherNames = [
-					{ lang: 'zh', name: '' },
-					{ lang: 'en', name: '' }
-				];
+				$scope.newPublisher = {
+					names: [
+						{ lang: 'zh', name: '' },
+						{ lang: 'en', name: '' }
+					]
+				};
+			}
+
+			function validatePublisherForm(form, obj) {
+				if (!obj.names[0].name && !obj.names[1].name) {
+					form.name.$setValidity('oneRequired', false);
+				} else {
+					form.name.$setValidity('oneRequired', true);
+				}
 			}
 
 			resetNewPublisherList();
@@ -92,7 +125,7 @@ angular.module('hymns')
 				parent: 'publishers',
 				child: 'hymnbooks',
 				title: 'Publisher'
-			}
+			};
 
 			$scope.loadHymnbooks = function() {
 				if ($scope.currentState.name === 'listHymnbooksInPublisher') {
@@ -218,7 +251,7 @@ angular.module('hymns')
 				parent: 'hymnbooks',
 				child: 'hymns',
 				title: 'Hymn Book'
-			}
+			};
 
 			$scope.loadHymns = function() {
 				if ($scope.currentState.name === 'listHymnsInHymnbook') {
@@ -314,6 +347,22 @@ angular.module('hymns')
 
 			$scope.confirm = function() {
 				$modalInstance.close($scope.itemToDelete);
+			};
+
+			$scope.cancel = function () {
+				$modalInstance.dismiss('cancel');
+			};
+		}])
+
+	.controller('EditItemController', ['$scope', '$modalInstance', 'itemToEdit', 'validateFn', 
+		function($scope, $modalInstance, itemToEdit, validateFn) {
+			$scope.itemToEdit = itemToEdit;
+
+			$scope.save = function(editForm) {
+				validateFn(editForm, $scope.itemToEdit);
+				if (editForm.$valid) {
+					$modalInstance.close($scope.itemToEdit);	
+				}
 			};
 
 			$scope.cancel = function () {
