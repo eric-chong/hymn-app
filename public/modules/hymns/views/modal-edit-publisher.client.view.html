@@ -2,7 +2,6 @@
 	<form role="form" ng-submit="save(editForm)" name="editForm">
 		<div class="sub-header">Edit Publisher</div>
 		<div class="body">
-			<pre>{{editForm|json}}</pre>
 			<div class="row" ng-class="{'error padding_top padding_bottom': !editForm.name.$valid}">
 				<div class="large-6 columns" data-ng-repeat="name in itemToEdit.names">
 					<label ng-switch="name.lang" ng-class="{error: !editForm.name.$valid}">
