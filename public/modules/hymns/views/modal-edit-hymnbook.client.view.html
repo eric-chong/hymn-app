@@ -30,25 +30,14 @@
 					</div>
 				</div>
 				<div class="large-6 columns padding_none">
-					<div class="row form-group" ng-class="{'error padding_top padding_bottom': !editForm.lyricLangs.$valid}">
+					<div class="row form-group">
 						<div class="large-12 columns">
 							<label>Languages</label>
-							<div class="checkbox">
-								<input id="lyricLang-en" type="checkbox" name="lyricLangs" ng-model="lyricLang.checked">
-								<label for="lyricLang-en">English</label>
-							</div>
-							<div class="checkbox">
-								<input id="lyricLang-zh-CAN" type="checkbox" name="lyricLangs" ng-model="lyricLang.checked">
-								<label for="lyricLang-zh-CAN">Cantonese</label>
-							</div>
-							<div class="checkbox">
-								<input id="lyricLang-zh-MAN" type="checkbox" name="lyricLangs" ng-model="lyricLang.checked">
-								<label for="lyricLang-zh-MAN">Mandarin</label>
-							</div>
+							<ui-group-checkbox
+								ui-group-checkbox-model="itemToEdit.lyricLangs" 
+								ui-group-checkbox-values="checkboxItems.lyricLangs.values"
+								ui-group-checkbox-labels="checkboxItems.lyricLangs.displayNames">
 						</div>
-					</div>
-					<div class="row form-group" ng-show="!editForm.lyricLangs.$valid">
-						<div class="large-12 columns form-error">You must select at least one language</div>
 					</div>
 				</div>
 			</div>

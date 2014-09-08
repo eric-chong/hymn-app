@@ -60,6 +60,12 @@ angular.module('hymns')
 						itemToEdit: function () {
 							return publisher;
 						},
+						selectLists: function() {
+							return {};
+						},
+						checkboxItems: function() {
+							return {};
+						},
 						validateFn: function() {
 							return validatePublisherForm;
 						}
@@ -98,8 +104,8 @@ angular.module('hymns')
 			resetNewPublisherList();
 		}])
 
-	.controller('HymnbooksController', ['$scope', '$state', '$stateParams', '$modal', 'Authentication', 'Publishers', 'Hymnbooks',
-		function($scope, $state, $stateParams, $modal, Authentication, Publishers, Hymnbooks){
+	.controller('HymnbooksController', ['$scope', '$state', '$stateParams', '$modal', 'Authentication', 'Publishers', 'Hymnbooks', 'HymnConfig',
+		function($scope, $state, $stateParams, $modal, Authentication, Publishers, Hymnbooks, HymnConfig){
 			$scope.currentState = $state.current;
 			$scope.authentication = Authentication;
 
@@ -121,8 +127,8 @@ angular.module('hymns')
 				child: 'hymnbooks',
 				title: 'Publisher'
 			};
-			$scope.langLabels = {'en': 'English', 'zh-CAN': 'Cantonese', 'zh-MAN': 'Mandarin'};
-			$scope.langValues = ['en', 'zh-CAN', 'zh-MAN'];
+
+			$scope.lyricLangs = HymnConfig.getConfig().lyricLangs;
 
 			$scope.loadHymnbooks = function() {
 				if ($scope.currentState.name === 'listHymnbooksInPublisher') {
@@ -217,15 +223,20 @@ angular.module('hymns')
 								publishers: $scope.publishersList
 							};
 						},
+						checkboxItems: function() {
+							return {
+								lyricLangs: $scope.lyricLangs
+							};
+						},
 						validateFn: function() {
 							return validateHymnbookForm;
 						}
 					}
 				});
 
-				modalInstance.result.then(function (publisher) {
-					publisher.$update(function(response) {
-						$scope.loadPublishers();
+				modalInstance.result.then(function (hymnbook) {
+					hymnbook.$update(function(response) {
+						$scope.loadHymnbooks();
 					});
 				});
 			};
@@ -372,10 +383,11 @@ angular.module('hymns')
 			};
 		}])
 
-	.controller('EditItemController', ['$scope', '$modalInstance', 'itemToEdit', 'selectLists', 'validateFn', 
-		function($scope, $modalInstance, itemToEdit, selectLists, validateFn) {
+	.controller('EditItemController', ['$scope', '$modalInstance', 'itemToEdit', 'selectLists', 'checkboxItems', 'validateFn', 
+		function($scope, $modalInstance, itemToEdit, selectLists, checkboxItems, validateFn) {
 			$scope.itemToEdit = itemToEdit;
 			$scope.selectLists = selectLists;
+			$scope.checkboxItems = checkboxItems;
 
 			$scope.save = function(editForm) {
 				validateFn(editForm, $scope.itemToEdit);

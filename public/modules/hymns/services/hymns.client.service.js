@@ -26,7 +26,8 @@ angular.module('hymns')
 				hymnbookId: '@_id'
 			}, {
 				update: {
-					method: 'PUT'
+					method: 'PUT',
+					url: 'hymnbooks/:hymnbookId'
 				},
 				delete: {
 					method: 'DELETE',
@@ -68,4 +69,22 @@ angular.module('hymns')
 				}
 			});
 		}
-	]);
+	])
+
+	.factory('HymnConfig', [function() {
+		var config = {
+            lyricLangs: {
+                values: ['en', 'zh-CAN', 'zh-MAN'],
+                displayNames: {
+                	'en': 'English',
+                	'zh-CAN': 'Cantonese',
+                	'zh-MAN': 'Mandarin'
+                }
+            }
+		};
+		return {
+			getConfig: function() {
+				return config;
+			}
+		};
+	}]);

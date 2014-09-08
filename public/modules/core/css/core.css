@@ -389,6 +389,7 @@ form .row .row.form-group .columns {
 form .select2-container,
 .filter-section .select2-container {
 	width: 100%;
+	margin-bottom: 1rem;
 }
 
 /* modal css */
