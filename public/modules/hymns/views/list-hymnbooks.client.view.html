@@ -38,17 +38,14 @@
 					</div>
 				</div>
 				<div class="large-6 columns padding_none">
-					<div class="row form-group" ng-class="{'error padding_top padding_bottom': !newHymnbookForm.lyricLangs.$valid}">
+					<div class="row form-group">
 						<div class="large-12 columns">
 							<label>Languages</label>
-							<div class="checkbox" data-ng-repeat="lyricLang in newHymnbook.lyricLangs" >
-								<input id="lyricLang-{{lyricLang.lang}}" type="checkbox" name="lyricLangs" ng-model="lyricLang.checked">
-								<label for="lyricLang-{{lyricLang.lang}}">{{lyricLang.displayName}}</label>
-							</div>
+							<ui-group-checkbox
+								ui-group-checkbox-model="newHymnbook.lyricLangs" 
+								ui-group-checkbox-values="langValues"
+								ui-group-checkbox-labels="langLabels">
 						</div>
-					</div>
-					<div class="row form-group" ng-show="!newHymnbookForm.lyricLangs.$valid">
-						<div class="large-12 columns form-error">You must select at least one language</div>
 					</div>
 				</div>
 			</div>

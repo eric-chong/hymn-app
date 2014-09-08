@@ -15,11 +15,6 @@ angular.module('hymns')
 
 			$scope.createPublisher = function() {
 				validatePublisherForm($scope.newPublisherForm, $scope.newPublisher);
-				// if (!$scope.newPublisher.names[0].name && !$scope.newPublisher.names[1].name) {
-				// 	$scope.newPublisherForm.name.$setValidity('oneRequired', false);
-				// } else {
-				// 	$scope.newPublisherForm.name.$setValidity('oneRequired', true);
-				// }
 				if ($scope.newPublisherForm.$valid) {
 					var publisherToSave = new Publishers({
 						names: []
@@ -126,6 +121,8 @@ angular.module('hymns')
 				child: 'hymnbooks',
 				title: 'Publisher'
 			};
+			$scope.langLabels = {'en': 'English', 'zh-CAN': 'Cantonese', 'zh-MAN': 'Mandarin'};
+			$scope.langValues = ['en', 'zh-CAN', 'zh-MAN'];
 
 			$scope.loadHymnbooks = function() {
 				if ($scope.currentState.name === 'listHymnbooksInPublisher') {
@@ -142,18 +139,7 @@ angular.module('hymns')
 			};
 
 			$scope.createHymnbook = function() {
-				if (!$scope.newHymnbook.names[0].name && !$scope.newHymnbook.names[1].name) {
-					$scope.newHymnbookForm.name.$setValidity('oneRequired', false);
-				} else {
-					$scope.newHymnbookForm.name.$setValidity('oneRequired', true);
-				}
-				if (!$scope.newHymnbook.lyricLangs[0].checked && 
-					!$scope.newHymnbook.lyricLangs[1].checked && 
-					!$scope.newHymnbook.lyricLangs[2].checked) {
-					$scope.newHymnbookForm.lyricLangs.$setValidity('oneRequired', false);
-				} else {
-					$scope.newHymnbookForm.lyricLangs.$setValidity('oneRequired', true);
-				}
+				validateHymnbookForm($scope.newHymnbookForm, $scope.newHymnbook);
 				if ($scope.newHymnbookForm.$valid) {
 					var hymnbookToSave;
 					if ($stateParams.publisherId || $scope.newHymnbook.publisherId) {
@@ -174,9 +160,7 @@ angular.module('hymns')
 					if ($scope.newHymnbook.year) {
 						hymnbookToSave.year = $scope.newHymnbook.year;
 					}
-					$scope.newHymnbook.lyricLangs.forEach(function(elem) {
-						if (elem.checked) hymnbookToSave.lyricLangs.push(elem.lang);
-					});
+					hymnbookToSave.lyricLangs = angular.copy($scope.newHymnbook.lyricLangs);
 					if ($stateParams.publisherId || $scope.newHymnbook.publisherId) {
 						hymnbookToSave.$save(function(response) {
 							resetNewHymnbookObj();
@@ -216,6 +200,36 @@ angular.module('hymns')
 				});
 			};
 
+			$scope.edit = function(hymnbook) {
+				if (!$scope.publishersList) {
+					$scope.publishersList = Publishers.query();
+				}
+				var modalInstance = $modal.open({
+					templateUrl: 'modules/hymns/views/modal-edit-hymnbook.client.view.html',
+					controller: 'EditItemController',
+					windowClass: 'edit-item-modal',
+					resolve: {
+						itemToEdit: function () {
+							return hymnbook;
+						},
+						selectLists: function() {
+							return {
+								publishers: $scope.publishersList
+							};
+						},
+						validateFn: function() {
+							return validateHymnbookForm;
+						}
+					}
+				});
+
+				modalInstance.result.then(function (publisher) {
+					publisher.$update(function(response) {
+						$scope.loadPublishers();
+					});
+				});
+			};
+
 			$scope.cancelNew = function() {
 				$scope.show.newSection = false;
 				resetNewHymnbookObj();
@@ -227,12 +241,16 @@ angular.module('hymns')
 						{ lang: 'zh', name: '' },
 						{ lang: 'en', name: '' }
 					],
-					lyricLangs: [
-						{ lang: 'en', displayName: 'English', checked: false },
-						{ lang: 'zh-CAN', displayName: 'Cantonese', checked: false },
-						{ lang: 'zh-MAN', displayName: 'Mandarin', checked: false }
-					]
+					lyricLangs: []
 				};
+			}
+
+			function validateHymnbookForm(form, obj) {
+				if (obj.names && !obj.names[0].name && !obj.names[1].name) {
+					form.name.$setValidity('oneRequired', false);
+				} else {
+					form.name.$setValidity('oneRequired', true);
+				}
 			}
 
 			resetNewHymnbookObj();
@@ -354,9 +372,10 @@ angular.module('hymns')
 			};
 		}])
 
-	.controller('EditItemController', ['$scope', '$modalInstance', 'itemToEdit', 'validateFn', 
-		function($scope, $modalInstance, itemToEdit, validateFn) {
+	.controller('EditItemController', ['$scope', '$modalInstance', 'itemToEdit', 'selectLists', 'validateFn', 
+		function($scope, $modalInstance, itemToEdit, selectLists, validateFn) {
 			$scope.itemToEdit = itemToEdit;
+			$scope.selectLists = selectLists;
 
 			$scope.save = function(editForm) {
 				validateFn(editForm, $scope.itemToEdit);

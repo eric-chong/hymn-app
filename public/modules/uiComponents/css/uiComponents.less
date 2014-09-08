@@ -1,0 +1,59 @@
+/* colors */
+@green-btn: rgba(30, 151, 49, 1);
+@grey-btn: #ccc;
+@solid-white: #fff;
+
+/* toggle-btn */
+.ui-toggle {
+    .ui-toggle-btn {
+        display: inline-block;
+        width: 30px;
+        height: 20px;
+        border-radius: 12px;
+        margin-right: 4px;
+        &.on {
+            background: @green-btn;
+            .toggler {
+                left: 2px;
+            }        
+        } 
+        &.off {
+            background: @grey-btn;
+            .toggler {
+                left: 12px;
+            }
+        }
+        .toggler {
+            width: 16px;
+            height: 16px;
+            border-radius: 12px;
+            background: @solid-white;
+            position: relative;
+            top: 2px;
+        }
+    }
+    .ui-toggle-label {
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 5px;
+    }    
+}
+
+/* grouped checkboxs */
+.ui-group-checkbox {
+    .ui-checkbox {
+        display: inline-block;
+        cursor: pointer;
+        span.fa-stack,
+        .ui-group-checkbox-label {
+            display: inline-block;
+            margin: 0 0.25rem;
+        }
+        .fa-circle-thin {
+            color: @grey-btn;
+        }
+        .fa-circle-thin.checked {
+            color: @green-btn;
+        }
+    }
+}

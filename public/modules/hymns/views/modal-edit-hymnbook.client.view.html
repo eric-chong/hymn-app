@@ -1,0 +1,72 @@
+<div class="edit-form">
+	<form role="form" ng-submit="save(editForm)" name="editForm">
+		<div class="sub-header">Edit Hymn Book</div>
+		<div class="body">
+			<div class="row" ng-class="{'error padding_top padding_bottom': !editForm.name.$valid}">
+				<div class="large-6 columns" data-ng-repeat="name in itemToEdit.names">
+					<label ng-switch="name.lang" ng-class="{error: !editForm.name.$valid}">
+						<span ng-switch-when="zh">中文名稱</span>
+						<span ng-switch-when="en">English Name</span>
+						<span ng-switch-default>Name</span>
+						<input type="text" ng-model="name.name" name="name" />
+					</label>
+				</div>
+			</div>
+			<div class="row" ng-show="!editForm.name.$valid">
+				<div class="large-12 columns form-error">You must enter at least one name.</div>
+			</div>
+			<div class="row">
+				<div class="large-6 columns padding_none">
+					<div class="row form-group" ng-class="{'error padding_top padding_bottom': !editForm.year.$valid}">
+						<div class="large-12 columns">
+							<label ng-class="{error: !editForm.year.$valid}">
+								Year Published
+								<input type="text" name="year" ng-model="itemToEdit.year" ng-pattern="/^(19|20)\d{2}$/"/>
+							</label>
+						</div>
+					</div>
+					<div class="row form-group" ng-show="!editForm.year.$valid">
+						<div class="large-12 columns form-error">Year is not valid (1900-2999)</div>
+					</div>
+				</div>
+				<div class="large-6 columns padding_none">
+					<div class="row form-group" ng-class="{'error padding_top padding_bottom': !editForm.lyricLangs.$valid}">
+						<div class="large-12 columns">
+							<label>Languages</label>
+							<div class="checkbox">
+								<input id="lyricLang-en" type="checkbox" name="lyricLangs" ng-model="lyricLang.checked">
+								<label for="lyricLang-en">English</label>
+							</div>
+							<div class="checkbox">
+								<input id="lyricLang-zh-CAN" type="checkbox" name="lyricLangs" ng-model="lyricLang.checked">
+								<label for="lyricLang-zh-CAN">Cantonese</label>
+							</div>
+							<div class="checkbox">
+								<input id="lyricLang-zh-MAN" type="checkbox" name="lyricLangs" ng-model="lyricLang.checked">
+								<label for="lyricLang-zh-MAN">Mandarin</label>
+							</div>
+						</div>
+					</div>
+					<div class="row form-group" ng-show="!editForm.lyricLangs.$valid">
+						<div class="large-12 columns form-error">You must select at least one language</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="large-6 columns">
+					<label>
+						Publisher
+						<select ui-select2="publisherSelectOption" ng-model="itemToEdit.publisher._id">
+							<option value=""></option>
+						    <option value="{{publisher._id}}" ng-repeat="publisher in selectLists.publishers">{{publisher.names|concatNames}}</option>
+						</select>
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<input type="submit" value="Save" class="button success tiny radius" />
+			<input type="button" value="Cancel" class="button secondary tiny radius" ng-click="cancel()" />
+		</div>
+	</form>
+</div>
