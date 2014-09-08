@@ -40,7 +40,6 @@ angular.module('ui.components')
 				'</div>' +
 			'</div>',
 		link: function(scope, elem, attrs) {
-			console.log(scope);
 			scope.isChecked = function(item) {
 				return _.isArray(scope.uiGroupCheckboxModel) && scope.uiGroupCheckboxModel.indexOf(item) > -1;
 			};
