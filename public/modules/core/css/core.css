@@ -275,6 +275,9 @@ label.error {
 }
 .row.error {
 	border: 1px solid #CD3948;
+    -webkit-animation: shake 0.5s;
+    -moz-animation: shake 0.5s;
+    animation: shake 0.5s;
 }
 .form-error {
 	background: #CD3948;
