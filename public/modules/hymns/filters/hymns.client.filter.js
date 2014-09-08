@@ -30,8 +30,7 @@ angular.module('hymns')
             if (!_.isArray(array)) return array;
             if (!searchObj) return array;
 
-            if (!searchObj.name && !searchObj.publisherId && !searchObj.hymnbookId && 
-                !searchObj.langs.en && !searchObj.langs.zhCAN && !searchObj.langs.zhMAN ) return array;
+            if (!searchObj.name && !searchObj.publisherId && !searchObj.hymnbookId && searchObj.langs.length===0 ) return array;
 
             var matchedArray = [];
             array.forEach(function(elem) {
@@ -53,11 +52,7 @@ angular.module('hymns')
                 } else if (searchObj.hymnbookId && !elem.hymnbook) {
                     matched = false;
                 }
-                var searchLangsList = [];
-                if (searchObj.langs.en) searchLangsList.push('en');
-                if (searchObj.langs.zhCAN) searchLangsList.push('zh-CAN');
-                if (searchObj.langs.zhMAN) searchLangsList.push('zh-MAN');
-                if (searchLangsList.length !== _.intersection(searchLangsList, elem.lyricLangs).length) matched = false;
+                if (searchObj.langs.length !== _.intersection(searchObj.langs, elem.lyricLangs).length) matched = false;
 
                 if (matched) matchedArray.push(elem);
             });

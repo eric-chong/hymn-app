@@ -119,7 +119,7 @@ angular.module('hymns')
 			};
 
 			$scope.search = {
-				langs: {}
+				langs: []
 			};
 
 			$scope.parentInfo = {
@@ -267,8 +267,8 @@ angular.module('hymns')
 			resetNewHymnbookObj();
 		}])
 
-	.controller('HymnsController', ['$scope', '$state', '$stateParams', '$modal', 'Authentication', 'Hymnbooks', 'Hymns',
-		function($scope, $state, $stateParams, $modal, Authentication, Hymnbooks, Hymns){
+	.controller('HymnsController', ['$scope', '$state', '$stateParams', '$modal', 'Authentication', 'Hymnbooks', 'Hymns', 'HymnConfig',
+		function($scope, $state, $stateParams, $modal, Authentication, Hymnbooks, Hymns, HymnConfig) {
 			$scope.currentState = $state.current;
 			$scope.authentication = Authentication;
 
@@ -282,6 +282,8 @@ angular.module('hymns')
 				title: 'Hymn Book'
 			};
 
+			$scope.lyricLangs = HymnConfig.getConfig().lyricLangs;
+
 			$scope.loadHymns = function() {
 				if ($scope.currentState.name === 'listHymnsInHymnbook') {
 					$scope.parentInfo.obj = Hymnbooks.getOne({
@@ -294,18 +296,7 @@ angular.module('hymns')
 			};
 
 			$scope.createHymn = function() {
-				if (!$scope.newHymn.names[0].name && !$scope.newHymn.names[1].name) {
-					$scope.newHymnForm.name.$setValidity('oneRequired', false);
-				} else {
-					$scope.newHymnForm.name.$setValidity('oneRequired', true);
-				}
-				if (!$scope.newHymn.lyricLangs[0].checked && 
-					!$scope.newHymn.lyricLangs[1].checked && 
-					!$scope.newHymn.lyricLangs[2].checked) {
-					$scope.newHymnForm.lyricLangs.$setValidity('oneRequired', false);
-				} else {
-					$scope.newHymnForm.lyricLangs.$setValidity('oneRequired', true);
-				}
+				validateHymnForm($scope.newHymnForm, $scope.newHymn);
 				if ($scope.newHymnForm.$valid) {
 					var hymnToSave = new Hymns({
 						hymnbookId: $stateParams.hymnbookId,
@@ -315,9 +306,7 @@ angular.module('hymns')
 					$scope.newHymn.names.forEach(function(elem) {
 						if (elem.name) hymnToSave.names.push(elem);
 					});
-					$scope.newHymn.lyricLangs.forEach(function(elem) {
-						if (elem.checked) hymnToSave.lyricLangs.push(elem.lang);
-					});
+					hymnToSave.lyricLangs = angular.copy($scope.newHymn.lyricLangs);
 					hymnToSave.$save(function(response) {
 						resetNewHymnObj();
 						$scope.loadHymns();
@@ -359,12 +348,17 @@ angular.module('hymns')
 						{ lang: 'zh', name: '' },
 						{ lang: 'en', name: '' }
 					],
-					lyricLangs: [
-						{ lang: 'en', displayName: 'English', checked: false },
-						{ lang: 'zh-CAN', displayName: 'Cantonese', checked: false },
-						{ lang: 'zh-MAN', displayName: 'Mandarin', checked: false }
-					]
+					lyricLangs: []
 				};
+			}
+
+			function validateHymnForm(form, obj) {
+				if (!obj.names[0].name && !obj.names[1].name) {
+					form.name.$setValidity('oneRequired', false);
+				} else {
+					form.name.$setValidity('oneRequired', true);
+				}
+
 			}
 
 			resetNewHymnObj();
