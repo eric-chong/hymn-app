@@ -267,14 +267,19 @@ angular.module('hymns')
 			resetNewHymnbookObj();
 		}])
 
-	.controller('HymnsController', ['$scope', '$state', '$stateParams', '$modal', 'Authentication', 'Hymnbooks', 'Hymns', 'HymnConfig',
-		function($scope, $state, $stateParams, $modal, Authentication, Hymnbooks, Hymns, HymnConfig) {
+	.controller('HymnsController', ['$scope', '$state', '$stateParams', '$q', '$modal', 'Authentication', 'Publishers', 'Hymnbooks', 'Hymns', 'HymnConfig',
+		function($scope, $state, $stateParams, $q, $modal, Authentication, Publishers, Hymnbooks, Hymns, HymnConfig) {
 			$scope.currentState = $state.current;
 			$scope.authentication = Authentication;
 
 			$scope.show = {
 				newSection: false
 			};
+
+			$scope.search = {
+				langs: []
+			};
+
 
 			$scope.parentInfo = {
 				parent: 'hymnbooks',
@@ -285,6 +290,8 @@ angular.module('hymns')
 			$scope.lyricLangs = HymnConfig.getConfig().lyricLangs;
 
 			$scope.loadHymns = function() {
+				$scope.hymnbooksList = Hymnbooks.getAll();
+				$scope.publishersList = Publishers.query();
 				if ($scope.currentState.name === 'listHymnsInHymnbook') {
 					$scope.parentInfo.obj = Hymnbooks.getOne({
 						hymnbookId: $stateParams.hymnbookId
@@ -307,6 +314,7 @@ angular.module('hymns')
 						if (elem.name) hymnToSave.names.push(elem);
 					});
 					hymnToSave.lyricLangs = angular.copy($scope.newHymn.lyricLangs);
+					hymnToSave.hymnbookIndex = $scope.newHymn.hymnIndex;
 					hymnToSave.$save(function(response) {
 						resetNewHymnObj();
 						$scope.loadHymns();
@@ -348,7 +356,9 @@ angular.module('hymns')
 						{ lang: 'zh', name: '' },
 						{ lang: 'en', name: '' }
 					],
-					lyricLangs: []
+					lyricLangs: angular.copy($scope.parentInfo.obj.lyricLangs),
+					hymnbookId: $stateParams.hymnbookId,
+					publisherId: $scope.parentInfo.obj.publisher._id
 				};
 			}
 
@@ -358,10 +368,14 @@ angular.module('hymns')
 				} else {
 					form.name.$setValidity('oneRequired', true);
 				}
-
 			}
 
-			resetNewHymnObj();
+			$scope.$watchCollection('[hymnbooksList.$resolved, publishersList.$resolved, parentInfo.obj.$resolved]', 
+				function(newValues) {
+					if (_.all(newValues, _.identity)) {
+						resetNewHymnObj();		
+					}
+				});			
 		}])
 
 	.controller('DeleteItemController', ['$scope', '$modalInstance', 'itemToDelete', 

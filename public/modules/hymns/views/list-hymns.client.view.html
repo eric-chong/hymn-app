@@ -45,6 +45,26 @@
 					</div>
 				</div>
 			</div>
+			<div class="row">
+				<div class="large-6 columns">
+					<label>
+						Publisher
+						<select ui-select2="selectOption" ng-model="newHymn.publisherId">
+							<option value=""></option>
+						    <option value="{{publisher._id}}" ng-repeat="publisher in publishersList">{{publisher.names|concatNames}}</option>
+						</select>
+					</label>
+				</div>
+				<div class="large-6 columns">
+					<label>
+						Hymnbook
+						<select ui-select2="selectOption" ng-model="newHymn.hymnbookId">
+							<option value=""></option>
+						    <option value="{{hymnbook._id}}" ng-repeat="hymnbook in hymnbooksList | filter:newHymn.publisherId">{{hymnbook.names|concatNames}}</option>
+						</select>
+					</label>
+				</div>
+			</div>
 			<div class="row padding_top_half padding_bottom_half">
 				<div class="large-12 columns">
 					<input type="submit" value="Save" class="button success tiny radius" />
@@ -53,9 +73,9 @@
 			</div>
 		</form>
 	</div>
-	<ng-include src="'/modules/hymns/views/filter-hymnbook.client.view.html'"></ng-include>
+	<ng-include src="'/modules/hymns/views/filter-hymn.client.view.html'"></ng-include>
 	<div class="list-group">
-		<div class="list-entry hymn {{hymn.lyricLangs|lyricLangsCssClass}}" data-ng-repeat="hymn in hymns | filterHymnOrHymnbook:search">
+		<div class="list-entry hymn {{hymn.lyricLangs|lyricLangsCssClass}}" data-ng-repeat="hymn in hymns | filterHymnOrHymnbook:search | orderBy: 'hymnbookIndex'">
 			<div class="entry-header">
 				<div data-ng-repeat="nameEntry in hymn.names">
 					<a class="underline" data-ng-href="#!/hymns/{{hymn._id}}">
