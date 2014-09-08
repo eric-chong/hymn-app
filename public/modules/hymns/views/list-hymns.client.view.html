@@ -45,17 +45,6 @@
 					</div>
 				</div>
 			</div>
-			<div class="row" ng-if="!hymnbook">
-				<div class="large-6 columns">
-					<label>
-						Publisher
-						<select ui-select2="hymnbookSelectOption" ng-model="newHymn.hymnbookId">
-							<option value=""></option>
-						    <option value="{{hymnbook._id}}" ng-repeat="hymnbook in hymnbooksList">{{hymnbook.names|concatNames}}</option>
-						</select>
-					</label>
-				</div>
-			</div>
 			<div class="row padding_top_half padding_bottom_half">
 				<div class="large-12 columns">
 					<input type="submit" value="Save" class="button success tiny radius" />
