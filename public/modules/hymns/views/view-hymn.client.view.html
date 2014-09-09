@@ -11,7 +11,7 @@
 				<div class="left-panel">
 					<div class="hymn-labels">
 						<ul ng-if="hymn.$resolved && hymn.labels.length > 0">
-							<li ng-repeat="label in hymn.labels">{{label}} <i class="fa fa-remove" ng-click="removeLabel(label)"></i></li>
+							<li ng-repeat="label in hymn.labels" class="label">{{label}} <i class="fa fa-remove" ng-click="removeLabel(label)"></i></li>
 						</ul>
 						<span class="no-data" ng-if="hymn.$resolved && hymn.labels.length === 0">There is no label, add one below.</span>
 						<form ng-submit="addLabel(newLabel)">
@@ -21,7 +21,6 @@
 					<div class="hymn-related" ng-if="false"></div>
 				</div>
 				<div class="lyrics-panel">
-					Lyrics Panel
 					<tabset>
 						<tab ng-repeat="lyricsLang in hymn.lyricsList">
 							<tab-heading>

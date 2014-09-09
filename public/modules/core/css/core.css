@@ -476,6 +476,27 @@ form .select2-container,
 	background: transparent;
 	border: none;
 }
+.hymn-content .left-panel .hymn-labels ul {
+	margin-left: 0;
+	margin-bottom: 0.5rem;
+}
+.hymn-content .left-panel .hymn-labels ul li.label {
+	background: transparent;
+	border: 1px solid #ccc;
+	color: #333;
+	padding: 0.4rem 0.6rem;
+	margin-right: 0.4rem;
+	font-size: 0.9rem;
+	border-radius: 0.9rem;
+	font-family: inherit;
+}
+.hymn-content .left-panel .hymn-labels ul li.label:hover {
+	background: #eee;
+}
+.hymn-content .left-panel .hymn-labels ul li.label i.fa-remove {
+	font-size: 0.6rem;
+	cursor: pointer;
+}
 .hymn-content .left-panel .hymn-labels:hover {
 	background: #fff;
 }
@@ -488,6 +509,9 @@ form .select2-container,
 }
 .hymn-content .lyrics-panel .add-lyrics-set .add-lyrics-btn {
 	font-size: 0.6rem;
+}
+.hymn-content .lyrics-panel .tabs a {
+	padding: 0.5rem;
 }
 
 /* modal css */
