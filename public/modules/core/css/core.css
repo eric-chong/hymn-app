@@ -77,7 +77,11 @@ body {
 .margin_right_quarter {
 	margin-right: 0.25rem;
 }
-
+.no-data {
+	font-size: 0.9rem;
+	font-style: italic;
+	font-weight: lighter;
+}
 .tooltip {
 	font-size: 0.6rem;
 	padding: 0.5rem;
@@ -98,7 +102,8 @@ body {
 .list-group {
 	margin-top: 1.5rem;
 }
-.list-group .list-entry {
+.list-group .list-entry,
+.hymn-content .hymn-info {
 	display: inline-block;
 	position: relative;
 	margin-right: 20px;
@@ -115,67 +120,88 @@ body {
 	text-align: center;
 	margin-bottom: 1.5rem;
 }
+.hymn-content .hymn-info {
+	width: 100%;
+	height: auto;
+	margin: 0;
+	padding: 1rem;
+}
 .list-group .list-entry.hymn {
 	height: 6rem;
 }
-.list-group .list-entry:hover {
+.list-group .list-entry:hover,
+.hymn-content .hymn-info:hover {
 	background: #fff;
 	border-top: 5px solid rgb(145, 85, 20);
 	border-top: 5px solid rgba(145, 85, 20, 1);
 }
-.list-group .list-entry.zh-CAN {
+.list-group .list-entry.zh-CAN,
+.hymn-content .hymn-info.zh-CAN {
 	border-top: 5px solid rgb(212, 212, 32);
 	border-top: 5px solid rgba(212, 212, 32, 0.7);
 }
-.list-group .list-entry.zh-CAN:hover {
+.list-group .list-entry.zh-CAN:hover,
+.hymn-content .hymn-info.zh-CAN {
 	border-top: 5px solid rgb(212, 212, 32);
 	border-top: 5px solid rgba(212, 212, 32, 1);
 }
-.list-group .list-entry.zh-MAN {
+.list-group .list-entry.zh-MAN,
+.hymn-content .hymn-info.zh-MAN {
 	border-top: 5px solid rgb(186, 24, 24);
 	border-top: 5px solid rgba(186, 24, 24, 0.7);
 }
-.list-group .list-entry.zh-MAN:hover {
+.list-group .list-entry.zh-MAN:hover,
+.hymn-content .hymn-info.zh-MAN:hover {
 	border-top: 5px solid rgb(186, 24, 24);
 	border-top: 5px solid rgba(186, 24, 24, 1);
 }
-.list-group .list-entry.en {
+.list-group .list-entry.en,
+.hymn-content .hymn-info.en {
 	border-top: 5px solid rgb(36, 38, 201);
 	border-top: 5px solid rgba(36, 38, 201, 0.7);
 }
-.list-group .list-entry.en:hover {
+.list-group .list-entry.en:hover,
+.hymn-content .hymn-info.en:hover {
 	border-top: 5px solid rgb(36, 38, 201);
 	border-top: 5px solid rgba(36, 38, 201, 1);
 }
-.list-group .list-entry.zh-CAN.zh-MAN {
+.list-group .list-entry.zh-CAN.zh-MAN,
+.hymn-content .hymn-info.zh-CAN.zh-MAN {
 	border-top: 5px solid rgb(237, 130, 7);
 	border-top: 5px solid rgba(237, 130, 7, 0.7);
 }
-.list-group .list-entry.zh-CAN.zh-MAN:hover {
+.list-group .list-entry.zh-CAN.zh-MAN:hover,
+.hymn-content .hymn-info.zh-CAN.zh-MAN:hover {
 	border-top: 5px solid rgb(237, 130, 7);
 	border-top: 5px solid rgba(237, 130, 7, 1);
 }
-.list-group .list-entry.en.zh-CAN {
+.list-group .list-entry.en.zh-CAN,
+.hymn-content .hymn-info.en.zh-CAN {
 	border-top: 5px solid rgb(36, 145, 31);
 	border-top: 5px solid rgba(36, 145, 31, 0.7);
 }
-.list-group .list-entry.en.zh-CAN:hover {
+.list-group .list-entry.en.zh-CAN:hover,
+.hymn-content .hymn-info.en.zh-CAN:hover {
 	border-top: 5px solid rgb(36, 145, 31);
 	border-top: 5px solid rgba(36, 145, 31, 1);
 }
-.list-group .list-entry.en.zh-MAN {
+.list-group .list-entry.en.zh-MAN,
+.hymn-content .hymn-info.en.zh-MAN {
 	border-top: 5px solid rgb(230, 32, 137);
 	border-top: 5px solid rgba(230, 32, 137, 0.7);
 }
-.list-group .list-entry.en.zh-MAN:hover {
+.list-group .list-entry.en.zh-MAN:hover,
+.hymn-content .hymn-info.en.zh-MAN:hover {
 	border-top: 5px solid rgb(230, 32, 137);
 	border-top: 5px solid rgba(230, 32, 137, 1);
 }
-.list-group .list-entry.en.zh-CAN.zh-MAN {
+.list-group .list-entry.en.zh-CAN.zh-MAN,
+.hymn-content .hymn-info.en.zh-CAN.zh-MAN {
 	border-top: 5px solid rgb(108, 31, 153);
 	border-top: 5px solid rgba(108, 31, 153, 0.7);
 }
-.list-group .list-entry.en.zh-CAN.zh-MAN:hover {
+.list-group .list-entry.en.zh-CAN.zh-MAN:hover,
+.hymn-content .hymn-info.en.zh-CAN.zh-MAN:hover {
 	border-top: 5px solid rgb(108, 31, 153);
 	border-top: 5px solid rgba(108, 31, 153, 1);
 }
@@ -416,6 +442,52 @@ form .select2-container,
 .filter-section .select2-container {
 	width: 100%;
 	margin-bottom: 1rem;
+}
+.hymn-content {
+	position: relative;
+	max-width: 62.5rem;
+	margin-left: auto;
+	margin-right: auto;
+}
+.hymn-content .left-panel,
+.hymn-content .lyrics-panel {
+	display: inline-block;
+	vertical-align: top;
+	margin-top: 2rem;
+}
+.hymn-content .left-panel {
+	width: 17rem;
+	margin-right: 1.5rem;
+}
+.hymn-content .lyrics-panel {
+	width: calc(100% - 19rem);
+}
+.hymn-content .lyrics-panel:hover {
+	background: #fff;
+}
+.hymn-content .left-panel .hymn-labels,
+.hymn-content .lyrics-panel {
+	background: #eee;
+	border: 1px solid #ccc;
+	border-radius: 0.25rem;
+	padding: 0.5rem;
+}
+.hymn-content .left-panel .hymn-labels input {
+	background: transparent;
+	border: none;
+}
+.hymn-content .left-panel .hymn-labels:hover {
+	background: #fff;
+}
+.hymn-content .lyrics-panel .add-lyrics-set .add-lyrics-set-toggler,
+.hymn-content .lyrics-panel .add-lyrics-set .add-lyrics-set-lang-selector {
+	display: inline-block;
+}
+.hymn-content .lyrics-panel .add-lyrics-set .add-lyrics-set-lang-selector {
+	font-size: 0.8rem;
+}
+.hymn-content .lyrics-panel .add-lyrics-set .add-lyrics-btn {
+	font-size: 0.6rem;
 }
 
 /* modal css */

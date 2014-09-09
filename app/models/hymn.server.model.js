@@ -49,7 +49,7 @@ var HymnSchema = new Schema({
 	}],
 	lyricLangs: [String],
 	lyricsList: [{
-		lang: [String],
+		langs: [String],
 		lyrics: [{
 			verse: String,
 			lines: [String]

@@ -25,6 +25,31 @@ angular.module('hymns')
     	};
     })
 
+    .filter('displayLangs', function() {
+        return function(langs) {
+            if (!_.isArray(langs)) return langs;
+
+            var displayLangs = '';
+
+            langs.forEach(function(elem, index) {
+                if (index > 0 && elem !== undefined) displayLangs = displayLangs.concat(' - ');                
+                switch (elem) {
+                    case 'en':
+                        displayLangs = displayLangs.concat('English');
+                        break;
+                    case 'zh-CAN':
+                        displayLangs = displayLangs.concat('粵語');
+                        break;
+                    case 'zh-MAN':
+                        displayLangs = displayLangs.concat('國語');
+                        break;
+                }
+            });
+
+            return displayLangs;
+        }
+    })
+
     .filter('filterHymnOrHymnbook', function() {
         return function(array, searchObj) {
             if (!_.isArray(array)) return array;

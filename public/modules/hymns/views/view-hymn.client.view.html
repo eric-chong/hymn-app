@@ -1,0 +1,57 @@
+<section data-ng-controller="HymnController" data-ng-init="loadHymn()">
+	<ng-include src="'/modules/hymns/views/info-panel.client.view.html'"></ng-include>
+	<div class="hymn-content">
+		<div class="row">
+			<div class="large-12 columns">
+				<div class="hymn-info {{hymn.lyricLangs|lyricLangsCssClass}}">{{hymn.names|concatNames}}</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-12 columns">
+				<div class="left-panel">
+					<div class="hymn-labels">
+						<ul ng-if="hymn.$resolved && hymn.labels.length > 0">
+							<li ng-repeat="label in hymn.labels">{{label}} <i class="fa fa-remove" ng-click="removeLabel(label)"></i></li>
+						</ul>
+						<span class="no-data" ng-if="hymn.$resolved && hymn.labels.length === 0">There is no label, add one below.</span>
+						<form ng-submit="addLabel(newLabel)">
+							<input type="text" ng-model="newLabel" placeholder="Enter Label Here" />
+						</form>						
+					</div>
+					<div class="hymn-related" ng-if="false"></div>
+				</div>
+				<div class="lyrics-panel">
+					Lyrics Panel
+					<tabset>
+						<tab ng-repeat="lyricsLang in hymn.lyricsList">
+							<tab-heading>
+								{{lyricsLang.langs | displayLangs}}
+							</tab-heading>
+							{{lyricsLang.langs | displayLangs}}
+							{{lyricsLang.lyrics|json}}
+						</tab>
+						<div class="add-lyrics-set" ng-show="langsAvailable.length > 0">
+							<span class="add-lyrics-set-lang-selector" ng-show="show.addLyrics">
+								<ui-group-checkbox
+									ui-group-checkbox-model="newLyrics.lyricLangs" 
+									ui-group-checkbox-values="langsAvailable"
+									ui-group-checkbox-labels="lyricLangs.displayNames">
+								</ui-group-checkbox>
+								<ui-icon-btn 
+									ui-icon-btn-css-class="add-lyrics-btn"
+									ui-icon-btn-icon-class="plus" 
+									ui-icon-btn-on-click="addLyricsSet()">
+								</ui-icon-btn>
+							</span>
+							<span class="add-lyrics-set-toggler">
+								<i class="fa" ng-class="{'fa-angle-double-right': !show.addLyrics, 'fa-angle-double-left': show.addLyrics}" tooltip="Add Lyrics" tooltip-placement="right" ng-click="show.addLyrics=!show.addLyrics"></i>
+							</span>
+						</div>
+					</tabset>
+					<!-- lyrics tabset -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<pre>{{hymn|json}}</pre>
+</section>

@@ -67,6 +67,10 @@ angular.module('hymns')
 				delete: {
 					method: 'DELETE',
 					url: 'hymns/:hymnId'
+				},
+				getOne: {
+					method: 'GET',
+					url: 'hymns/:hymnId'
 				}
 			});
 		}

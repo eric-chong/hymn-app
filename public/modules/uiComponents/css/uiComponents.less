@@ -2,6 +2,7 @@
 @green-btn: rgba(30, 151, 49, 1);
 @grey-btn: #ccc;
 @solid-white: #fff;
+@off-black: #333;
 
 /* toggle-btn */
 .ui-toggle {
@@ -55,5 +56,17 @@
         .fa-circle-thin.checked {
             color: @green-btn;
         }
+    }
+}
+
+/* icon button */
+.ui-icon-btn {
+    color: @grey-btn;
+    cursor: pointer;
+    &:hover .fa.fa-circle-thin {
+        color: @green-btn;
+    }
+    &:hover .fa {
+        color: @off-black;
     }
 }

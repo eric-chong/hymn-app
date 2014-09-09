@@ -20,6 +20,10 @@ angular.module('hymns').config(['$stateProvider',
 			.state('listHymnsInHymnbook', {
 				url: '/hymnbooks/:hymnbookId/hymns',
 				templateUrl: 'modules/hymns/views/list-hymns.client.view.html'
+			})
+			.state('viewHymn', {
+				url: '/hymns/:hymnId',
+				templateUrl: 'modules/hymns/views/view-hymn.client.view.html'
 			});
 	}
 ]);

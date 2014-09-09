@@ -56,4 +56,23 @@ angular.module('ui.components')
 			};
 		}
 	};
+})
+
+.directive('uiIconBtn', function() {
+	return {
+		restrict: 'E',
+		replace: true,
+		scope: {
+			uiIconBtnIconClass: '@',
+			uiIconBtnCssClass: '@',
+			uiIconBtnOnClick: '&'
+		},
+		template:
+			'<div class="ui-icon-btn {{uiIconBtnCssClass}}" ng-click="uiIconBtnOnClick()">' +
+				'<span class="fa-stack">' +
+					'<i class="fa fa-circle-thin fa-stack-2x"></i>' +
+					'<i class="fa fa-{{uiIconBtnIconClass}} fa-stack-1x"></i>' +
+				'</span>' +
+			'</div>'
+	};
 });

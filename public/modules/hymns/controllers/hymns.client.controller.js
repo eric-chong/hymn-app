@@ -416,6 +416,94 @@ angular.module('hymns')
 				});			
 		}])
 
+	.controller('HymnController', ['$scope', '$state', '$stateParams', 'Authentication', 'Publishers', 'Hymnbooks', 'Hymns', 'HymnConfig',
+		function($scope, $state, $stateParams, Authentication, Publishers, Hymnbooks, Hymns, HymnConfig) {
+			$scope.currentState = $state.current;
+			$scope.authentication = Authentication;
+
+			$scope.show = {
+				addLyrics: false
+			};
+
+			$scope.newLyrics = {
+				lyricLangs: []
+			};
+
+			$scope.langsAvailable = [];
+
+			$scope.addLyricsSet = function() {
+				if ($scope.hymn.$resolved && $scope.newLyrics.lyricLangs.length > 0) {
+					$scope.hymn.lyricsList.push({
+						langs: angular.copy($scope.newLyrics.lyricLangs),
+						lyrics: [],
+						slideIndexes: []
+					});
+					$scope.hymn.$update(function(response) {
+						$scope.loadHymn();
+						resetNewLyrics();
+					});					
+				}
+			};
+
+			$scope.parentInfo = {
+				parent: 'hymnbooks',
+				child: 'hymns',
+				title: 'Hymn Book'
+			};
+
+			$scope.lyricLangs = HymnConfig.getConfig().lyricLangs;
+
+			$scope.loadHymn = function() {
+				$scope.hymn = Hymns.getOne({
+					hymnId: $stateParams.hymnId
+				});
+			};
+
+			$scope.addLabel = function(label) {
+				if ($scope.hymn.labels.indexOf(label) === -1) {
+					$scope.hymn.labels.push(label);
+					$scope.hymn.$update(function(response) {
+						$scope.newLabel = undefined;
+						$scope.loadHymn();
+					});
+				}
+			};
+
+			$scope.removeLabel = function(label) {
+				var labelIndex = $scope.hymn.labels.indexOf(label);
+				if (labelIndex > -1) {
+					$scope.hymn.labels.splice(labelIndex, 1);
+					$scope.hymn.$update(function(response) {
+						$scope.newLabel = undefined;
+						$scope.loadHymn();
+					});
+				}
+			};
+
+			function setLangsAvailable() {
+				var lyricsListLangs = [];
+				$scope.hymn.lyricsList.forEach(function(elem) {
+					lyricsListLangs.push(elem.langs);
+				});
+				$scope.langsAvailable =  _.difference($scope.hymn.lyricLangs, _.flatten(lyricsListLangs)).sort();
+			}
+
+			function resetNewLyrics() {
+				$scope.newLyrics = {
+					lyricLangs: []
+				};
+			}
+
+			$scope.$watch('hymn.$resolved', function() {
+				if ($scope.hymn.$resolved) {
+					$scope.parentInfo.obj = $scope.hymn.hymnbook;
+					setLangsAvailable();
+				}
+			});
+
+			resetNewLyrics();
+		}])
+
 	.controller('DeleteItemController', ['$scope', '$modalInstance', 'itemToDelete', 
 		function($scope, $modalInstance, itemToDelete) {
 			$scope.itemToDelete = itemToDelete;
