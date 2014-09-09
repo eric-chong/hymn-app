@@ -69,29 +69,31 @@
 		</form>
 	</div>
 	<ng-include src="'/modules/hymns/views/filter-hymnbook.client.view.html'"></ng-include>
-	<div class="list-group">
-		<div class="list-entry {{hymnbook.lyricLangs|lyricLangsCssClass}}" data-ng-repeat="hymnbook in hymnbooks | filterHymnOrHymnbook:search">
-			<div class="entry-header">
-				<div data-ng-repeat="nameEntry in hymnbook.names">
-					<a class="underline" data-ng-href="#!/hymnbooks/{{hymnbook._id}}/hymns">
-						{{nameEntry.name}}
-					</a>
+	<ul class="list-group small-block-grid-2 medium-block-grid-3 large-block-grid-4">
+		<li data-ng-repeat="hymnbook in hymnbooks | filterHymnOrHymnbook:search">		
+			<div class="list-entry {{hymnbook.lyricLangs|lyricLangsCssClass}}">
+				<div class="entry-header">
+					<div data-ng-repeat="nameEntry in hymnbook.names">
+						<a class="underline" data-ng-href="#!/hymnbooks/{{hymnbook._id}}/hymns">
+							{{nameEntry.name}}
+						</a>
+					</div>
+				</div>
+				<div class="hymn-count entry-stats" ng-class="{zero: hymnbook.hymnsCount === 0}">
+					<span ng-hide="hymnbooks.$resolved"><i class="fa fa-circle-o-notch fa-spin" /></span>
+					<span ng-show="hymnbooks.$resolved" tooltip="Number of hymns" tooltip-placement="bottom">{{hymnbook.hymnsCount}}</span>
+				</div>
+				<div class="action-icons" ng-if="authentication.user && authentication.user._id == hymnbook.user._id">
+					<div class="action-icon left" tooltip="Edit" tooltip-placement="right">
+						<i class="fa fa-edit" ng-click="edit(hymnbook)" />
+					</div>
+					<div class="action-icon right" tooltip="Delete" tooltip-placement="left">
+						<i class="fa fa-trash" ng-click="delete(hymnbook)" />
+					</div>
 				</div>
 			</div>
-			<div class="hymn-count entry-stats" ng-class="{zero: hymnbook.hymnsCount === 0}">
-				<span ng-hide="hymnbooks.$resolved"><i class="fa fa-circle-o-notch fa-spin" /></span>
-				<span ng-show="hymnbooks.$resolved" tooltip="Number of hymns" tooltip-placement="bottom">{{hymnbook.hymnsCount}}</span>
-			</div>
-			<div class="action-icons" ng-if="authentication.user && authentication.user._id == hymnbook.user._id">
-				<div class="action-icon left" tooltip="Edit" tooltip-placement="right">
-					<i class="fa fa-edit" ng-click="edit(hymnbook)" />
-				</div>
-				<div class="action-icon right" tooltip="Delete" tooltip-placement="left">
-					<i class="fa fa-trash" ng-click="delete(hymnbook)" />
-				</div>
-			</div>
-		</div>
-	</div>
+		</li>
+	</ul>
 	<div class="alert alert-warning text-center" data-ng-if="hymnbooks.$resolved && !hymnbooks.length">
 		No hymnbooks yet, why don't you <a class="underline" ng-click="show.newSection = !show.newSection">create one</a>?
 	</div>

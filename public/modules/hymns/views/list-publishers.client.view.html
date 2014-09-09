@@ -28,31 +28,34 @@
 			</div>
 		</form>
 	</div>
-	<div class="list-group">
-		<div class="list-entry" data-ng-repeat="publisher in publishers">
-			<div class="entry-header">
-				<div data-ng-repeat="nameEntry in publisher.names">
-					<a class="underline" data-ng-href="#!/publishers/{{publisher._id}}/hymnbooks">
-						{{nameEntry.name}}
-					</a>
+	<ul class="list-group small-block-grid-2 medium-block-grid-3 large-block-grid-4">
+		<li data-ng-repeat="publisher in publishers">
+			<div class="list-entry">
+				<div class="entry-header">
+					<div data-ng-repeat="nameEntry in publisher.names">
+						<a class="underline" data-ng-href="#!/publishers/{{publisher._id}}/hymnbooks">
+							{{nameEntry.name}}
+						</a>
+					</div>
+				</div>
+				<div class="hymnbooks-count entry-stats" ng-class="{zero: publisher.hymnbooksCount === 0}">
+					<span ng-hide="publishers.$resolved"><i class="fa fa-circle-o-notch fa-spin" /></span>
+					<span ng-show="publishers.$resolved" tooltip="Number of hymn books" tooltip-placement="bottom">
+						{{publisher.hymnbooksCount}}
+					</span>
+				</div>
+				<div class="action-icons" ng-if="authentication.user && authentication.user._id == publisher.user._id">
+					<div class="action-icon left" tooltip="Edit" tooltip-placement="right">
+						<i class="fa fa-edit" ng-click="edit(publisher)" />
+					</div>
+					<div class="action-icon right" tooltip="Delete" tooltip-placement="left">
+						<i class="fa fa-trash" ng-click="delete(publisher)" />
+					</div>
 				</div>
 			</div>
-			<div class="hymnbooks-count entry-stats" ng-class="{zero: publisher.hymnbooksCount === 0}">
-				<span ng-hide="publishers.$resolved"><i class="fa fa-circle-o-notch fa-spin" /></span>
-				<span ng-show="publishers.$resolved" tooltip="Number of hymn books" tooltip-placement="bottom">
-					{{publisher.hymnbooksCount}}
-				</span>
-			</div>
-			<div class="action-icons" ng-if="authentication.user && authentication.user._id == publisher.user._id">
-				<div class="action-icon left" tooltip="Edit" tooltip-placement="right">
-					<i class="fa fa-edit" ng-click="edit(publisher)" />
-				</div>
-				<div class="action-icon right" tooltip="Delete" tooltip-placement="left">
-					<i class="fa fa-trash" ng-click="delete(publisher)" />
-				</div>
-			</div>
-		</div>
-	</div>
+
+		</li>
+	</uk>
 	<div class="alert alert-warning text-center" data-ng-if="publishers.$resolved && !publishers.length">
 		No publishers yet, why don't you <a class="underline" ng-click="show.newSection = !show.newSection">create one</a>?
 	</div>

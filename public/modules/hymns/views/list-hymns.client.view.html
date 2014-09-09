@@ -28,7 +28,7 @@
 						<div class="large-12 columns">
 							<label>
 								Hymn Index
-								<input type="text" name="hymnIndex" ng-model="newHymn.hymnIndex" />
+								<input type="text" name="hymnIndex" ng-model="newHymn.hymnbookIndex" />
 							</label>
 						</div>
 					</div>
@@ -74,25 +74,27 @@
 		</form>
 	</div>
 	<ng-include src="'/modules/hymns/views/filter-hymn.client.view.html'"></ng-include>
-	<div class="list-group">
-		<div class="list-entry hymn {{hymn.lyricLangs|lyricLangsCssClass}}" data-ng-repeat="hymn in hymns | filterHymnOrHymnbook:search | orderBy: 'hymnbookIndex'">
-			<div class="entry-header">
-				<div data-ng-repeat="nameEntry in hymn.names">
-					<a class="underline" data-ng-href="#!/hymns/{{hymn._id}}">
-						{{nameEntry.name}}
-					</a>
+	<ul class="list-group small-block-grid-2 medium-block-grid-3 large-block-grid-4">
+		<li data-ng-repeat="hymn in hymns | filterHymnOrHymnbook:search | orderBy: 'hymnbookIndex'">
+			<div class="list-entry hymn {{hymn.lyricLangs|lyricLangsCssClass}}">
+				<div class="entry-header">
+					<div data-ng-repeat="nameEntry in hymn.names">
+						<a class="underline" data-ng-href="#!/hymns/{{hymn._id}}">
+							{{nameEntry.name}}
+						</a>
+					</div>
+				</div>
+				<div class="action-icons" ng-if="authentication.user && authentication.user._id == hymn.user._id">
+					<div class="action-icon left" tooltip="Edit" tooltip-placement="right">
+						<i class="fa fa-edit" ng-click="edit(hymn)" />
+					</div>
+					<div class="action-icon right" tooltip="Delete" tooltip-placement="left">
+						<i class="fa fa-trash" ng-click="delete(hymn)" />
+					</div>
 				</div>
 			</div>
-			<div class="action-icons" ng-if="authentication.user && authentication.user._id == hymn.user._id">
-				<div class="action-icon left" tooltip="Edit" tooltip-placement="right">
-					<i class="fa fa-edit" ng-click="edit(hymn)" />
-				</div>
-				<div class="action-icon right" tooltip="Delete" tooltip-placement="left">
-					<i class="fa fa-trash" ng-click="delete(hymn)" />
-				</div>
-			</div>
-		</div>
-	</div>
+		</li>
+	</uk>
 	<div class="alert alert-warning text-center" data-ng-if="hymns.$resolved && !hymns.length">
 		No hymns yet, why don't you <a class="underline" ng-click="show.newSection = !show.newSection">create one</a>?
 	</div>
