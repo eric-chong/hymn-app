@@ -1,0 +1,58 @@
+<div class="edit-form">
+	<form role="form" ng-submit="save(editForm)" name="editForm">
+		<div class="sub-header">Edit Hymn</div>
+		<div class="body">
+			<div class="row" ng-class="{'error padding_top padding_bottom': !editForm.name.$valid}">
+				<div class="large-6 columns" data-ng-repeat="name in itemToEdit.names">
+					<label ng-switch="name.lang" ng-class="{error: !editForm.name.$valid}">
+						<span ng-switch-when="zh">中文名稱</span>
+						<span ng-switch-when="en">English Name</span>
+						<span ng-switch-default>Name</span>
+						<input type="text" ng-model="name.name" name="name" />
+					</label>
+				</div>
+			</div>
+			<div class="row" ng-show="!editForm.name.$valid">
+				<div class="large-12 columns form-error">You must enter at least one name.</div>
+			</div>
+			<div class="row">
+				<div class="large-6 columns padding_none">
+					<div class="row form-group">
+						<div class="large-12 columns">
+							<label>
+								Hymn Index
+								<input type="text" name="hymnIndex" ng-model="itemToEdit.hymnbookIndex" />
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="large-6 columns padding_none">
+					<div class="row form-group">
+						<div class="large-12 columns">
+							<label>Languages</label>
+							<ui-group-checkbox
+								ui-group-checkbox-model="itemToEdit.lyricLangs" 
+								ui-group-checkbox-values="checkboxItems.lyricLangs.values"
+								ui-group-checkbox-labels="checkboxItems.lyricLangs.displayNames">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="large-6 columns">
+					<label>
+						Hymnbook
+						<select ui-select2 ng-model="itemToEdit.hymnbook._id">
+							<option value=""></option>
+						    <option value="{{hymnbook._id}}" ng-repeat="hymnbook in selectLists.hymnbooks">{{hymnbook.names|concatNames}}</option>
+						</select>
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<input type="submit" value="Save" class="button success tiny radius" />
+			<input type="button" value="Cancel" class="button secondary tiny radius" ng-click="cancel()" />
+		</div>
+	</form>
+</div>

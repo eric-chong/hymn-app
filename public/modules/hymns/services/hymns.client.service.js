@@ -61,7 +61,8 @@ angular.module('hymns')
 				hymnId: '@_id'
 			}, {
 				update: {
-					method: 'PUT'
+					method: 'PUT',
+					url: 'hymns/:hymnId'
 				},
 				delete: {
 					method: 'DELETE',

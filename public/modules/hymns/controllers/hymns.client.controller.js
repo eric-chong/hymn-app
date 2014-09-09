@@ -314,7 +314,7 @@ angular.module('hymns')
 						if (elem.name) hymnToSave.names.push(elem);
 					});
 					hymnToSave.lyricLangs = angular.copy($scope.newHymn.lyricLangs);
-					hymnToSave.hymnbookIndex = $scope.newHymn.hymnIndex;
+					hymnToSave.hymnbookIndex = $scope.newHymn.hymnbookIndex;
 					hymnToSave.$save(function(response) {
 						resetNewHymnObj();
 						$scope.loadHymns();
@@ -340,6 +340,44 @@ angular.module('hymns')
 
 				modalInstance.result.then(function (hymn) {
 					hymn.$delete(function(response) {
+						$scope.loadHymns();
+					});
+				});
+			};
+
+			$scope.edit = function(hymn) {
+				if (!$scope.publishersList) {
+					$scope.publishersList = Publishers.query();
+				}
+				if (!$scope.hymnbooksList) {
+					$scope.hymnbooksList = Hymnbooks.getAll();	
+				}
+				var modalInstance = $modal.open({
+					templateUrl: 'modules/hymns/views/modal-edit-hymn.client.view.html',
+					controller: 'EditItemController',
+					windowClass: 'edit-item-modal',
+					resolve: {
+						itemToEdit: function () {
+							return hymn;
+						},
+						selectLists: function() {
+							return {
+								hymnbooks: $scope.hymnbooksList
+							};
+						},
+						checkboxItems: function() {
+							return {
+								lyricLangs: $scope.lyricLangs
+							};
+						},
+						validateFn: function() {
+							return validateHymnForm;
+						}
+					}
+				});
+
+				modalInstance.result.then(function (hymn) {
+					hymn.$update(function(response) {
 						$scope.loadHymns();
 					});
 				});
