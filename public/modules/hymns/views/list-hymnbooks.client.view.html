@@ -62,8 +62,19 @@
 			</div>
 			<div class="row padding_top_half padding_bottom_half">
 				<div class="large-12 columns">
-					<input type="submit" value="Save" class="button success tiny radius" />
-					<input type="button" value="Cancel" class="button secondary tiny radius" ng-click="cancelNew()" />
+					<ui-btn
+						ui-btn-type="submit"
+						ui-btn-css-class="save-new-hymnbook-btn"
+						ui-btn-btn-css-class="success"
+						ui-btn-icon-class="save" 
+						ui-btn-label="Save">
+					</ui-btn>
+					<ui-btn
+						ui-btn-type="button"
+						ui-btn-css-class="cancel-new-hymnbook-btn"
+						ui-btn-label="Cancel"
+						ui-btn-on-click="cancelNew()">
+					</ui-btn>
 				</div>
 			</div>
 		</form>
