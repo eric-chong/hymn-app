@@ -500,8 +500,19 @@ form .select2-container,
 .hymn-content .left-panel .hymn-labels:hover {
 	background: #fff;
 }
+.hymn-content .lyrics-panel .add-lyrics-set .add-lyrics-set-toggler {
+	color: #999;
+	cursor: pointer;
+}
+.hymn-content .lyrics-panel .add-lyrics-set .add-lyrics-set-toggler:hover {
+	color: #333;
+}
 .hymn-content .lyrics-panel .add-lyrics-set .add-lyrics-set-toggler,
 .hymn-content .lyrics-panel .add-lyrics-set .add-lyrics-set-lang-selector {
+	display: inline-block;
+}
+.hymn-content .lyrics-panel .add-lyrics-set .add-lyrics-set-lang-selector .lyric-langs-checkbox,
+.hymn-content .lyrics-panel .add-lyrics-set .add-lyrics-set-lang-selector .add-lyrics-btn {
 	display: inline-block;
 }
 .hymn-content .lyrics-panel .add-lyrics-set .add-lyrics-set-lang-selector {
@@ -521,6 +532,12 @@ form .select2-container,
 }
 .hymn-content .lyrics-panel:hover .tabs dd.active a {
 	background: #eee;
+}
+.hymn-content .lyrics-panel:hover .tabs dd.active a .tab-heading:hover {
+	border-bottom: 0;
+}
+.hymn-content .lyrics-panel:hover .tabs a .tab-heading:hover {
+	border-bottom: 1px solid #333;
 }
 
 /* modal css */
