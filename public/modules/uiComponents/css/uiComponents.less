@@ -1,8 +1,12 @@
 /* colors */
 @green-btn: rgba(30, 151, 49, 1);
-@grey-btn: #ccc;
+@grey-btn: @grey-color;
 @solid-white: #fff;
 @off-black: #333;
+@light-grey-color: #eee;
+@grey-color: #ccc;
+
+@border-radius: 0.5rem;
 
 /* toggle-btn */
 .ui-toggle {
@@ -68,5 +72,28 @@
     }
     &:hover .fa {
         color: @off-black;
+    }
+}
+
+/* ui button with icon */
+.ui-btn {
+    display: inline-block;
+    button {
+        font-size: 0.8rem;
+        padding: 0.5rem 0.8rem;
+        background: transparent;
+        color: @off-black;
+        border-radius: @border-radius;
+        border: 1px solid @grey-color;
+        &.success {
+            border: 1px solid @green-btn;
+            &:hover {
+                background: @green-btn;
+                color: @solid-white;
+            }
+        }
+        &:hover {
+            background: @light-grey-color;
+        }
     }
 }

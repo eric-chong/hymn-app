@@ -25,12 +25,13 @@ angular.module('ui.components')
 		restrict: 'E',
 		replace: true,
 		scope: {
+			uiGroupCheckboxCssClass: '@',
 			uiGroupCheckboxModel: '=',
 			uiGroupCheckboxValues: '=',
 			uiGroupCheckboxLabels: '='
 		},
 		template: 
-			'<div class="ui-group-checkbox">' +
+			'<div class="ui-group-checkbox {{uiGroupCheckboxCssClass}}">' +
 				'<div class="ui-checkbox" ng-repeat="item in uiGroupCheckboxValues track by $index">' +
 					'<span class="fa-stack" ng-click="select(item)">' + 
 						'<i class="fa fa-circle-thin fa-stack-2x" ng-class="{checked: isChecked(item)}"></i>' +
@@ -65,14 +66,40 @@ angular.module('ui.components')
 		scope: {
 			uiIconBtnIconClass: '@',
 			uiIconBtnCssClass: '@',
-			uiIconBtnOnClick: '&'
+			uiIconBtnOnClick: '&',
+			uiIconBtnTooltip: '@',
+			uiIconBtnTooltipPlacement: '@'
 		},
 		template:
 			'<div class="ui-icon-btn {{uiIconBtnCssClass}}" ng-click="uiIconBtnOnClick()">' +
-				'<span class="fa-stack">' +
+				'<span class="fa-stack" tooltip="{{uiIconBtnTooltip}}" tooltip-placement="{{uiIconBtnTooltipPlacement}}">' +
 					'<i class="fa fa-circle-thin fa-stack-2x"></i>' +
 					'<i class="fa fa-{{uiIconBtnIconClass}} fa-stack-1x"></i>' +
 				'</span>' +
+			'</div>'
+	};
+})
+
+.directive('uiBtn', function() {
+	return {
+		restrict: 'E',
+		replace: true,
+		scope: {
+			uiBtnType: '@',
+			uiBtnIconClass: '@',
+			uiBtnLabel: '@',
+			uiBtnCssClass: '@',
+			uiBtnBtnCssClass: '@',
+			uiBtnOnClick: '&',
+			uiBtnTooltip: '@',
+			uiBtnTooltipPlacement: '@'
+		},
+		template:
+			'<div class="ui-btn {{uiBtnCssClass}}">' +
+				'<button type="{{uiBtnType}}" class="{{uiBtnBtnCssClass}}" ng-click="uiBtnOnClick()" ' + 
+					'tooltip="{{uiBtnTooltip}}" tooltip-placement="{{uiBtnTooltipPlacement}}">' +
+					'<i class="fa fa-{{uiBtnIconClass}}" ng-show="uiBtnIconClass"/> {{uiBtnLabel}}' +
+				'</button>' +
 			'</div>'
 	};
 });
