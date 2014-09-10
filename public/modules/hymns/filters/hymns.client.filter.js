@@ -47,7 +47,7 @@ angular.module('hymns')
             });
 
             return displayLangs;
-        }
+        };
     })
 
     .filter('filterHymnOrHymnbook', function() {
