@@ -104,18 +104,14 @@ angular.module('hymns')
 			resetNewPublisherList();
 		}])
 
-	.controller('HymnbooksController', ['$scope', '$state', '$stateParams', '$modal', 'Authentication', 'Publishers', 'Hymnbooks', 'HymnConfig',
-		function($scope, $state, $stateParams, $modal, Authentication, Publishers, Hymnbooks, HymnConfig){
+	.controller('HymnbooksController', ['$scope', '$state', '$stateParams', '$timeout', '$modal', 'Authentication', 'Publishers', 'Hymnbooks', 'HymnConfig',
+		function($scope, $state, $stateParams, $timeout, $modal, Authentication, Publishers, Hymnbooks, HymnConfig){
 			$scope.currentState = $state.current;
 			$scope.authentication = Authentication;
 
 			$scope.show = {
 				newSection: false,
 				filterSection: false
-			};
-
-			$scope.publisherSelectOption = {
-				allowClear: true
 			};
 
 			$scope.search = {
@@ -264,11 +260,11 @@ angular.module('hymns')
 				}
 			}
 
-			resetNewHymnbookObj();
+			resetNewHymnbookObj();	
 		}])
 
-	.controller('HymnsController', ['$scope', '$state', '$stateParams', '$q', '$modal', 'Authentication', 'Publishers', 'Hymnbooks', 'Hymns', 'HymnConfig',
-		function($scope, $state, $stateParams, $q, $modal, Authentication, Publishers, Hymnbooks, Hymns, HymnConfig) {
+	.controller('HymnsController', ['$scope', '$state', '$stateParams', '$timeout', '$modal', 'Authentication', 'Publishers', 'Hymnbooks', 'Hymns', 'HymnConfig',
+		function($scope, $state, $stateParams, $timeout, $modal, Authentication, Publishers, Hymnbooks, Hymns, HymnConfig) {
 			$scope.currentState = $state.current;
 			$scope.authentication = Authentication;
 
@@ -411,9 +407,11 @@ angular.module('hymns')
 			$scope.$watchCollection('[hymnbooksList.$resolved, publishersList.$resolved, parentInfo.obj.$resolved]', 
 				function(newValues) {
 					if (_.all(newValues, _.identity)) {
-						resetNewHymnObj();		
+						$timeout(function() {
+							resetNewHymnObj();
+						}, true);
 					}
-				});			
+				});
 		}])
 
 	.controller('HymnController', ['$scope', '$state', '$stateParams', 'Authentication', 'Publishers', 'Hymnbooks', 'Hymns', 'HymnConfig',

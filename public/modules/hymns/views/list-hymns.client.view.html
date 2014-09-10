@@ -49,7 +49,7 @@
 				<div class="large-6 columns">
 					<label>
 						Publisher
-						<select ui-select2="selectOption" ng-model="newHymn.publisherId">
+						<select ui-select2 ng-model="newHymn.publisherId">
 							<option value=""></option>
 						    <option value="{{publisher._id}}" ng-repeat="publisher in publishersList">{{publisher.names|concatNames}}</option>
 						</select>
@@ -58,7 +58,7 @@
 				<div class="large-6 columns">
 					<label>
 						Hymnbook
-						<select ui-select2="selectOption" ng-model="newHymn.hymnbookId">
+						<select ui-select2 ng-model="newHymn.hymnbookId">
 							<option value=""></option>
 						    <option value="{{hymnbook._id}}" ng-repeat="hymnbook in hymnbooksList | filter:newHymn.publisherId">{{hymnbook.names|concatNames}}</option>
 						</select>
@@ -67,8 +67,19 @@
 			</div>
 			<div class="row padding_top_half padding_bottom_half">
 				<div class="large-12 columns">
-					<input type="submit" value="Save" class="button success tiny radius" />
-					<input type="button" value="Cancel" class="button secondary tiny radius" ng-click="cancelNew()" />
+					<ui-btn
+						ui-btn-type="submit"
+						ui-btn-css-class="save-new-hymn-btn"
+						ui-btn-btn-css-class="success"
+						ui-btn-icon-class="save" 
+						ui-btn-label="Save">
+					</ui-btn>
+					<ui-btn
+						ui-btn-type="button"
+						ui-btn-css-class="cancel-new-hymn-btn"
+						ui-btn-label="Cancel"
+						ui-btn-on-click="cancelNew()">
+					</ui-btn>
 				</div>
 			</div>
 		</form>

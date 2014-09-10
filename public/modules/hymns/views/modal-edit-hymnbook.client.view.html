@@ -54,8 +54,19 @@
 			</div>
 		</div>
 		<div class="footer">
-			<input type="submit" value="Save" class="button success tiny radius" />
-			<input type="button" value="Cancel" class="button secondary tiny radius" ng-click="cancel()" />
+			<ui-btn
+				ui-btn-type="submit"
+				ui-btn-css-class="save-new-hymnbook-btn"
+				ui-btn-btn-css-class="success"
+				ui-btn-icon-class="save" 
+				ui-btn-label="Save">
+			</ui-btn>
+			<ui-btn
+				ui-btn-type="button"
+				ui-btn-css-class="cancel-new-hymnbook-btn"
+				ui-btn-label="Cancel"
+				ui-btn-on-click="cancel()">
+			</ui-btn>
 		</div>
 	</form>
 </div>

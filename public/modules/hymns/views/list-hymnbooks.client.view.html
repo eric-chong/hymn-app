@@ -49,11 +49,11 @@
 					</div>
 				</div>
 			</div>
-			<div class="row" ng-if="!publisher">
+			<div class="row" ng-show="!parentInfo.obj">
 				<div class="large-6 columns">
 					<label>
 						Publisher
-						<select ui-select2="publisherSelectOption" ng-model="newHymnbook.publisherId">
+						<select ui-select2 ng-model="newHymnbook.publisherId">
 							<option value=""></option>
 						    <option value="{{publisher._id}}" ng-repeat="publisher in publishersList">{{publisher.names|concatNames}}</option>
 						</select>

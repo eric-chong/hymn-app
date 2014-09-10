@@ -6,6 +6,18 @@
 	<span>{{itemToDelete.names | concatNames}}</span>
 </div>
 <div class="footer">
-	<button class="button success tiny radius" ng-click="confirm()">Confirm</button>
-	<button class="button secondary tiny radius" ng-click="cancel()">Cancel</button>
+	<ui-btn
+		ui-btn-type="submit"
+		ui-btn-css-class="delete-item-btn"
+		ui-btn-btn-css-class="danger"
+		ui-btn-icon-class="trash" 
+		ui-btn-label="Delete"
+		ui-btn-on-click="confirm()">
+	</ui-btn>
+	<ui-btn
+		ui-btn-type="button"
+		ui-btn-css-class="cancel-delete-item-btn"
+		ui-btn-label="Cancel"
+		ui-btn-on-click="cancel()">
+	</ui-btn>
 </div>

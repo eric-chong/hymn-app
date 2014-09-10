@@ -5,6 +5,7 @@
 @off-black: #333;
 @light-grey-color: #eee;
 @grey-color: #ccc;
+@red-color: #CD3948;
 
 @border-radius: 0.5rem;
 
@@ -89,6 +90,13 @@
             border: 1px solid @green-btn;
             &:hover {
                 background: @green-btn;
+                color: @solid-white;
+            }
+        }
+        &.danger {
+            border: 1px solid @@red-color;
+            &:hover {
+                background: @@red-color;
                 color: @solid-white;
             }
         }
