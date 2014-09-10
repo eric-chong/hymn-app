@@ -511,7 +511,16 @@ form .select2-container,
 	font-size: 0.6rem;
 }
 .hymn-content .lyrics-panel .tabs a {
-	padding: 0.5rem;
+	background: transparent;
+	padding: 0.5rem 1rem;
+	font-family: inherit;
+}
+.hymn-content .lyrics-panel .tabs dd.active a {
+	background: #fff;
+	border-radius: 1.4rem;
+}
+.hymn-content .lyrics-panel:hover .tabs dd.active a {
+	background: #eee;
 }
 
 /* modal css */
