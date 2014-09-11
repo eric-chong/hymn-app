@@ -518,8 +518,9 @@ form .select2-container,
 .hymn-content .lyrics-panel .add-lyrics-set .add-lyrics-set-lang-selector {
 	font-size: 0.8rem;
 }
-.hymn-content .lyrics-panel .add-lyrics-set .add-lyrics-btn {
-	font-size: 0.6rem;
+.hymn-content .lyrics-panel .add-lyrics-set .ui-btn.add-lyrics-btn button {
+    padding: 0.3rem 0.4rem;
+    font-size: 0.6rem;
 }
 .hymn-content .lyrics-panel .tabs a {
 	background: transparent;
@@ -538,6 +539,9 @@ form .select2-container,
 }
 .hymn-content .lyrics-panel:hover .tabs a .tab-heading:hover {
 	border-bottom: 1px solid #333;
+}
+.tabs-content .content {
+	margin-top: 0.5rem;
 }
 
 /* modal css */

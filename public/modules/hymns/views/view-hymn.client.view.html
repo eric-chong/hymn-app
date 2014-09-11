@@ -23,27 +23,34 @@
 				<div class="lyrics-panel">
 					<tabset>
 						<tab ng-repeat="lyricsLang in hymn.lyricsList">
-							<tab-heading>
+							<tab-heading class="tab-heading">
 								{{lyricsLang.langs | displayLangs}}
 							</tab-heading>
-							{{lyricsLang.langs | displayLangs}}
-							{{lyricsLang.lyrics|json}}
+							<ui-btn
+								ui-btn-css-class="add-verse-btn"
+								ui-btn-btn-css-class="success"
+								ui-btn-icon-class="plus" 
+								ui-btn-label="Verse">
+							</ui-btn>
+							<pre>{{lyricsLang.lyrics|json}}</pre>
+							<pre>{{lyricsLang.langs | displayLangs}}</pre>
 						</tab>
 						<div class="add-lyrics-set" ng-show="langsAvailable.length > 0">
-							<span class="add-lyrics-set-lang-selector" ng-show="show.addLyrics">
+							<span class="add-lyrics-set-lang-selector">
 								<ui-group-checkbox
+									ui-group-checkbox-css-class="lyric-langs-checkbox"
 									ui-group-checkbox-model="newLyrics.lyricLangs" 
 									ui-group-checkbox-values="langsAvailable"
 									ui-group-checkbox-labels="lyricLangs.displayNames">
 								</ui-group-checkbox>
-								<ui-icon-btn 
-									ui-icon-btn-css-class="add-lyrics-btn"
-									ui-icon-btn-icon-class="plus" 
-									ui-icon-btn-on-click="addLyricsSet()">
-								</ui-icon-btn>
-							</span>
-							<span class="add-lyrics-set-toggler">
-								<i class="fa" ng-class="{'fa-angle-double-right': !show.addLyrics, 'fa-angle-double-left': show.addLyrics}" tooltip="Add Lyrics" tooltip-placement="right" ng-click="show.addLyrics=!show.addLyrics"></i>
+								<ui-btn
+									ui-btn-css-class="add-lyrics-btn"
+									ui-btn-btn-css-class="success"
+									ui-btn-icon-class="plus" 
+									ui-btn-tooltip="Add"
+									ui-btn-tooltip-placement="right"
+									ui-btn-on-click="addLyricsSet()">
+								</ui-btn>
 							</span>
 						</div>
 					</tabset>
