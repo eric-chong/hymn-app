@@ -30,11 +30,49 @@
 								ui-btn-css-class="add-verse-btn"
 								ui-btn-btn-css-class="success"
 								ui-btn-icon-class="plus" 
-								ui-btn-label="Verse">
+								ui-btn-label="Verse"
+								ui-btn-on-click="newVerse[$index].show=!newVerse[$index].show">
 							</ui-btn>
-							<pre>{{lyricsLang.lyrics|json}}</pre>
-							<pre>{{lyricsLang.langs | displayLangs}}</pre>
-						</tab>
+							<div id="edit-panel" class="edit-panel" ng-show="newVerse[$index].show">
+								<form ng-submit="addLyricVerse($index)" name="verseForm">
+									<label>
+										Verse
+										<input id="lyricVerse" type="text" name="lyricVerse" ng-model="newVerse[$index].verse"/>
+									</label>
+									<label>
+										Lines
+										<textarea 
+											id="lyricLines" 
+											rows="4" 
+											name="lyricLines" 
+											ng-model="newVerse[$index].lines"
+											ng-required>
+										</textarea>
+									</label>
+									<ui-btn
+										ui-btn-type="submit"
+										ui-btn-css-class="save-verse-btn"
+										ui-btn-btn-css-class="success"
+										ui-btn-icon-class="save"
+										ui-btn-label="Save">
+									</ui-btn>
+									<ui-btn
+										ui-btn-type="button"
+										ui-btn-css-class="cancel-save-verse-btn"
+										ui-btn-label="Cancel"
+										ui-btn-on-click="cancelAddVerse($index)">
+									</ui-btn>
+								</form>
+							</div>
+							<div class="verse-block" ng-repeat="verse in lyricsLang.lyrics">
+								<div class="lyrics-verse">
+									<div class="view-panel">
+										<div class="verse">{{verse.verse}}</div>
+										<div class="lines">{{verse.lines}}</div>
+									</div>
+								</div>
+							</div>
+ 						</tab>
 						<div class="add-lyrics-set" ng-show="langsAvailable.length > 0">
 							<span class="add-lyrics-set-lang-selector">
 								<ui-group-checkbox
@@ -59,5 +97,5 @@
 			</div>
 		</div>
 	</div>
-	<pre>{{hymn|json}}</pre>
+	<!-- <pre>{{hymn|json}}</pre> -->
 </section>

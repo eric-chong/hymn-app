@@ -427,6 +427,8 @@ angular.module('hymns')
 				lyricLangs: []
 			};
 
+			$scope.newVerse = [];
+
 			$scope.langsAvailable = [];
 
 			$scope.addLyricsSet = function() {
@@ -439,7 +441,7 @@ angular.module('hymns')
 					$scope.hymn.$update(function(response) {
 						$scope.loadHymn();
 						resetNewLyrics();
-					});					
+					});
 				}
 			};
 
@@ -478,6 +480,23 @@ angular.module('hymns')
 				}
 			};
 
+			$scope.addLyricVerse = function(index) {
+				if ($scope.newVerse[index]) {
+					$scope.hymn.lyricsList[index].lyrics.push({
+						verse: $scope.newVerse[index].verse,
+						lines: convertLinesToModel($scope.newVerse[index].lines)
+					});
+					$scope.hymn.$update(function(response) {
+						resetNewVerse(index);
+					});
+	
+				}
+			};
+
+			$scope.cancelAddVerse = function(index) {
+				resetNewVerse(index);
+			};
+
 			function setLangsAvailable() {
 				var lyricsListLangs = [];
 				$scope.hymn.lyricsList.forEach(function(elem) {
@@ -492,9 +511,26 @@ angular.module('hymns')
 				};
 			}
 
+			function resetNewVerse(index) {
+				$scope.newVerse[index] = { lines: [] };
+			}
+
+			function convertLinesToView(linesArray) {
+				if (!_.isArray(linesArray)) return linesArray;
+
+				return linesArray.join('\n');
+			}
+
+			function convertLinesToModel(linesString) {
+				return linesString.split('\n');
+			}
+
 			$scope.$watch('hymn.$resolved', function() {
 				if ($scope.hymn.$resolved) {
 					$scope.parentInfo.obj = $scope.hymn.hymnbook;
+					$scope.hymn.lyricsList.forEach(function() {
+						$scope.newVerse.push({ lines: [] });
+					});
 					setLangsAvailable();
 				}
 			});
