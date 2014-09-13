@@ -22,7 +22,7 @@
 				</div>
 				<div class="lyrics-panel">
 					<tabset>
-						<tab ng-repeat="lyricsLang in hymn.lyricsList">
+						<tab class="{{lyricsLang.langs | lyricLangsCssClass}}" ng-repeat="lyricsLang in hymn.lyricsList">
 							<tab-heading class="tab-heading">
 								{{lyricsLang.langs | displayLangs}}
 							</tab-heading>
