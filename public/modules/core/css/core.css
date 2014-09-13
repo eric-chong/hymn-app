@@ -448,6 +448,7 @@ form .select2-container,
 	max-width: 62.5rem;
 	margin-left: auto;
 	margin-right: auto;
+	margin-bottom: 4rem;
 }
 .hymn-content .left-panel,
 .hymn-content .lyrics-panel {
