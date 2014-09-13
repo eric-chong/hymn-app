@@ -431,6 +431,8 @@ angular.module('hymns')
 
 			$scope.langsAvailable = [];
 
+			$scope.lyricsVerseViewModel = [];
+
 			$scope.addLyricsSet = function() {
 				if ($scope.hymn.$resolved && $scope.newLyrics.lyricLangs.length > 0) {
 					$scope.hymn.lyricsList.push({
@@ -497,6 +499,24 @@ angular.module('hymns')
 				resetNewVerse(index);
 			};
 
+			$scope.updateLyricVerse = function(lyricSet, verseViewModel, index) {
+				if (lyricSet.lyrics && lyricSet.lyrics.length > index) {
+					lyricSet.lyrics[index].verse = verseViewModel.verse;
+					lyricSet.lyrics[index].lines = convertLinesToModel(verseViewModel.lines);
+					$scope.hymn.$update(function(response) {
+						verseViewModel.editMode = false;
+					});
+				}
+			};
+
+			$scope.cancelEditVerse = function(lyricSet, verseViewModel, index) {
+				if (lyricSet.lyrics && lyricSet.lyrics.length > index) {
+					verseViewModel.verse = lyricSet.lyrics[index].verse;
+					verseViewModel.lines = convertLinesToView(lyricSet.lyrics[index].lines);
+					verseViewModel.editMode = false;
+				}
+			};
+
 			function setLangsAvailable() {
 				var lyricsListLangs = [];
 				$scope.hymn.lyricsList.forEach(function(elem) {
@@ -525,10 +545,25 @@ angular.module('hymns')
 				return linesString.split('\n');
 			}
 
+			function convertVerseToViewModel(verseObj) {
+				return {
+					verse: verseObj.verse,
+					lines: convertLinesToView(verseObj.lines),
+					editMode: false
+				};
+			}
+
 			$scope.$watch('hymn.$resolved', function() {
 				if ($scope.hymn.$resolved) {
 					$scope.parentInfo.obj = $scope.hymn.hymnbook;
-					$scope.hymn.lyricsList.forEach(function() {
+					$scope.hymn.lyricsList.forEach(function(elem, index) {
+						var lyricsViewModel = [];
+						if (elem.lyrics && elem.lyrics.length > 0) {
+							elem.lyrics.forEach(function(elem, index) {
+								lyricsViewModel.push(convertVerseToViewModel(elem));
+							});
+						}
+						$scope.lyricsVerseViewModel.push(lyricsViewModel);
 						$scope.newVerse.push({ lines: [] });
 					});
 					setLangsAvailable();
