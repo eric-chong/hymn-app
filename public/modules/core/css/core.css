@@ -562,6 +562,27 @@ form .select2-container,
 .tabs-content .content {
 	margin-top: 0.5rem;
 }
+.lyrics-verse {
+    padding: 1rem;
+    border: 1px solid #ccc;
+    margin-bottom: 1rem;
+    border-radius: 0.25rem;
+    position: relative;
+}
+.lyrics-verse .view-panel .lines {
+    text-align: center;
+    cursor: pointer;
+    white-space: pre;
+}
+.lyrics-verse .view-panel .verse {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    border: 1px solid #333;
+    text-align: center;
+    border-radius: 2rem;
+    padding: 0.2rem 0.5rem;
+}
 
 /* modal css */
 .reveal-modal{
