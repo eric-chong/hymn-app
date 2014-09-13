@@ -527,10 +527,15 @@ form .select2-container,
 	background: transparent;
 	padding: 0.5rem 1rem;
 	font-family: inherit;
+	border-radius: 1.4rem;
+	border: 1px solid #ccc;
+	margin-right: 0.5rem;
+}
+.hymn-content .lyrics-panel .tabs dd:not(.active) a:hover {
+	border: 1px solid #999;
 }
 .hymn-content .lyrics-panel .tabs dd.active a {
 	background: transparent;
-	border-radius: 1.4rem;
 }
 .hymn-content .lyrics-panel .tabs dd.active.en a {
 	border: 1px solid rgb(36, 38, 201);
