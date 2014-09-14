@@ -492,7 +492,7 @@ form .select2-container,
 	font-family: inherit;
 }
 .hymn-content .left-panel .hymn-labels ul li.label:hover {
-	background: #eee;
+	border: 1px solid #999;
 }
 .hymn-content .left-panel .hymn-labels ul li.label i.fa-remove {
 	font-size: 0.6rem;
