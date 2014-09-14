@@ -594,6 +594,12 @@ form .select2-container,
 .lyrics-verse:hover .view-panel .verse {
 	border: 1px solid #999;
 }
+.lyrics-verse .view-panel.ng-hide-remove,
+.lyrics-verse .edit-panel.ng-hide-remove {
+    -webkit-animation: flipInX 1s;
+    -moz-animation: flipInX 1s;
+    animation: flipInX 1s;
+}
 
 /* modal css */
 .reveal-modal{
