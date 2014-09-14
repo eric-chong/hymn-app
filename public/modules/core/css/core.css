@@ -574,19 +574,25 @@ form .select2-container,
     border-radius: 0.25rem;
     position: relative;
 }
+.lyrics-verse:hover {
+	border: 1px solid #999;
+}
 .lyrics-verse .view-panel .lines {
     text-align: center;
     cursor: pointer;
     white-space: pre;
 }
 .lyrics-verse .view-panel .verse {
-    position: absolute;
-    top: 0.5rem;
-    left: 0.5rem;
-    border: 1px solid #333;
-    text-align: center;
-    border-radius: 2rem;
-    padding: 0.2rem 0.5rem;
+	position: absolute;
+	top: 0.5rem;
+	left: 0.5rem;
+	border: 1px solid #ccc;
+	text-align: center;
+	border-radius: 2rem;
+	padding: 0.2rem 0.5rem;
+}
+.lyrics-verse:hover .view-panel .verse {
+	border: 1px solid #999;
 }
 
 /* modal css */
