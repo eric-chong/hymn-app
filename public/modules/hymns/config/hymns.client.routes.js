@@ -1,8 +1,8 @@
 'use strict';
 
 // Setting up route
-angular.module('hymns').config(['$stateProvider',
-	function($stateProvider) {
+angular.module('hymns').config(['$stateProvider', '$urlRouterProvider',
+	function($stateProvider, $urlRouterProvider) {
 		// Articles state routing
 		$stateProvider
 			.state('listPublishers', {
@@ -25,5 +25,7 @@ angular.module('hymns').config(['$stateProvider',
 				url: '/hymns/:hymnId',
 				templateUrl: 'modules/hymns/views/view-hymn.client.view.html'
 			});
+
+		$urlRouterProvider.otherwise('/hymnbooks');
 	}
 ]);
