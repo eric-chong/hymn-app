@@ -4,6 +4,7 @@
 @solid-white: #fff;
 @off-black: #333;
 @light-grey-color: #eee;
+@med-grey-color: #999;
 @grey-color: #ccc;
 @red-color: #CD3948;
 
@@ -68,11 +69,19 @@
 .ui-icon-btn {
     color: @grey-btn;
     cursor: pointer;
-    &:hover .fa.fa-circle-thin {
-        color: @green-btn;
-    }
-    &:hover .fa {
-        color: @off-black;
+    &:hover {
+        .fa.fa-circle-thin {
+            color: @med-grey-color;
+        }
+        .success .fa.fa-circle-thin {
+            color: @green-btn;
+        }
+        .danger .fa.fa-circle-thin {
+            color: @red-color;
+        }
+        .fa {
+            color: @off-black;
+        }
     }
 }
 
@@ -94,14 +103,14 @@
             }
         }
         &.danger {
-            border: 1px solid @@red-color;
+            border: 1px solid @red-color;
             &:hover {
-                background: @@red-color;
+                background: @red-color;
                 color: @solid-white;
             }
         }
         &:hover {
-            background: @light-grey-color;
+            border: 1px solid @med-grey-color;
         }
     }
 }

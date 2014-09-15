@@ -66,13 +66,14 @@ angular.module('ui.components')
 		scope: {
 			uiIconBtnIconClass: '@',
 			uiIconBtnCssClass: '@',
+			uiIconBtnClass: '@',
 			uiIconBtnOnClick: '&',
 			uiIconBtnTooltip: '@',
 			uiIconBtnTooltipPlacement: '@'
 		},
 		template:
 			'<div class="ui-icon-btn {{uiIconBtnCssClass}}" ng-click="uiIconBtnOnClick()">' +
-				'<span class="fa-stack" tooltip="{{uiIconBtnTooltip}}" tooltip-placement="{{uiIconBtnTooltipPlacement}}">' +
+				'<span class="fa-stack {{uiIconBtnClass}}" tooltip="{{uiIconBtnTooltip}}" tooltip-placement="{{uiIconBtnTooltipPlacement}}">' +
 					'<i class="fa fa-circle-thin fa-stack-2x"></i>' +
 					'<i class="fa fa-{{uiIconBtnIconClass}} fa-stack-1x"></i>' +
 				'</span>' +
