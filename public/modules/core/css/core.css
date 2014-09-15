@@ -591,6 +591,11 @@ form .select2-container,
 	border-radius: 2rem;
 	padding: 0.2rem 0.5rem;
 }
+.lyrics-verse .action-panel {
+	position: absolute;
+	top: 0.5rem;
+	right: 0.5rem;
+}
 .lyrics-verse:hover .view-panel .verse {
 	border: 1px solid #999;
 }
