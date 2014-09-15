@@ -425,6 +425,7 @@ angular.module('hymns')
 
 	.controller('HymnController', ['$scope', '$state', '$stateParams', '$modal', 'Authentication', 'Publishers', 'Hymnbooks', 'Hymns', 'HymnConfig',
 		function($scope, $state, $stateParams, $modal, Authentication, Publishers, Hymnbooks, Hymns, HymnConfig) {
+			var selectedTab = 0;
 			$scope.currentState = $state.current;
 			$scope.authentication = Authentication;
 
@@ -516,10 +517,13 @@ angular.module('hymns')
 				resetNewVerse(index);
 			};
 
-			$scope.updateLyricVerse = function(lyricSet, verseViewModel, index) {
-				if (lyricSet.lyrics && lyricSet.lyrics.length > index) {
-					lyricSet.lyrics[index].verse = verseViewModel.verse;
-					lyricSet.lyrics[index].lines = convertLinesToModel(verseViewModel.lines);
+			$scope.updateLyricVerse = function(lyricSetIndex, verseIndex) {
+				selectedTab = lyricSetIndex;
+				var lyricSet = $scope.hymn.lyricsList[lyricSetIndex];
+				var verseViewModel = $scope.lyricsVerseViewModel[lyricSetIndex][verseIndex];
+				if (lyricSet.lyrics && lyricSet.lyrics.length > verseIndex) {
+					lyricSet.lyrics[verseIndex].verse = verseViewModel.verse;
+					lyricSet.lyrics[verseIndex].lines = convertLinesToModel(verseViewModel.lines);
 					$scope.hymn.$update(function(response) {
 						verseViewModel.editMode = false;
 					});
@@ -618,6 +622,14 @@ angular.module('hymns')
 					setLangsAvailable();
 				}
 			});
+
+			$scope.$watch('hymn', function() {
+				if (selectedTab > 0) {
+					if ($scope.hymn.lyricsList && $scope.hymn.lyricsList.length > selectedTab) {
+						$scope.hymn.lyricsList[selectedTab].active = true;
+					}
+				}
+			}, true);
 
 			resetNewLyrics();
 		}])

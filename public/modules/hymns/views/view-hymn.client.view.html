@@ -22,7 +22,7 @@
 				</div>
 				<div class="lyrics-panel">
 					<tabset>
-						<tab class="{{lyricsLang.langs | lyricLangsCssClass}}" ng-repeat="lyricsLang in hymn.lyricsList">
+						<tab class="{{lyricsLang.langs | lyricLangsCssClass}}" ng-repeat="lyricsLang in hymn.lyricsList" active="lyricsLang.active">
 							<tab-heading class="tab-heading">
 								{{lyricsLang.langs | displayLangs}}
 							</tab-heading>
@@ -73,7 +73,7 @@
 										<div class="lines">{{verse.lines}}</div>
 									</div>
 									<div id="edit-panel" class="edit-panel" ng-show="verse.editMode">
-										<form ng-submit="updateLyricVerse(lyricsLang, verse, $index)" name="verseForm">
+										<form ng-submit="updateLyricVerse($parent.$index, $index)" name="verseForm">
 											<label>
 												Verse
 												<input id="lyricVerse" type="text" name="lyricVerse" ng-model="verse.verse"/>
