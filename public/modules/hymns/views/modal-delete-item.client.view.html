@@ -1,9 +1,10 @@
 <div class="header">
-	<span>Confirm delete this item?</span>
+	<span ng-if="!deleteMsg">Confirm delete this item?</span>
+	<span ng-if="deleteMsg">{{deleteMsg}}</span>
 	<i class="fa fa-close" ng-click="cancel()" />
 </div>
 <div class="body">
-	<span>{{itemToDelete.names | concatNames}}</span>
+	<span ng-if="itemToDelete.names">{{itemToDelete.names | concatNames}}</span>
 </div>
 <div class="footer">
 	<ui-btn

@@ -40,6 +40,9 @@ angular.module('hymns')
 					resolve: {
 						itemToDelete: function () {
 							return publisher;
+						},
+						deleteMsg: function() {
+							return '';
 						}
 					}
 				});
@@ -191,6 +194,9 @@ angular.module('hymns')
 					resolve: {
 						itemToDelete: function () {
 							return hymnbook;
+						},
+						deleteMsg: function() {
+							return '';
 						}
 					}
 				});
@@ -330,6 +336,9 @@ angular.module('hymns')
 					resolve: {
 						itemToDelete: function () {
 							return hymn;
+						},
+						deleteMsg: function() {
+							return '';
 						}
 					}
 				});
@@ -414,8 +423,8 @@ angular.module('hymns')
 				});
 		}])
 
-	.controller('HymnController', ['$scope', '$state', '$stateParams', 'Authentication', 'Publishers', 'Hymnbooks', 'Hymns', 'HymnConfig',
-		function($scope, $state, $stateParams, Authentication, Publishers, Hymnbooks, Hymns, HymnConfig) {
+	.controller('HymnController', ['$scope', '$state', '$stateParams', '$modal', 'Authentication', 'Publishers', 'Hymnbooks', 'Hymns', 'HymnConfig',
+		function($scope, $state, $stateParams, $modal, Authentication, Publishers, Hymnbooks, Hymns, HymnConfig) {
 			$scope.currentState = $state.current;
 			$scope.authentication = Authentication;
 
@@ -488,7 +497,15 @@ angular.module('hymns')
 						verse: $scope.newVerse[index].verse,
 						lines: convertLinesToModel($scope.newVerse[index].lines)
 					});
+					$scope.hymn.lyricsList[index].lyrics = _.sortBy($scope.hymn.lyricsList[index].lyrics, 'verse');
 					$scope.hymn.$update(function(response) {
+						if ($scope.lyricsVerseViewModel[index]) {
+							$scope.lyricsVerseViewModel[index].push({
+								verse: $scope.newVerse[index].verse,
+								lines: $scope.newVerse[index].lines
+							});
+							$scope.lyricsVerseViewModel[index] = _.sortBy($scope.lyricsVerseViewModel[index], 'verse');
+						}
 						resetNewVerse(index);
 					});
 	
@@ -516,6 +533,41 @@ angular.module('hymns')
 					verseViewModel.editMode = false;
 				}
 			};
+
+			$scope.removeVerse = function(lyricSetIndex, verseIndex) {
+				var modalInstance = $modal.open({
+					templateUrl: 'modules/hymns/views/modal-delete-item.client.view.html',
+					controller: 'DeleteItemController',
+					windowClass: 'delete-item-modal',
+					resolve: {
+						itemToDelete: function () {
+							return {
+								lyricSetIndex: lyricSetIndex,
+								verseIndex: verseIndex
+							};
+						},
+						deleteMsg: function() {
+							return 'Confirm delete this verse?';
+						}
+					}
+				});
+
+				modalInstance.result.then(function (lyricsIndexObj) {
+					if ($scope.hymn.lyricsList[lyricsIndexObj.lyricSetIndex] && 
+						$scope.hymn.lyricsList[lyricsIndexObj.lyricSetIndex].lyrics.length > lyricsIndexObj.verseIndex && 
+						$scope.lyricsVerseViewModel[lyricsIndexObj.lyricSetIndex] && 
+						$scope.lyricsVerseViewModel[lyricsIndexObj.lyricSetIndex].length > lyricsIndexObj.verseIndex) {
+						// console.log('removeVerse');
+						// console.log($scope.hymn.lyricsList[lyricSetIndex].lyrics[verseIndex]);
+						// console.log($scope.lyricsVerseViewModel[lyricSetIndex][verseIndex]);
+						$scope.hymn.lyricsList[lyricsIndexObj.lyricSetIndex].lyrics.splice(lyricsIndexObj.verseIndex, 1);
+						$scope.hymn.$update(function(response) {
+							$scope.lyricsVerseViewModel[lyricsIndexObj.lyricSetIndex].splice(lyricsIndexObj.verseIndex, 1);
+						});
+					}
+				});
+			};
+
 
 			function setLangsAvailable() {
 				var lyricsListLangs = [];
@@ -573,9 +625,10 @@ angular.module('hymns')
 			resetNewLyrics();
 		}])
 
-	.controller('DeleteItemController', ['$scope', '$modalInstance', 'itemToDelete', 
-		function($scope, $modalInstance, itemToDelete) {
+	.controller('DeleteItemController', ['$scope', '$modalInstance', 'itemToDelete', 'deleteMsg', 
+		function($scope, $modalInstance, itemToDelete, deleteMsg) {
 			$scope.itemToDelete = itemToDelete;
+			$scope.deleteMsg = deleteMsg;
 
 			$scope.confirm = function() {
 				$modalInstance.close($scope.itemToDelete);

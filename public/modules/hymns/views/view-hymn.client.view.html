@@ -103,6 +103,22 @@
 											</ui-btn>
 										</form>
 									</div>
+									<div class="action-panel">
+										<ui-icon-btn
+											ui-icon-btn-icon-class="trash"
+											ui-icon-btn-css-class="delete-verse-btn"
+											ui-icon-btn-on-click="removeVerse($parent.$index, $index)"
+											ui-icon-btn-tooltip="Delete Verse"
+											ui-icon-btn-tooltip-placement="left">
+										</ui-icon-btn>
+										<ui-icon-btn
+											ui-icon-btn-icon-class="copy"
+											ui-icon-btn-css-class="copy-verse-btn"
+											ui-icon-btn-on-click="copy($parent.$index, $index)"
+											ui-icon-btn-tooltip="Copy to Clipboard"
+											ui-icon-btn-tooltip-placement="left">
+										</ui-icon-btn>
+									</div>
 								</div>
 							</div>
  						</tab>
