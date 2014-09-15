@@ -557,9 +557,6 @@ angular.module('hymns')
 						$scope.hymn.lyricsList[lyricsIndexObj.lyricSetIndex].lyrics.length > lyricsIndexObj.verseIndex && 
 						$scope.lyricsVerseViewModel[lyricsIndexObj.lyricSetIndex] && 
 						$scope.lyricsVerseViewModel[lyricsIndexObj.lyricSetIndex].length > lyricsIndexObj.verseIndex) {
-						// console.log('removeVerse');
-						// console.log($scope.hymn.lyricsList[lyricSetIndex].lyrics[verseIndex]);
-						// console.log($scope.lyricsVerseViewModel[lyricSetIndex][verseIndex]);
 						$scope.hymn.lyricsList[lyricsIndexObj.lyricSetIndex].lyrics.splice(lyricsIndexObj.verseIndex, 1);
 						$scope.hymn.$update(function(response) {
 							$scope.lyricsVerseViewModel[lyricsIndexObj.lyricSetIndex].splice(lyricsIndexObj.verseIndex, 1);
