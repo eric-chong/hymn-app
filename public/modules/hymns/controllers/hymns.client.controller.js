@@ -423,8 +423,8 @@ angular.module('hymns')
 				});
 		}])
 
-	.controller('HymnController', ['$scope', '$state', '$stateParams', '$modal', 'Authentication', 'Publishers', 'Hymnbooks', 'Hymns', 'HymnConfig',
-		function($scope, $state, $stateParams, $modal, Authentication, Publishers, Hymnbooks, Hymns, HymnConfig) {
+	.controller('HymnController', ['$scope', '$state', '$stateParams', '$modal', 'Authentication', 'Publishers', 'Hymnbooks', 'Hymns', 'HymnConfig', 'HymnClipboard',
+		function($scope, $state, $stateParams, $modal, Authentication, Publishers, Hymnbooks, Hymns, HymnConfig, HymnClipboard) {
 			var selectedTab = 0;
 			$scope.currentState = $state.current;
 			$scope.authentication = Authentication;
@@ -569,6 +569,13 @@ angular.module('hymns')
 				});
 			};
 
+			$scope.setHymnClipboard = function(lyricSetIndex, verseIndex) {
+				if ($scope.lyricsVerseViewModel[lyricSetIndex] && 
+					$scope.lyricsVerseViewModel[lyricSetIndex].length > verseIndex) {
+					HymnClipboard.set($scope.lyricsVerseViewModel[lyricSetIndex][verseIndex].lines);
+				}
+
+			};
 
 			function setLangsAvailable() {
 				var lyricsListLangs = [];

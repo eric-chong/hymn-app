@@ -1,4 +1,7 @@
 <section data-ng-controller="HymnController" data-ng-init="loadHymn()">
+	<div id="lyrics-clipboard-container">
+		<textarea id="clipboard"></textarea>
+	</div>
 	<ng-include src="'/modules/hymns/views/info-panel.client.view.html'"></ng-include>
 	<div class="hymn-content">
 		<div class="row">
@@ -67,7 +70,7 @@
 								</div>
 							</div>
 							<div class="verse-block" ng-repeat="verse in lyricsVerseViewModel[$index]">
-								<div class="lyrics-verse">
+								<div class="lyrics-verse" ng-mouseenter="setHymnClipboard($parent.$index, $index)" hymn-copy-clipboard>
 									<div class="view-panel" ng-hide="verse.editMode" ng-click="verse.editMode=!verse.editMode">
 										<div class="verse">{{verse.verse}}</div>
 										<div class="lines">{{verse.lines}}</div>

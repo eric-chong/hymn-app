@@ -92,4 +92,16 @@ angular.module('hymns')
 				return config;
 			}
 		};
+	}])
+
+	.factory('HymnClipboard', [function() {
+		var clipValue = '';
+		return {
+			get: function() {
+				return clipValue;
+			},
+			set: function(value) {
+				clipValue = value;
+			}
+		};
 	}]);
