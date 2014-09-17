@@ -42,7 +42,7 @@
 								data-drop="true"
 								ng-model="hymn.defaultArrangement"
 								jqyoui-droppable="{multiple:true}"
-								ng-if="hasAuthorization(hymn)">
+								ng-if="hasAuthorization(hymn) && lyricsVerseViewModel[$index].length > 0">
 								<div class="verse" 
 									ng-repeat="verse in hymn.defaultArrangement track by $index">{{verse}}</div>
 								<span class="placeholder">drag a verse here</span>
