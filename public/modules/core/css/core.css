@@ -6,10 +6,10 @@ body {
 	font-family: Hua, "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 }
 .content {
-	margin-top: 50px;
+	margin-top: 5rem;
 }
 .content .container {
-	padding: 0 40px;
+	padding: 0 3rem;
 }
 .undecorated-link:hover {
 	text-decoration: none;
@@ -395,11 +395,11 @@ form .row .row.form-group .columns {
 	margin-top: 7px;
 }
 .f-dropdown.color-code-info:before {
-	right: 34px;
+	right: 42px;
 	left: auto;
 }
 .f-dropdown.color-code-info:after {
-	right: 33px;
+	right: 41px;
 	left: auto;	
 }
 .color-code-info .list-group {
@@ -417,11 +417,11 @@ form .row .row.form-group .columns {
 	cursor: pointer;
 }
 .f-dropdown.info-dropdown:before {
-	right: 71px;
+	right: 79px;
 	left: auto;
 }
 .f-dropdown.info-dropdown:after {
-	right: 70px;
+	right: 78px;
 	left: auto;	
 }
 .info-dropdown dl.name {
