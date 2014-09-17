@@ -463,7 +463,8 @@ form .select2-container,
 .hymn-content .lyrics-panel {
 	width: calc(100% - 19rem);
 }
-.hymn-content .lyrics-panel:hover {
+.hymn-content .lyrics-panel:hover,
+.hymn-content .lyrics-panel.is-hover {
 	background: #fff;
 }
 .hymn-content .left-panel .hymn-labels,
