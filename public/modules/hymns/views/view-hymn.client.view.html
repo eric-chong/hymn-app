@@ -34,13 +34,15 @@
 								ui-btn-btn-css-class="success"
 								ui-btn-icon-class="plus" 
 								ui-btn-label="Verse"
-								ui-btn-on-click="newVerse[$index].show=!newVerse[$index].show">
+								ui-btn-on-click="newVerse[$index].show=!newVerse[$index].show"
+								ng-if="hasAuthorization(hymn)">
 							</ui-btn>
 							<div class="default-arrangement"
 								ng-class="{'start-drag': startDrag}"
 								data-drop="true"
 								ng-model="hymn.defaultArrangement"
-								jqyoui-droppable="{multiple:true}">
+								jqyoui-droppable="{multiple:true}"
+								ng-if="hasAuthorization(hymn)">
 								<div class="verse" 
 									ng-repeat="verse in hymn.defaultArrangement track by $index">{{verse}}</div>
 								<span class="placeholder">drag a verse here</span>
@@ -80,7 +82,7 @@
 							</div>
 							<div class="verse-block" ng-repeat="verse in lyricsVerseViewModel[$index]">
 								<div class="lyrics-verse">
-									<div class="view-panel" ng-hide="verse.editMode">
+									<div class="view-panel" ng-hide="hasAuthorization(hymn) && verse.editMode">
 										<div class="verse" 
 											data-drag="true" 
 											data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" 
@@ -98,7 +100,7 @@
 												ui-icon-btn-on-click="removeVerse($parent.$index, $index)"
 												ui-icon-btn-tooltip="Delete Verse"
 												ui-icon-btn-tooltip-placement="left"
-												ng-if="authentication.user && authentication.user._id == hymnbook.user._id">
+												ng-if="hasAuthorization(hymn)">
 											</ui-icon-btn>
 											<div 
 												class="ui-icon-btn copy-verse-btn"
@@ -111,7 +113,7 @@
 											</div>
 										</div>
 									</div>
-									<div id="edit-panel" class="edit-panel" ng-show="verse.editMode">
+									<div id="edit-panel" class="edit-panel" ng-show="hasAuthorization(hymn) && verse.editMode">
 										<form ng-submit="updateLyricVerse($parent.$index, $index)" name="verseForm">
 											<label>
 												Verse

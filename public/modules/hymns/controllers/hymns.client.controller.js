@@ -584,6 +584,10 @@ angular.module('hymns')
 				$scope.startDrag = false;
 			};
 
+			$scope.hasAuthorization = function(item) {
+				return $scope.authentication.user && $scope.authentication.user._id === item.user._id;
+			};
+
 			function setLangsAvailable() {
 				var lyricsListLangs = [];
 				$scope.hymn.lyricsList.forEach(function(elem) {
