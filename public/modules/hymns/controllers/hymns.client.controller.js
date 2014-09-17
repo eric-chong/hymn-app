@@ -574,7 +574,14 @@ angular.module('hymns')
 					$scope.lyricsVerseViewModel[lyricSetIndex].length > verseIndex) {
 					HymnClipboard.set($scope.lyricsVerseViewModel[lyricSetIndex][verseIndex].lines);
 				}
+			};
 
+			$scope.onStartDrag = function() {
+				$scope.startDrag = true;
+			};
+
+			$scope.onStopDrag = function() {
+				$scope.startDrag = false;
 			};
 
 			function setLangsAvailable() {

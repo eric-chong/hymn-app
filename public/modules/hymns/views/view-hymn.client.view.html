@@ -36,6 +36,15 @@
 								ui-btn-label="Verse"
 								ui-btn-on-click="newVerse[$index].show=!newVerse[$index].show">
 							</ui-btn>
+							<div class="default-arrangement"
+								ng-class="{'start-drag': startDrag}"
+								data-drop="true"
+								ng-model="hymn.defaultArrangement"
+								jqyoui-droppable="{multiple:true}">
+								<div class="verse" 
+									ng-repeat="verse in hymn.defaultArrangement track by $index">{{verse}}</div>
+								<span class="placeholder">drag a verse here</span>
+							</div>
 							<div class="lyrics-verse" ng-show="newVerse[$index].show">
 								<div id="edit-panel" class="edit-panel">
 									<form ng-submit="addLyricVerse($index)" name="verseForm">
@@ -72,7 +81,12 @@
 							<div class="verse-block" ng-repeat="verse in lyricsVerseViewModel[$index]">
 								<div class="lyrics-verse">
 									<div class="view-panel" ng-hide="verse.editMode">
-										<div class="verse">{{verse.verse}}</div>
+										<div class="verse" 
+											data-drag="true" 
+											data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" 
+											jqyoui-draggable="{index: {{verse.verse}}, placeholder: 'keep', onStart: 'onStartDrag()', onStop: 'onStopDrag'}"
+											ng-model="verse.verse" 
+											jqyoui-draggable="{animate:true}">{{verse.verse}}</div>
 										<div class="lines" 
 											ng-click="verse.editMode=!verse.editMode"
 											ng-mouseenter="setHymnClipboard($parent.$index, $index)">{{verse.lines}}</div>
@@ -83,7 +97,8 @@
 												ui-icon-btn-class="danger"
 												ui-icon-btn-on-click="removeVerse($parent.$index, $index)"
 												ui-icon-btn-tooltip="Delete Verse"
-												ui-icon-btn-tooltip-placement="left">
+												ui-icon-btn-tooltip-placement="left"
+												ng-if="authentication.user && authentication.user._id == hymnbook.user._id">
 											</ui-icon-btn>
 											<div 
 												class="ui-icon-btn copy-verse-btn"

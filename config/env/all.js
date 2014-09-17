@@ -23,6 +23,7 @@ module.exports = {
 			js: [
 				'public/lib/fastclick/lib.fastclick.js',
 				'public/lib/jquery/dist/jquery.js',
+				'public/lib/jquery-ui/jquery-ui.js',
 				'public/lib/select2/select2.js',
 				'public/lib/angular/angular.js',
 				'public/lib/angular-resource/angular-resource.js',
@@ -35,7 +36,8 @@ module.exports = {
 				'public/lib/foundation/js/foundation.js',
 				'public/lib/modernizr/modernizr.js',
 				'public/lib/angular-foundation/mm-foundation-tpls.js',
-				'public/lib/zeroclipboard/dist/ZeroClipboard.js'
+				'public/lib/zeroclipboard/dist/ZeroClipboard.js',
+				'public/lib/angular-dragdrop/src/angular-dragdrop.js'
 			]
 		},
 		css: [

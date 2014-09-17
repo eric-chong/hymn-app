@@ -589,6 +589,37 @@ form .select2-container,
 	cursor: pointer;
 	white-space: pre;
 }
+.default-arrangement {
+	border: 1px solid #ccc;
+	padding: 0.25rem 1rem;
+	float: right;
+	border-radius: 2rem;
+}
+.default-arrangement.start-drag {
+	border: 1px solid #1E9731;
+}
+.default-arrangement:hover {
+	border: 1px solid #999;
+}
+.default-arrangement .placeholder {
+	font-size: 0.8rem;
+	color: #999;
+}
+.default-arrangement .verse {
+	display: inline-block;
+	margin-right: 0.5rem;
+	border: 1px solid #ccc;
+	text-align: center;
+	font-size: 0.8rem;
+	width: 1.5rem;
+	height: 1.5rem;
+	border-radius: 1.5rem;
+	padding: 0 0.35rem;
+	cursor: move;
+}
+.default-arrangement .verse:hover {
+	border: 1px solid #999;
+}
 .lyrics-verse .view-panel .verse {
 	border: 1px solid #ccc;
 	text-align: center;
@@ -596,6 +627,7 @@ form .select2-container,
 	border-radius: 2rem;
 	padding: 0.2rem 0.5rem;
 	vertical-align: top;
+	cursor: move;
 }
 .lyrics-verse .action-panel {
 	width: 3rem;
