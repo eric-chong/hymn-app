@@ -80,6 +80,9 @@
 									</form>
 								</div>
 							</div>
+							<div class="no-lyrics-msg" ng-if="hymn.$resolved && lyricsVerseViewModel[$index].length === 0">
+								<span class="no-data">There is no lyrics in this language, <a class="underline" ng-click="newVerse[$index].show=!newVerse[$index].show">add one</a> now?</span>
+							</div>
 							<div class="verse-block" ng-repeat="verse in lyricsVerseViewModel[$index]">
 								<div class="lyrics-verse">
 									<div class="view-panel" ng-hide="hasAuthorization(hymn) && verse.editMode">

@@ -568,6 +568,9 @@ form .select2-container,
 .tabs-content .content {
 	margin-top: 0.5rem;
 }
+.hymn-content .lyrics-panel .no-lyrics-msg {
+	text-align: center;
+}
 .lyrics-verse {
     padding: 1rem;
     border: 1px solid #ccc;
