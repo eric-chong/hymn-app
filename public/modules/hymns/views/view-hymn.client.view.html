@@ -1,6 +1,6 @@
 <section data-ng-controller="HymnController" data-ng-init="loadHymn()">
-	<div id="lyrics-clipboard-container">
-		<textarea id="clipboard"></textarea>
+	<div id="lyrics-clipboard-container" class="lyrics-clipboard-container" hymn-copy-clipboard>
+		<textarea id="clipboard" class="clipboard"></textarea>
 	</div>
 	<ng-include src="'/modules/hymns/views/info-panel.client.view.html'"></ng-include>
 	<div class="hymn-content">
@@ -70,10 +70,40 @@
 								</div>
 							</div>
 							<div class="verse-block" ng-repeat="verse in lyricsVerseViewModel[$index]">
-								<div class="lyrics-verse" ng-mouseenter="setHymnClipboard($parent.$index, $index)" hymn-copy-clipboard>
-									<div class="view-panel" ng-hide="verse.editMode" ng-click="verse.editMode=!verse.editMode">
+								<div class="lyrics-verse" ng-mouseenter="setHymnClipboard($parent.$index, $index)">
+									<div class="view-panel" ng-hide="verse.editMode">
 										<div class="verse">{{verse.verse}}</div>
-										<div class="lines">{{verse.lines}}</div>
+										<div class="lines" 
+											tooltip="Click to Edit Ctrl+C to Copy" 
+											tooltip-placement="bottom"
+											ng-click="verse.editMode=!verse.editMode">{{verse.lines}}</div>
+										<div class="action-panel">
+											<ui-icon-btn
+												ui-icon-btn-icon-class="trash"
+												ui-icon-btn-css-class="delete-verse-btn"
+												ui-icon-btn-class="danger"
+												ui-icon-btn-on-click="removeVerse($parent.$index, $index)"
+												ui-icon-btn-tooltip="Delete Verse"
+												ui-icon-btn-tooltip-placement="left">
+											</ui-icon-btn>
+											<div 
+												class="ui-icon-btn copy-verse-btn"
+												hymn-zero-clipboard 
+												data-clipboard-target="lyricLines-{{$parent.$index}}-{{$index}}">
+												<span class="fa-stack success" tooltip="Copy to Clipboard" tooltip-placement="left">
+													<i class="fa fa-circle-thin fa-stack-2x"></i>
+													<i class="fa fa-copy fa-stack-1x"></i>
+												</span>
+											</div>
+											<ui-icon-btn
+												ui-icon-btn-icon-class="copy"
+												ui-icon-btn-css-class="copy-verse-btn"
+												ui-icon-btn-class="success"
+												ui-icon-btn-tooltip="Copy to Clipboard"
+												ui-icon-btn-tooltip-placement="left"
+												ng-if="false">
+											</ui-icon-btn>
+										</div>
 									</div>
 									<div id="edit-panel" class="edit-panel" ng-show="verse.editMode">
 										<form ng-submit="updateLyricVerse($parent.$index, $index)" name="verseForm">
@@ -84,7 +114,7 @@
 											<label>
 												Lines
 												<textarea 
-													id="lyricLines" 
+													id="lyricLines-{{$parent.$index}}-{{$index}}" 
 													rows="4" 
 													name="lyricLines" 
 													ng-model="verse.lines"
@@ -105,24 +135,6 @@
 												ui-btn-on-click="cancelEditVerse(lyricsLang, verse, $index)">
 											</ui-btn>
 										</form>
-									</div>
-									<div class="action-panel">
-										<ui-icon-btn
-											ui-icon-btn-icon-class="trash"
-											ui-icon-btn-css-class="delete-verse-btn"
-											ui-icon-btn-class="danger"
-											ui-icon-btn-on-click="removeVerse($parent.$index, $index)"
-											ui-icon-btn-tooltip="Delete Verse"
-											ui-icon-btn-tooltip-placement="left">
-										</ui-icon-btn>
-										<ui-icon-btn
-											ui-icon-btn-icon-class="copy"
-											ui-icon-btn-css-class="copy-verse-btn"
-											ui-icon-btn-class="success"
-											ui-icon-btn-on-click="copy($parent.$index, $index)"
-											ui-icon-btn-tooltip="Copy to Clipboard"
-											ui-icon-btn-tooltip-placement="left">
-										</ui-icon-btn>
 									</div>
 								</div>
 							</div>

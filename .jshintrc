@@ -22,6 +22,7 @@
 		"angular": true,
 		"_": true,
 		"$": true,
+		"ZeroClipboard": true,
 		"ApplicationConfiguration": true
 	},
 	"predef": [ // Extra globals.

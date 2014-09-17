@@ -34,7 +34,8 @@ module.exports = {
 				//'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
 				'public/lib/foundation/js/foundation.js',
 				'public/lib/modernizr/modernizr.js',
-				'public/lib/angular-foundation/mm-foundation-tpls.js'
+				'public/lib/angular-foundation/mm-foundation-tpls.js',
+				'public/lib/zeroclipboard/dist/ZeroClipboard.js'
 			]
 		},
 		css: [

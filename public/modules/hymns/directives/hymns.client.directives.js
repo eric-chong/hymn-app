@@ -24,8 +24,17 @@ angular.module('hymns')
 				});
 
 				$(document).on('keyup', function(event) {
-					if ($(event.target).is("#clipboard")) $("#lyrics-clipboard-container").empty().hide();
+					if ($(event.target).is('#clipboard')) $('#lyrics-clipboard-container').empty().hide();
 				});
+			}
+		};
+	}])
+
+	.directive('hymnZeroClipboard', [function() {
+		return {
+			retrict: 'A',
+			link: function(scope, elem, attrs) {
+				var clip = new ZeroClipboard(elem);
 			}
 		};
 	}]);

@@ -577,24 +577,29 @@ form .select2-container,
 .lyrics-verse:hover {
 	border: 1px solid #999;
 }
+.lyrics-verse .view-panel .lines,
+.lyrics-verse .view-panel .verse,
+.lyrics-verse .view-panel .action-panel {
+	display: inline-block;
+}
 .lyrics-verse .view-panel .lines {
-    text-align: center;
-    cursor: pointer;
-    white-space: pre;
+	width: calc(100% - 5.7rem);
+	text-align: center;
+	cursor: pointer;
+	white-space: pre;
 }
 .lyrics-verse .view-panel .verse {
-	position: absolute;
-	top: 0.5rem;
-	left: 0.5rem;
 	border: 1px solid #ccc;
 	text-align: center;
+	width: 2rem;
 	border-radius: 2rem;
 	padding: 0.2rem 0.5rem;
+	vertical-align: top;
 }
 .lyrics-verse .action-panel {
-	position: absolute;
-	top: 0.5rem;
-	right: 0.5rem;
+	width: 3rem;
+	vertical-align: top;
+	text-align: right;
 }
 .lyrics-verse:hover .view-panel .verse {
 	border: 1px solid #999;
@@ -662,18 +667,18 @@ form .select2-container,
 }
 
 /* clipboard */
-#lyrics-clipboard-container {
-  position: fixed;
-  left: 0px;
-  top: 0px;
-  width: 0px;
-  height: 0px;
-  z-index: 100;
-  display: none;
-  opacity: 0;
+.lyrics-clipboard-container {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 0;
+	height: 0;
+	z-index: 100;
+	display: none;
+	opacity: 0;
 }
-#lyrics-clipboard-container #clipboard {
-  width: 1px;
-  height: 1px;       
-  padding: 0px;
+.lyrics-clipboard-container .clipboard {
+	width: 1px;
+	height: 1px;       
+	padding: 0;
 }
