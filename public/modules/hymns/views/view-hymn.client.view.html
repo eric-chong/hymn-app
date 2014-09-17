@@ -23,7 +23,7 @@
 					</div>
 					<div class="hymn-related" ng-if="false"></div>
 				</div>
-				<div class="lyrics-panel">
+				<div class="lyrics-panel" ng-class="{'is-hover': lyricsPanelIsHover}" ng-mouseenter="lyricsPanelIsHover=true" ng-mouseleave="lyricsPanelIsHover=false">
 					<tabset>
 						<tab class="{{lyricsLang.langs | lyricLangsCssClass}}" ng-repeat="lyricsLang in hymn.lyricsList" active="lyricsLang.active">
 							<tab-heading class="tab-heading">
@@ -70,13 +70,12 @@
 								</div>
 							</div>
 							<div class="verse-block" ng-repeat="verse in lyricsVerseViewModel[$index]">
-								<div class="lyrics-verse" ng-mouseenter="setHymnClipboard($parent.$index, $index)">
+								<div class="lyrics-verse">
 									<div class="view-panel" ng-hide="verse.editMode">
 										<div class="verse">{{verse.verse}}</div>
 										<div class="lines" 
-											tooltip="Click to Edit Ctrl+C to Copy" 
-											tooltip-placement="bottom"
-											ng-click="verse.editMode=!verse.editMode">{{verse.lines}}</div>
+											ng-click="verse.editMode=!verse.editMode"
+											ng-mouseenter="setHymnClipboard($parent.$index, $index)">{{verse.lines}}</div>
 										<div class="action-panel">
 											<ui-icon-btn
 												ui-icon-btn-icon-class="trash"
@@ -95,14 +94,6 @@
 													<i class="fa fa-copy fa-stack-1x"></i>
 												</span>
 											</div>
-											<ui-icon-btn
-												ui-icon-btn-icon-class="copy"
-												ui-icon-btn-css-class="copy-verse-btn"
-												ui-icon-btn-class="success"
-												ui-icon-btn-tooltip="Copy to Clipboard"
-												ui-icon-btn-tooltip-placement="left"
-												ng-if="false">
-											</ui-icon-btn>
 										</div>
 									</div>
 									<div id="edit-panel" class="edit-panel" ng-show="verse.editMode">
