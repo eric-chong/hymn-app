@@ -29,32 +29,33 @@
 							<tab-heading class="tab-heading">
 								{{lyricsLang.langs | displayLangs}}
 							</tab-heading>
-							<ui-btn
-								ui-btn-css-class="add-verse-btn"
-								ui-btn-btn-css-class="success"
-								ui-btn-icon-class="plus" 
-								ui-btn-label="Verse"
-								ui-btn-on-click="newVerse[$index].show=!newVerse[$index].show"
-								ng-if="hasAuthorization(hymn)">
-							</ui-btn>
-							<div class="default-arrangement"
-								ng-class="{'start-drag': startDrag}"
-								data-drop="true"
-								ng-model="hymn.defaultArrangement"
-								jqyoui-droppable="{multiple:true, onDrop: 'saveHymn()'}"
-								ng-if="hasAuthorization(hymn)">
-								<div class="verse" 
-									ng-repeat="verse in hymn.defaultArrangement track by $index"
-									ng-click="selectVerseFromArrangement($index)"
-									ng-class="{'selected': verseIndexSelected===$index}">{{verse}}</div>
-								<span class="placeholder" ng-if="hymn.defaultArrangement.length === 0">drag a verse here</span>
-								<span class="actions" ng-if="verseIndexSelected > -1">
-									<i class="fa fa-trash" 
-										ng-click="removeVerseFromArrangement()"
-										tooltip="Delete"
-										tooltip-placement="right"></i>
-								</span>
+							<div class="pull_left">
+								<ui-btn
+									ui-btn-css-class="add-verse-btn"
+									ui-btn-btn-css-class="success"
+									ui-btn-icon-class="plus" 
+									ui-btn-label="Verse"
+									ui-btn-on-click="newVerse[$index].show=!newVerse[$index].show"
+									ng-if="hasAuthorization(hymn)">
+								</ui-btn>
 							</div>
+							<div class="pull_right">
+								<div class="default-arrangement" ng-if="hasAuthorization(hymn) && hymn.defaultArrangement.length > 0">
+									<span ui-sortable="defaultArrangementSortableOptions" ng-model="hymn.defaultArrangement">
+										<div class="verse" 
+											ng-repeat="verse in hymn.defaultArrangement track by $index"
+											ng-click="selectVerseFromArrangement($index)"
+											ng-class="{'selected': verseIndexSelected===$index}">{{verse}}</div>
+									</span>
+									<span class="actions" ng-if="verseIndexSelected > -1">
+										<i class="fa fa-trash" 
+											ng-click="removeVerseFromArrangement()"
+											tooltip="Delete"
+											tooltip-placement="right"></i>
+									</span>
+								</div>
+							</div>
+							<div class="clear"></div>
 							<div class="lyrics-verse" ng-show="newVerse[$index].show">
 								<div id="edit-panel" class="edit-panel">
 									<form ng-submit="addLyricVerse($index)" name="verseForm">
@@ -95,11 +96,9 @@
 								<div class="lyrics-verse">
 									<div class="view-panel" ng-hide="hasAuthorization(hymn) && verse.editMode">
 										<div class="verse" 
-											data-drag="true" 
-											data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" 
-											jqyoui-draggable="{index: {{verse.verse}}, placeholder: 'keep', onStart: 'onStartDrag()', onStop: 'onStopDrag'}"
-											ng-model="verse.verse" 
-											jqyoui-draggable="{animate:true}">{{verse.verse}}</div>
+											ng-click="addVerseToArrangement(verse.verse)"
+											tooltip="Add to arrangement"
+											tooltip-placement="right">{{verse.verse}}</div>
 										<div class="lines" 
 											ng-click="verse.editMode=!verse.editMode"
 											ng-mouseenter="setHymnClipboard($parent.$index, $index)">{{verse.lines}}</div>

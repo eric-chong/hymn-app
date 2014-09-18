@@ -618,6 +618,17 @@ angular.module('hymns')
 				$scope.saveHymn();
 			};
 
+			$scope.addVerseToArrangement = function(verse) {
+				$scope.hymn.defaultArrangement.push(verse);
+				$scope.saveHymn();
+			};
+
+			$scope.defaultArrangementSortableOptions = {
+				update: function(e, ui) { 
+					$scope.saveHymn();
+				}
+			};
+
 			function setLangsAvailable() {
 				var lyricsListLangs = [];
 				$scope.hymn.lyricsList.forEach(function(elem) {

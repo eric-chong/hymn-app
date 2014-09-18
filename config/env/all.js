@@ -37,7 +37,7 @@ module.exports = {
 				'public/lib/modernizr/modernizr.js',
 				'public/lib/angular-foundation/mm-foundation-tpls.js',
 				'public/lib/zeroclipboard/dist/ZeroClipboard.js',
-				'public/lib/angular-dragdrop/src/angular-dragdrop.js'
+				'public/lib/angular-ui-sortable/sortable.js'
 			]
 		},
 		css: [

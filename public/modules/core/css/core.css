@@ -642,7 +642,7 @@ form .select2-container,
 	border-radius: 2rem;
 	padding: 0.2rem 0.5rem;
 	vertical-align: top;
-	cursor: move;
+	cursor: pointer;
 }
 .lyrics-verse .action-panel {
 	width: 3rem;
