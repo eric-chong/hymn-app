@@ -620,8 +620,20 @@ form .select2-container,
 	padding: 0 0.35rem;
 	cursor: move;
 }
+.default-arrangement .verse:last-child {
+	margin: 0;
+}
+.default-arrangement .verse.selected,
+.default-arrangement .verse.selected:hover {
+	border: 1px solid #1E9731;
+}
 .default-arrangement .verse:hover {
 	border: 1px solid #999;
+}
+.default-arrangement .actions .fa.fa-trash {
+	color: #CD3948;
+	font-size: 0.8rem;
+	cursor: pointer;
 }
 .lyrics-verse .view-panel .verse {
 	border: 1px solid #ccc;

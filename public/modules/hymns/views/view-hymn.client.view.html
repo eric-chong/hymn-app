@@ -25,7 +25,7 @@
 				</div>
 				<div class="lyrics-panel" ng-class="{'is-hover': lyricsPanelIsHover}" ng-mouseenter="lyricsPanelIsHover=true" ng-mouseleave="lyricsPanelIsHover=false">
 					<tabset>
-						<tab class="{{lyricsLang.langs | lyricLangsCssClass}}" ng-repeat="lyricsLang in hymn.lyricsList" active="lyricsLang.active">
+						<tab class="{{lyricsLang.langs | lyricLangsCssClass}}" ng-repeat="lyricsLang in hymn.lyricsList" active="lyricsLang.active" select="updateSelectedTab()">
 							<tab-heading class="tab-heading">
 								{{lyricsLang.langs | displayLangs}}
 							</tab-heading>
@@ -41,11 +41,19 @@
 								ng-class="{'start-drag': startDrag}"
 								data-drop="true"
 								ng-model="hymn.defaultArrangement"
-								jqyoui-droppable="{multiple:true}"
-								ng-if="hasAuthorization(hymn) && lyricsVerseViewModel[$index].length > 0">
+								jqyoui-droppable="{multiple:true, onDrop: 'saveHymn()'}"
+								ng-if="hasAuthorization(hymn)">
 								<div class="verse" 
-									ng-repeat="verse in hymn.defaultArrangement track by $index">{{verse}}</div>
-								<span class="placeholder">drag a verse here</span>
+									ng-repeat="verse in hymn.defaultArrangement track by $index"
+									ng-click="selectVerseFromArrangement($index)"
+									ng-class="{'selected': verseIndexSelected===$index}">{{verse}}</div>
+								<span class="placeholder" ng-if="hymn.defaultArrangement.length === 0">drag a verse here</span>
+								<span class="actions" ng-if="verseIndexSelected > -1">
+									<i class="fa fa-trash" 
+										ng-click="removeVerseFromArrangement()"
+										tooltip="Delete"
+										tooltip-placement="right"></i>
+								</span>
 							</div>
 							<div class="lyrics-verse" ng-show="newVerse[$index].show">
 								<div id="edit-panel" class="edit-panel">
