@@ -469,6 +469,7 @@ angular.module('hymns')
 				$scope.hymn = Hymns.getOne({
 					hymnId: $stateParams.hymnId
 				});
+				$scope.allLabels = Hymns.allLabels();
 			};
 
 			$scope.addLabel = function(label) {

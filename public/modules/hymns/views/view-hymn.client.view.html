@@ -18,7 +18,10 @@
 						</ul>
 						<span class="no-data" ng-if="hymn.$resolved && hymn.labels.length === 0">There is no label, add one below.</span>
 						<form ng-submit="addLabel(newLabel)">
-							<input type="text" ng-model="newLabel" placeholder="Enter Label Here" />
+							<input type="text" 
+								ng-model="newLabel" 
+								placeholder="Enter Label Here" 
+								typeahead="label for label in allLabels | filter:$viewValue | limitTo:8"/>
 						</form>						
 					</div>
 					<div class="hymn-related" ng-if="false"></div>

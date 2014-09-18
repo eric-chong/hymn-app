@@ -71,6 +71,11 @@ angular.module('hymns')
 				getOne: {
 					method: 'GET',
 					url: 'hymns/:hymnId'
+				},
+				allLabels: {
+					method: 'GET',
+					url: 'hymn/labels',
+					isArray: true
 				}
 			});
 		}
