@@ -102,7 +102,12 @@ exports.getLabels = function(req, res) {
 					labels = labels.concat(item.labels);
 				}
 			});
-			res.jsonp(_.uniq(labels, true));
+			res.jsonp(
+				_(labels)
+					.uniq()
+					.sort()
+					.value()
+			);
 		}
 	});
 };
