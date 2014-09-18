@@ -44,6 +44,9 @@ module.exports = function(app) {
 		.put(users.requiresLogin, hymns.hasAuthorization, hymns.update)
 		.delete(users.requiresLogin, hymns.hasAuthorization, hymns.delete);
 
+	app.route('/hymn/labels')
+		.get(hymns.getLabels);
+
 	// app.route('/hymnbooks/:hymnbookId/hymnsCount')
 	// 	.get(hymns.countByHymnbook);
 

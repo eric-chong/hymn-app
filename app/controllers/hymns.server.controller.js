@@ -87,6 +87,27 @@ exports.delete = function(req, res) {
 };
 
 /**
+ * Get all hymn labels
+ */
+exports.getLabels = function(req, res) {
+	var labels = [];
+	Hymn.find({}, function(err, hymns) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			hymns.forEach(function(item) {
+				if (item.labels && item.labels.length > 0) {
+					labels = labels.concat(item.labels);
+				}
+			});
+			res.jsonp(_.uniq(labels, true));
+		}
+	});
+};
+
+/**
  * Hymnbooks count by publisher
  */
 exports.countByHymnbook = function(req, res) {
