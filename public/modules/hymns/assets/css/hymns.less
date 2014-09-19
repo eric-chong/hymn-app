@@ -1,0 +1,645 @@
+@core_css_path: "../../../core/assets/css";
+
+@import '@{core_css_path}/colors.less';
+@import 'hymns.colors.less';
+
+.page-header i.create-new,
+.page-header i.filter-toggler {
+	font-size: 1rem;
+	margin-left: 0.25rem;
+	color: @med_grey;
+	cursor: pointer;
+}
+.page-header i.create-new:hover,
+.page-header i.filter-toggler:hover {
+	color: @off_black;
+}
+
+.list-group {
+	margin-top: 1.5rem;
+}
+.list-group .list-entry,
+.hymn-content .hymn-info {
+	display: inline-block;
+	position: relative;
+	margin-right: 20px;
+	vertical-align: top;
+	background: @light_grey;
+	width: 100%;
+	height: 9rem;
+	border-bottom: 1px solid @grey;
+	border-left: 1px solid @grey;
+	border-right: 1px solid @grey;
+	border-top: 5px solid @hymn_generic_rgb;
+	border-top: 5px solid @hymn_generic_rgba_7;
+	border-radius: 0.25rem;
+	text-align: center;
+	margin-bottom: 1.5rem;
+}
+.hymn-content .hymn-info {
+	width: 100%;
+	height: auto;
+	margin: 0;
+	padding: 1rem;
+}
+.list-group .list-entry.hymn {
+	height: 6rem;
+}
+.list-group .list-entry:hover,
+.hymn-content .hymn-info:hover {
+	background: @solid_white;
+	border-top: 5px solid @hymn_generic_rgb;
+	border-top: 5px solid @hymn_generic_rgba_10;
+}
+.list-group .list-entry.zh-CAN,
+.hymn-content .hymn-info.zh-CAN {
+	border-top: 5px solid @hymn_zh-CAN_rgb;
+	border-top: 5px solid @hymn_zh-CAN_rgba_7;
+}
+.list-group .list-entry.zh-CAN:hover,
+.hymn-content .hymn-info.zh-CAN {
+	border-top: 5px solid @hymn_zh-CAN_rgb;
+	border-top: 5px solid @hymn_zh-CAN_rgba_10;
+}
+.list-group .list-entry.zh-MAN,
+.hymn-content .hymn-info.zh-MAN {
+	border-top: 5px solid @hymn_zh-MAN_rgb;
+	border-top: 5px solid @hymn_zh-MAN_rgba_7;
+}
+.list-group .list-entry.zh-MAN:hover,
+.hymn-content .hymn-info.zh-MAN:hover {
+	border-top: 5px solid @hymn_zh-MAN_rgb;
+	border-top: 5px solid @hymn_zh-MAN_rgba_10;
+}
+.list-group .list-entry.en,
+.hymn-content .hymn-info.en {
+	border-top: 5px solid @hymn_en_rgb;
+	border-top: 5px solid @hymn_en_rgba_7;
+}
+.list-group .list-entry.en:hover,
+.hymn-content .hymn-info.en:hover {
+	border-top: 5px solid @hymn_en_rgb;
+	border-top: 5px solid @hymn_en_rgba_10;
+}
+.list-group .list-entry.zh-CAN.zh-MAN,
+.hymn-content .hymn-info.zh-CAN.zh-MAN {
+	border-top: 5px solid @hymn_zh-CAN_zh-MAN_rgb;
+	border-top: 5px solid @hymn_zh-CAN_zh-MAN_rgba_7;
+}
+.list-group .list-entry.zh-CAN.zh-MAN:hover,
+.hymn-content .hymn-info.zh-CAN.zh-MAN:hover {
+	border-top: 5px solid @hymn_zh-CAN_zh-MAN_rgb;
+	border-top: 5px solid @hymn_zh-CAN_zh-MAN_rgba_10;
+}
+.list-group .list-entry.en.zh-CAN,
+.hymn-content .hymn-info.en.zh-CAN {
+	border-top: 5px solid @hymn_en_zh-CAN_rgb;
+	border-top: 5px solid @hymn_en_zh-CAN_rgba_7;
+}
+.list-group .list-entry.en.zh-CAN:hover,
+.hymn-content .hymn-info.en.zh-CAN:hover {
+	border-top: 5px solid @hymn_en_zh-CAN_rgb;
+	border-top: 5px solid @hymn_en_zh-CAN_rgba_10;
+}
+.list-group .list-entry.en.zh-MAN,
+.hymn-content .hymn-info.en.zh-MAN {
+	border-top: 5px solid @hymn_en_zh-MAN_rgb;
+	border-top: 5px solid @hymn_en_zh-MAN_rgba_7;
+}
+.list-group .list-entry.en.zh-MAN:hover,
+.hymn-content .hymn-info.en.zh-MAN:hover {
+	border-top: 5px solid @hymn_en_zh-MAN_rgb;
+	border-top: 5px solid @hymn_en_zh-MAN_rgba_10;
+}
+.list-group .list-entry.en.zh-CAN.zh-MAN,
+.hymn-content .hymn-info.en.zh-CAN.zh-MAN {
+	border-top: 5px solid @hymn_en_zh-CAN_zh-MAN_rgb;
+	border-top: 5px solid @hymn_en_zh-CAN_zh-MAN_rgba_7;
+}
+.list-group .list-entry.en.zh-CAN.zh-MAN:hover,
+.hymn-content .hymn-info.en.zh-CAN.zh-MAN:hover {
+	border-top: 5px solid @hymn_en_zh-CAN_zh-MAN_rgb;
+	border-top: 5px solid @hymn_en_zh-CAN_zh-MAN_rgba_10;
+}
+.list-group .list-entry .entry-header {
+	padding: 0.25rem;
+	color: @off_black;
+	height: 6rem;
+}
+.list-group .list-entry .entry-stats {
+	font-size: 24px;
+	height: 2.5rem;
+	color: @stat_green;
+}
+.list-group .list-entry .action-icon {
+	position: absolute;
+	bottom: 0;
+}
+.list-group .list-entry .action-icon i {
+	cursor: pointer;
+	color: @med_grey;
+}
+.list-group .list-entry .action-icon i:hover {
+	color: @off_black;
+}
+.list-group .list-entry .action-icon.left {
+	left: 0.25rem;
+}
+.list-group .list-entry .action-icon.right {
+	right: 0.25rem;
+}
+.list-group .list-entry .entry-stats.zero {
+	color: @stat_red;
+}
+a {
+	color: @link_grey;
+}
+a:hover {
+	color: @dark_link_grey;
+}
+a.underline:hover {
+	border-bottom: 1px solid @dark_link_grey;
+}
+/* form css */
+.new-form,
+.edit-form,
+.filter-section {
+    border: 1px solid @grey;
+    border-radius: 0.25rem;
+    margin: 1rem 0;
+    padding: 1rem;
+    padding-top: 2rem;
+    position: relative;
+}
+.edit-form {
+	padding: 0;
+	padding-top: 2rem;
+	margin: 0;
+}
+.new-form.ng-hide-remove {
+    -webkit-animation: zoomInDown 1s;
+    -moz-animation: zoomInDown 1s;
+    animation: zoomInDown 1s;
+}
+.new-form.ng-hide-add {
+    -webkit-animation: zoomOutUp 1s;
+    -moz-animation: zoomOutUp 1s;
+    animation: zoomOutUp 1s;
+    display: block !important;
+}
+.filter-section.ng-hide-remove {
+    -webkit-animation: flipInX 1s;
+    -moz-animation: flipInX 1s;
+    animation: flipInX 1s;
+}
+.filter-section.ng-hide-add {
+    -webkit-animation: flipOutX 1s;
+    -moz-animation: flipOutX 1s;
+    animation: filpOutX 1s;
+    display: block !important;
+}
+.new-form .sub-header,
+.edit-form .sub-header,
+.filter-section .sub-header {
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-right: 1px solid @grey;
+    border-bottom: 1px solid @grey;
+    padding: 0.1rem 0.25rem;
+    font-size: 0.75rem;
+}
+.new-form .row,
+.filter-section .row {
+	max-width: none;
+}
+label.error {
+	color: @form_error;
+}
+.row.error {
+	border: 1px solid @form_error;
+    -webkit-animation: shake 0.5s;
+    -moz-animation: shake 0.5s;
+    animation: shake 0.5s;
+}
+.form-error {
+	background: @form_error;
+	color: @solid_white;
+	font-size: 0.75rem;
+}
+form .row .row.form-group {
+	margin: 0;
+}
+form .row .row.form-group .columns {
+	padding-left: 0.9375rem;
+	padding-right: 0.9375rem;
+}
+.checkbox {
+	display: inline-block;
+}
+
+.info-dropdown .name,
+.hymnbook-name {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.color-code {
+	display: inline-block;
+	width: 1.5rem;
+	height: 1.5rem;
+	cursor: pointer;
+}
+.color-code .color {
+	width: 0.75rem;
+	height: 0.75rem;
+}
+.color-code .color.red {
+	background: @hymn_zh-MAN_rgb;
+	background: @hymn_zh-MAN_rgba_7;
+	border-top-left-radius: 0.75rem;
+}
+.color-code .color.blue {
+	background: @hymn_en_rgb;
+	background: @hymn_en_rgba_7;
+	border-top-right-radius: 0.75rem;
+}
+.color-code .color.purple {
+	background: @hymn_en_zh-CAN_zh-MAN_rgb;
+	background: @hymn_en_zh-CAN_zh-MAN_rgba_7;
+	border-bottom-left-radius: 0.75rem;
+}
+.color-code .color.yellow {
+	background: @hymn_zh-CAN_rgb;
+	background: @hymn_zh-CAN_rgba_7;
+	border-bottom-right-radius: 0.75rem;
+}
+.color-code:hover .color.red {
+	background: @hymn_zh-MAN_rgb;
+	background: @hymn_zh-MAN_rgba_8;
+}
+.color-code:hover .color.blue {
+	background: @hymn_en_rgb;
+	background: @hymn_en_rgba_8;
+}
+.color-code:hover .color.purple {
+	background: @hymn_en_zh-CAN_zh-MAN_rgb;
+	background: @hymn_en_zh-CAN_zh-MAN_rgba_8;
+}
+.color-code:hover .color.yellow {
+	background: @hymn_zh-CAN_rgb;
+	background: @hymn_zh-CAN_rgba_8;
+}
+.info .fa-stack {
+	color: @dark_grey;
+}
+.info .fa-stack:hover .fa-circle-thin {
+	color: @success_green;
+}
+.info .fa-stack:hover .fa-info {
+	color: @off_black;
+}
+.color-code-info,
+.info-dropdown {
+	width: 17rem;
+	max-width: none;
+	padding: 0.75rem;
+	border-radius: 0.75rem;
+	right: 10px !important;
+	left: auto !important;
+	margin-top: 7px;
+}
+.f-dropdown.color-code-info:before {
+	right: 42px;
+	left: auto;
+}
+.f-dropdown.color-code-info:after {
+	right: 41px;
+	left: auto;	
+}
+.color-code-info .list-group {
+	text-align: center;
+}
+.color-code-info .list-group .list-entry.dummy-card {
+	width: 30px;
+	height: 25px;
+	margin: 0;
+}
+.info {
+	font-size: 0.9rem;
+	margin-top: -1px;
+	margin-right: 10px;
+	cursor: pointer;
+}
+.f-dropdown.info-dropdown:before {
+	right: 79px;
+	left: auto;
+}
+.f-dropdown.info-dropdown:after {
+	right: 78px;
+	left: auto;	
+}
+.info-dropdown dl.name {
+	display: inline-block;
+	margin: 0 10px;
+}
+.info-dropdown dt {
+	text-transform: uppercase;
+	font-size: 0.75rem;
+	text-align: left;
+	color: @grey;
+}
+.info-dropdown dd {
+	font-size: 0.9rem;
+	margin-left: 1rem;
+}
+form .select2-container,
+.filter-section .select2-container {
+	width: 100%;
+	margin-bottom: 1rem;
+}
+.hymn-content {
+	position: relative;
+	max-width: 62.5rem;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 4rem;
+}
+.hymn-content .left-panel,
+.hymn-content .lyrics-panel {
+	display: inline-block;
+	vertical-align: top;
+	margin-top: 2rem;
+}
+.hymn-content .left-panel {
+	width: 17rem;
+	margin-right: 1.5rem;
+}
+.hymn-content .lyrics-panel {
+	width: calc(~'100% - 19rem');
+}
+.hymn-content .lyrics-panel:hover,
+.hymn-content .lyrics-panel.is-hover {
+	background: @solid_white;
+}
+.hymn-content .left-panel .hymn-labels,
+.hymn-content .lyrics-panel {
+	background: @light_grey;
+	border: 1px solid @grey;
+	border-radius: 0.25rem;
+	padding: 0.5rem;
+}
+.hymn-content .left-panel .hymn-labels input {
+	background: transparent;
+	border: none;
+}
+.hymn-content .left-panel .hymn-labels ul {
+	margin-left: 0;
+	margin-bottom: 0.5rem;
+}
+.hymn-content .left-panel .hymn-labels ul li.label {
+	background: transparent;
+	border: 1px solid @grey;
+	color: @off_black;
+	padding: 0.4rem 0.6rem;
+	margin-right: 0.4rem;
+	font-size: 0.9rem;
+	border-radius: 0.9rem;
+	font-family: inherit;
+}
+.hymn-content .left-panel .hymn-labels ul li.label:hover {
+	border: 1px solid @med_grey;
+}
+.hymn-content .left-panel .hymn-labels ul li.label i.fa-remove {
+	font-size: 0.6rem;
+	cursor: pointer;
+}
+.hymn-content .left-panel .hymn-labels:hover {
+	background: @solid_white;
+}
+.hymn-content .lyrics-panel .add-lyrics-set .add-lyrics-set-toggler {
+	color: @med_grey;
+	cursor: pointer;
+}
+.hymn-content .lyrics-panel .add-lyrics-set .add-lyrics-set-toggler:hover {
+	color: @off_black;
+}
+.hymn-content .lyrics-panel .add-lyrics-set .add-lyrics-set-toggler,
+.hymn-content .lyrics-panel .add-lyrics-set .add-lyrics-set-lang-selector {
+	display: inline-block;
+}
+.hymn-content .lyrics-panel .add-lyrics-set .add-lyrics-set-lang-selector .lyric-langs-checkbox,
+.hymn-content .lyrics-panel .add-lyrics-set .add-lyrics-set-lang-selector .add-lyrics-btn {
+	display: inline-block;
+}
+.hymn-content .lyrics-panel .add-lyrics-set .add-lyrics-set-lang-selector {
+	font-size: 0.8rem;
+}
+.hymn-content .lyrics-panel .add-lyrics-set .ui-btn.add-lyrics-btn button {
+    padding: 0.3rem 0.4rem;
+    font-size: 0.6rem;
+}
+.hymn-content .lyrics-panel .tabs a {
+	background: transparent;
+	padding: 0.5rem 1rem;
+	font-family: inherit;
+	border-radius: 1.4rem;
+	border: 1px solid @grey;
+	margin-right: 0.5rem;
+}
+.hymn-content .lyrics-panel .tabs dd:not(.active) a:hover {
+	border: 1px solid @med_grey;
+}
+.hymn-content .lyrics-panel .tabs dd.active a {
+	background: transparent;
+}
+.hymn-content .lyrics-panel .tabs dd.active.en a {
+	border: 1px solid @hymn_en_rgb;
+}
+.hymn-content .lyrics-panel .tabs dd.active.zh-CAN a {
+	border: 1px solid @hymn_zh-CAN_rgb;
+}
+.hymn-content .lyrics-panel .tabs dd.active.zh-MAN a {
+	border: 1px solid @hymn_zh-MAN_rgb;
+}
+.hymn-content .lyrics-panel .tabs dd.active.zh-CAN.zh-MAN a {
+	border: 1px solid @hymn_zh-CAN_zh-MAN_rgb;
+}
+.hymn-content .lyrics-panel .tabs dd.active.en.zh-CAN a {
+	border: 1px solid @hymn_en_zh-CAN_rgb;
+}
+.hymn-content .lyrics-panel .tabs dd.active.en.zh-MAN a {
+	border: 1px solid @hymn_en_zh-MAN_rgb;
+}
+.hymn-content .lyrics-panel .tabs dd.active.en.zh-CAN.zh-MAN a {
+	border: 1px solid @hymn_en_zh-CAN_zh-MAN_rgb;
+}
+.hymn-content .lyrics-panel:hover .tabs dd.active a .tab-heading:hover {
+	border-bottom: 0;
+}
+.hymn-content .lyrics-panel:hover .tabs a .tab-heading:hover {
+	border-bottom: 1px solid @off_black;
+}
+.tabs-content .content {
+	margin-top: 0.5rem;
+}
+.hymn-content .lyrics-panel .no-lyrics-msg {
+	text-align: center;
+}
+.lyrics-verse {
+    padding: 1rem;
+    border: 1px solid @grey;
+    margin-bottom: 1rem;
+    border-radius: 0.25rem;
+    position: relative;
+}
+.lyrics-verse:hover {
+	border: 1px solid @med_grey;
+}
+.lyrics-verse .view-panel .lines,
+.lyrics-verse .view-panel .verse,
+.lyrics-verse .view-panel .action-panel {
+	display: inline-block;
+}
+.lyrics-verse .view-panel .lines {
+	width: calc(~'100% - 5.7rem');
+	text-align: center;
+	cursor: pointer;
+	white-space: pre;
+}
+.default-arrangement {
+	border: 1px solid @grey;
+	padding: 0.25rem 1rem;
+	float: right;
+	border-radius: 2rem;
+}
+.default-arrangement:hover {
+	border: 1px solid @med_grey;
+}
+.default-arrangement .placeholder {
+	font-size: 0.8rem;
+	color: @med_grey;
+}
+.default-arrangement .verse {
+	display: inline-block;
+	margin-right: 0.5rem;
+	border: 1px solid @grey;
+	text-align: center;
+	font-size: 0.8rem;
+	width: 1.5rem;
+	height: 1.5rem;
+	border-radius: 1.5rem;
+	padding: 0 0.35rem;
+	cursor: move;
+}
+.default-arrangement .verse:last-child {
+	margin: 0;
+}
+.default-arrangement .verse.selected,
+.default-arrangement .verse.selected:hover {
+	border: 1px solid @success_green;
+}
+.default-arrangement .verse:hover {
+	border: 1px solid @med_grey;
+}
+.default-arrangement .actions .fa.fa-trash {
+	color: @danger_red;
+	font-size: 0.8rem;
+	cursor: pointer;
+}
+.lyrics-verse .view-panel .verse {
+	border: 1px solid @grey;
+	text-align: center;
+	width: 2rem;
+	border-radius: 2rem;
+	padding: 0.2rem 0.5rem;
+	vertical-align: top;
+	cursor: pointer;
+}
+.lyrics-verse .action-panel {
+	width: 3rem;
+	vertical-align: top;
+	text-align: right;
+}
+.lyrics-verse:hover .view-panel .verse {
+	border: 1px solid @med_grey;
+}
+.lyrics-verse .view-panel.ng-hide-remove,
+.lyrics-verse .edit-panel.ng-hide-remove {
+    -webkit-animation: flipInX 1s;
+    -moz-animation: flipInX 1s;
+    animation: flipInX 1s;
+}
+
+/* modal css */
+.reveal-modal{
+	max-height: 20rem;
+	overflow-y: auto;
+	padding: 0;
+}
+.reveal-modal.delete-item-modal {
+	width: 30rem;
+}
+.reveal-modal.edit-item-modal .edit-form .body {
+	padding: 0.5rem 0.5rem;
+}
+.reveal-modal.edit-item-modal .edit-form .footer {
+	padding-top: 0;
+}
+
+.reveal-modal .header {
+	position: relative;
+}
+.reveal-modal .header,
+.reveal-modal .body,
+.reveal-modal .footer {
+	font-size: 1rem;
+	padding: 1rem 1.5rem;
+}
+.reveal-modal .header i.fa-close {
+	font-size: 1rem;
+	color: @med_grey;
+	cursor: pointer;
+	position: absolute;
+	right: 1.25rem;
+	top: 1.25rem;
+}
+.reveal-modal .footer .button {
+	margin-bottom: 0;
+}
+.reveal-modal.fade {
+    -webkit-animation: zoomInDown 1s;
+    -moz-animation: zoomInDown 1s;
+    animation: zoomInDown 1s;
+}
+.reveal-modal.in {
+    -webkit-animation: zoomInDown 1s;
+    -moz-animation: zoomInDown 1s;
+    animation: zoomInDown 1s;
+}
+.reveal-modal-bg.fade {
+  filter: alpha(opacity=0);
+  opacity: 0;
+}
+.reveal-modal-bg.in {
+  filter: alpha(opacity=50);
+  opacity: .5;
+}
+
+/* clipboard */
+.lyrics-clipboard-container {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 0;
+	height: 0;
+	z-index: 100;
+	display: none;
+	opacity: 0;
+}
+.lyrics-clipboard-container .clipboard {
+	width: 1px;
+	height: 1px;       
+	padding: 0;
+}
