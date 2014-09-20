@@ -20,7 +20,7 @@
 						 --><form ng-submit="addLabel(newLabel)">
 							<input type="text" 
 								ng-model="newLabel" 
-								placeholder="Add Label" 
+								placeholder="Add Label Here" 
 								typeahead="label for label in allLabels | filter:$viewValue | limitTo:8"/>
 						</form>						
 					</div>
@@ -62,20 +62,22 @@
 							<div class="lyrics-verse" ng-show="newVerse[$index].show">
 								<div id="edit-panel" class="edit-panel">
 									<form ng-submit="addLyricVerse($index)" name="verseForm">
-										<label>
-											Verse
-											<input id="lyricVerse" type="text" name="lyricVerse" ng-model="newVerse[$index].verse"/>
-										</label>
-										<label>
-											Lines
-											<textarea 
-												id="lyricLines" 
-												rows="4" 
-												name="lyricLines" 
-												ng-model="newVerse[$index].lines"
-												ng-required>
-											</textarea>
-										</label>
+										<div class="lyric-verse-section">
+											<label>Verse
+												<input id="lyricVerse" type="text" class="lyric-verse" maxlength="2" name="lyricVerse" ng-model="newVerse[$index].verse"/>
+											</label>
+										</div>
+										<div class="lyric-lines-section">
+											<label>Lines
+												<textarea 
+													id="lyricLines" 
+													rows="4" 
+													name="lyricLines" 
+													ng-model="newVerse[$index].lines"
+													ng-required>
+												</textarea>
+											</label>
+										</div>
 										<ui-btn
 											ui-btn-type="submit"
 											ui-btn-css-class="save-verse-btn"
@@ -128,20 +130,22 @@
 									</div>
 									<div id="edit-panel" class="edit-panel" ng-show="hasAuthorization(hymn) && verse.editMode">
 										<form ng-submit="updateLyricVerse($parent.$index, $index)" name="verseForm">
-											<label>
-												Verse
-												<input id="lyricVerse" type="text" name="lyricVerse" ng-model="verse.verse"/>
-											</label>
-											<label>
-												Lines
-												<textarea 
-													id="lyricLines-{{$parent.$index}}-{{$index}}" 
-													rows="4" 
-													name="lyricLines" 
-													ng-model="verse.lines"
-													ng-required>
-												</textarea>
-											</label>
+											<div class="lyric-verse-section">
+												<label>Verse
+													<input id="lyricVerse" type="text" class="lyric-verse" maxlength="2" name="lyricVerse" ng-model="verse.verse"/>
+												</label>
+											</div>
+											<div class="lyric-lines-section">
+												<label>Lines
+													<textarea 
+														id="lyricLines-{{$parent.$index}}-{{$index}}" 
+														rows="4" 
+														name="lyricLines" 
+														ng-model="verse.lines"
+														ng-required>
+													</textarea>
+												</label>
+											</div>
 											<ui-btn
 												ui-btn-type="submit"
 												ui-btn-css-class="save-verse-btn"

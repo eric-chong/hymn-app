@@ -407,10 +407,11 @@ form {
 				background: transparent;
 				border: none;
 				box-shadow: none;
+				margin-bottom: 0.5rem;
 			}
 			ul {
 				margin-left: 0;
-				margin-bottom: 0.5rem;
+				margin-bottom: 0;
 				li.label {
 					background: transparent;
 					border: 1px solid @grey;
@@ -536,6 +537,26 @@ form {
 					width: 3rem;
 					vertical-align: top;
 					text-align: right;
+				}
+			}
+			.edit-panel {
+				.lyric-inner-section() {
+					display:inline-block;
+					vertical-align: top;
+				}
+				.lyric-verse-section {
+					.lyric-inner-section;
+					width: 4rem;
+					input.lyric-verse {
+						width: 3rem;
+					}
+				}
+				.lyric-lines-section {
+					.lyric-inner-section;
+					width: calc(~'100% - 4.4rem');
+				}
+				.ui-btn button {
+					margin-bottom: 0.5rem;
 				}
 			}
 			.view-panel.ng-hide-remove,

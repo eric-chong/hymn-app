@@ -442,10 +442,11 @@ form .select2-container {
   background: transparent;
   border: none;
   box-shadow: none;
+  margin-bottom: 0.5rem;
 }
 .hymn-content .left-panel .hymn-labels ul {
   margin-left: 0;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0;
 }
 .hymn-content .left-panel .hymn-labels ul li.label {
   background: transparent;
@@ -571,6 +572,22 @@ form .select2-container {
   width: 3rem;
   vertical-align: top;
   text-align: right;
+}
+.hymn-content .lyrics-panel .lyrics-verse .edit-panel .lyric-verse-section {
+  display: inline-block;
+  vertical-align: top;
+  width: 4rem;
+}
+.hymn-content .lyrics-panel .lyrics-verse .edit-panel .lyric-verse-section input.lyric-verse {
+  width: 3rem;
+}
+.hymn-content .lyrics-panel .lyrics-verse .edit-panel .lyric-lines-section {
+  display: inline-block;
+  vertical-align: top;
+  width: calc(100% - 4.4rem);
+}
+.hymn-content .lyrics-panel .lyrics-verse .edit-panel .ui-btn button {
+  margin-bottom: 0.5rem;
 }
 .hymn-content .lyrics-panel .lyrics-verse .view-panel.ng-hide-remove,
 .hymn-content .lyrics-panel .lyrics-verse .edit-panel.ng-hide-remove {

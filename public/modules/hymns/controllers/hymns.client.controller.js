@@ -476,10 +476,10 @@ angular.module('hymns')
 				if ($scope.hymn.labels.indexOf(label) === -1) {
 					$scope.hymn.labels.push(label);
 					$scope.hymn.$update(function(response) {
-						$scope.newLabel = undefined;
-						$scope.loadHymn();
+						// TO-DO success message
 					});
 				}
+				$scope.newLabel = "";
 			};
 
 			$scope.removeLabel = function(label) {
