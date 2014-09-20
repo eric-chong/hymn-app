@@ -176,17 +176,6 @@
 .hymn-content .hymn-info.en.zh-CAN.zh-MAN:hover {
   border-top: 5px solid #6c1f99;
 }
-/* more to core when converted to less */
-a {
-  color: #5c5c5c;
-}
-a:hover {
-  color: #4a4a4a;
-}
-a.underline:hover {
-  border-bottom: 1px solid #4a4a4a;
-}
-/* */
 .info-dropdown .name,
 .hymnbook-name {
   margin-left: auto;
@@ -452,6 +441,7 @@ form .select2-container {
 .hymn-content .left-panel .hymn-labels input {
   background: transparent;
   border: none;
+  box-shadow: none;
 }
 .hymn-content .left-panel .hymn-labels ul {
   margin-left: 0;

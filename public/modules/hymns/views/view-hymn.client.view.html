@@ -16,11 +16,11 @@
 						<ul ng-if="hymn.$resolved && hymn.labels.length > 0">
 							<li ng-repeat="label in hymn.labels" class="label">{{label}} <i class="fa fa-remove" ng-click="removeLabel(label)"></i></li>
 						</ul>
-						<span class="no-data" ng-if="hymn.$resolved && hymn.labels.length === 0">There is no label, add one below.</span>
-						<form ng-submit="addLabel(newLabel)">
+						<!-- <span class="no-data" ng-if="hymn.$resolved && hymn.labels.length === 0">There is no label, add one below.</span>
+						 --><form ng-submit="addLabel(newLabel)">
 							<input type="text" 
 								ng-model="newLabel" 
-								placeholder="Enter Label Here" 
+								placeholder="Add Label" 
 								typeahead="label for label in allLabels | filter:$viewValue | limitTo:8"/>
 						</form>						
 					</div>
