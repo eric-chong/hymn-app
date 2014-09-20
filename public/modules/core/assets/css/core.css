@@ -1,0 +1,104 @@
+/* define colors */
+@font-face {
+  font-family: Hua;
+  src: url('/modules/core/font/hua.ttf');
+}
+body {
+  font-family: Hua, "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+}
+.content {
+  margin-top: 5rem;
+}
+.content .container {
+  padding: 0 3rem;
+}
+.undecorated-link:hover {
+  text-decoration: none;
+}
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
+  display: none !important;
+}
+.ng-invalid.ng-dirty {
+  border-color: #FA787E;
+}
+.ng-valid.ng-dirty {
+  border-color: #78FA89;
+}
+.pull_right {
+  float: right;
+}
+.pull_left {
+  float: left;
+}
+.clear {
+  clear: both;
+}
+.padding_none {
+  padding: 0;
+}
+.padding_top {
+  padding-top: 1rem;
+}
+.padding_top_third {
+  padding-top: 0.75rem;
+}
+.padding_top_half {
+  padding-top: 0.5rem;
+}
+.padding_top_quarter {
+  padding-top: 0.25rem;
+}
+.padding_bottom {
+  padding-bottom: 1rem;
+}
+.padding_bottom_third {
+  padding-bottom: 0.75rem;
+}
+.padding_bottom_half {
+  padding-bottom: 0.5rem;
+}
+.padding_bottom_quarter {
+  padding-bottom: 0.25rem;
+}
+.margin_left {
+  margin-left: 1rem;
+}
+.margin_left_half {
+  margin-left: 0.5rem;
+}
+.margin_left_quarter {
+  margin-left: 0.25rem;
+}
+.margin_right {
+  margin-right: 1rem;
+}
+.margin_right_half {
+  margin-right: 0.5rem;
+}
+.margin_right_quarter {
+  margin-right: 0.25rem;
+}
+.no-data {
+  font-size: 0.9rem;
+  font-style: italic;
+  font-weight: lighter;
+}
+.tooltip {
+  font-size: 0.6rem;
+  padding: 0.5rem;
+}
+/* general link style */
+a {
+  color: #5c5c5c;
+}
+a:hover {
+  color: #4a4a4a;
+}
+a.underline:hover {
+  border-bottom: 1px solid #4a4a4a;
+}
