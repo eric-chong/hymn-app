@@ -370,14 +370,10 @@ a.underline:hover {
 .new-form {
 	.general_form_layout(1rem 0, 1rem);
 	&.ng-hide-remove {
-	    -webkit-animation: zoomInDown 1s;
-	    -moz-animation: zoomInDown 1s;
-	    animation: zoomInDown 1s;
+		.animation_zoomInDown(1s);
 	}
 	&.ng-hide-add {
-	    -webkit-animation: zoomOutUp 1s;
-	    -moz-animation: zoomOutUp 1s;
-	    animation: zoomOutUp 1s;
+		.animation_zoomOutUp(1s);
 	    display: block !important;
 	}
 }
@@ -407,9 +403,7 @@ label.error {
 }
 .row.error {
 	border: 1px solid @form_error;
-    -webkit-animation: shake 0.5s;
-    -moz-animation: shake 0.5s;
-    animation: shake 0.5s;
+	.animation_shake(0.5s);
 }
 .form-error {
 	background: @form_error;
@@ -640,58 +634,61 @@ form {
 }
 
 /* modal css */
+.modal-section-style() {
+	font-size: 1rem;
+	padding: 1rem 1.5rem;
+}
 .reveal-modal{
 	max-height: 20rem;
 	overflow-y: auto;
 	padding: 0;
+	&.fade, &.in {
+		.animation_zoomInDown(1s);
+	}
+	.header {
+		.modal-section-style;
+		position: relative;
+		i.fa-close {
+			font-size: 1rem;
+			color: @med_grey;
+			cursor: pointer;
+			position: absolute;
+			right: 1.25rem;
+			top: 1.25rem;
+		}
+	}
+	.body {
+		.modal-section-style;
+	}
+	.footer {
+		.modal-section-style;
+		.button {
+			margin-bottom: 0;
+		}
+	}
+	&.delete-item-modal {
+		width: 30rem;
+	}
+	&.edit-item-modal { 
+		.edit-form {
+			.body {
+				padding: 0.5rem 0.5rem;
+			}
+			.footer {
+				padding-top: 0;
+			}
+		}
+	}
 }
-.reveal-modal.delete-item-modal {
-	width: 30rem;
-}
-.reveal-modal.edit-item-modal .edit-form .body {
-	padding: 0.5rem 0.5rem;
-}
-.reveal-modal.edit-item-modal .edit-form .footer {
-	padding-top: 0;
-}
-
-.reveal-modal .header {
-	position: relative;
-}
-.reveal-modal .header,
-.reveal-modal .body,
-.reveal-modal .footer {
-	font-size: 1rem;
-	padding: 1rem 1.5rem;
-}
-.reveal-modal .header i.fa-close {
-	font-size: 1rem;
-	color: @med_grey;
-	cursor: pointer;
-	position: absolute;
-	right: 1.25rem;
-	top: 1.25rem;
-}
-.reveal-modal .footer .button {
-	margin-bottom: 0;
-}
-.reveal-modal.fade {
-    -webkit-animation: zoomInDown 1s;
-    -moz-animation: zoomInDown 1s;
-    animation: zoomInDown 1s;
-}
-.reveal-modal.in {
-    -webkit-animation: zoomInDown 1s;
-    -moz-animation: zoomInDown 1s;
-    animation: zoomInDown 1s;
-}
-.reveal-modal-bg.fade {
-  filter: alpha(opacity=0);
-  opacity: 0;
-}
-.reveal-modal-bg.in {
-  filter: alpha(opacity=50);
-  opacity: .5;
+.reveal-modal-bg {
+	&.fade {
+		filter: alpha(opacity=0);
+		opacity: 0;
+	}
+	&.in {
+		filter: alpha(opacity=50);
+		opacity: .5;
+	}
 }
 
 /* clipboard */
@@ -704,9 +701,9 @@ form {
 	z-index: 100;
 	display: none;
 	opacity: 0;
-}
-.lyrics-clipboard-container .clipboard {
-	width: 1px;
-	height: 1px;       
-	padding: 0;
+	.clipboard {
+		width: 1px;
+		height: 1px;       
+		padding: 0;
+	}
 }
