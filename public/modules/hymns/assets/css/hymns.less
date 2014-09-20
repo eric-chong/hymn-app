@@ -1,6 +1,7 @@
 @core_css_path: "../../../core/assets/css";
 
 @import '@{core_css_path}/colors.less';
+@import '@{core_css_path}/animations.less';
 @import 'hymns.colors.less';
 
 .page-header i.create-new,
@@ -13,14 +14,14 @@
 		color: @off_black;
 	}
 }
-.hymn-card() {
+.hymn-card(@height) {
 	display: inline-block;
 	position: relative;
 	margin-right: 20px;
 	vertical-align: top;
 	background: @light_grey;
 	width: 100%;
-	height: 9rem;
+	height: @height;
 	border-bottom: 1px solid @grey;
 	border-left: 1px solid @grey;
 	border-right: 1px solid @grey;
@@ -37,7 +38,7 @@
 .list-group {
 	margin-top: 1.5rem;
 	.list-entry {
-		.hymn-card;
+		.hymn-card(9rem);
 		&.hymn {
 			height: 6rem;
 		}
@@ -113,12 +114,10 @@
 		}
 	}
 }
-.list-group .list-entry,
 .hymn-content { 
 	.hymn-info {
-		.hymn-card;
+		.hymn-card(auto);
 		width: 100%;
-		height: auto;
 		margin: 0;
 		padding: 1rem;
 		&:hover {
@@ -344,11 +343,11 @@ a.underline:hover {
 // }
 
 /* form css */
-.general_form_layout() {
+.general_form_layout(@padding, @margin) {
     border: 1px solid @grey;
     border-radius: 0.25rem;
-    margin: 1rem 0;
-    padding: 1rem;
+    margin: @padding;
+    padding: @margin;
     padding-top: 2rem;
     position: relative;	
     .sub-header {
@@ -369,7 +368,7 @@ a.underline:hover {
 	margin-bottom: 1rem;
 }
 .new-form {
-	.general_form_layout;
+	.general_form_layout(1rem 0, 1rem);
 	&.ng-hide-remove {
 	    -webkit-animation: zoomInDown 1s;
 	    -moz-animation: zoomInDown 1s;
@@ -383,25 +382,21 @@ a.underline:hover {
 	}
 }
 .edit-form {
-	.general_form_layout;
-	padding: 0;
+	.general_form_layout(0, 0);
+	//padding: 0;
 	padding-top: 2rem;
-	margin: 0;
+	//margin: 0;
 }
 .filter-section {
-	.general_form_layout;
+	.general_form_layout(1rem 0, 1rem);
 	.select2-container {
 		.select2-container-common-style;
 	}
 	&.ng-hide-remove {
-	    -webkit-animation: flipInX 1s;
-	    -moz-animation: flipInX 1s;
-	    animation: flipInX 1s;
+		.animation_flipInX(1s);
 	}
 	&.ng-hide-add {
-	    -webkit-animation: flipOutX 1s;
-	    -moz-animation: flipOutX 1s;
-	    animation: filpOutX 1s;
+		.animation_flipOutX(1s);
 	    display: block !important;
 	}
 }
@@ -421,233 +416,227 @@ label.error {
 	color: @solid_white;
 	font-size: 0.75rem;
 }
-form .row .row.form-group {
-	margin: 0;
-}
-form .row .row.form-group .columns {
-	padding-left: 0.9375rem;
-	padding-right: 0.9375rem;
+form { 
+	.row .row.form-group {
+		margin: 0;
+		.columns {
+			padding-left: 0.9375rem;
+			padding-right: 0.9375rem;
+		}
+	}
+	.select2-container {
+		.select2-container-common-style;
+	}
 }
 .checkbox {
 	display: inline-block;
 }
 
-form .select2-container {
-	.select2-container-common-style;
-}
-
 /* hymn detail page style */
+.hymn-panels-general-layout() {
+	display: inline-block;
+	vertical-align: top;
+	margin-top: 2rem;
+}
+.hymn-panel-block() {
+	background: @light_grey;
+	border: 1px solid @grey;
+	border-radius: 0.25rem;
+	padding: 0.5rem;
+}
 .hymn-content {
 	position: relative;
 	max-width: 62.5rem;
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: 4rem;
+	.left-panel{
+		.hymn-panels-general-layout;
+		width: 17rem;
+		margin-right: 1.5rem;
+		.hymn-labels {
+			.hymn-panel-block;
+			&:hover {
+				background: @solid_white;
+			}
+			input {
+				background: transparent;
+				border: none;
+			}
+			ul {
+				margin-left: 0;
+				margin-bottom: 0.5rem;
+				li.label {
+					background: transparent;
+					border: 1px solid @grey;
+					color: @off_black;
+					padding: 0.4rem 0.6rem;
+					margin-right: 0.4rem;
+					font-size: 0.9rem;
+					border-radius: 0.9rem;
+					font-family: inherit;
+					&:hover {
+						border: 1px solid @med_grey;
+					}
+					i.fa-remove {
+						font-size: 0.6rem;
+						cursor: pointer;
+					}
+				}
+			}
+		}
+	}
+	.lyrics-panel {
+		.hymn-panels-general-layout;
+		.hymn-panel-block;
+		width: calc(~'100% - 19rem');
+		&:hover, &.is-hover {
+			background: @solid_white;		
+		}
+		&:hover .tabs a .tab-heading:hover {
+			border-bottom: 1px solid @off_black;
+		}
+		.add-lyrics-set {
+			.add-lyrics-set-lang-selector {
+				display: inline-block;
+				font-size: 0.8rem;
+				.lyric-langs-checkbox, .add-lyrics-btn {
+					display: inline-block;
+				}
+			}
+			.ui-btn.add-lyrics-btn button {
+			    padding: 0.3rem 0.4rem;
+			    font-size: 0.6rem;
+			}
+		}
+		.no-lyrics-msg {
+			text-align: center;
+		}
+		.tabs {
+			a {
+				background: transparent;
+				padding: 0.5rem 1rem;
+				font-family: inherit;
+				border-radius: 1.4rem;
+				border: 1px solid @grey;
+				margin-right: 0.5rem;
+			}
+			dd {
+				&:not(.active) a:hover {
+					border: 1px solid @med_grey;
+				}
+				&.active {
+					a .tab-heading:hover {
+						border-bottom: 0;
+					}
+					&.en a {
+						border: 1px solid @hymn_en_rgb;
+					}
+					&.zh-CAN a {
+						border: 1px solid @hymn_zh-CAN_rgb;
+					}
+					&.zh-MAN a {
+						border: 1px solid @hymn_zh-MAN_rgb;
+					}
+					&.zh-CAN.zh-MAN a {
+						border: 1px solid @hymn_zh-CAN_zh-MAN_rgb;
+					}
+					&.en.zh-CAN a {
+						border: 1px solid @hymn_en_zh-CAN_rgb;
+					}
+					&.en.zh-MAN a {
+						border: 1px solid @hymn_en_zh-MAN_rgb;
+					}
+					&.en.zh-CAN.zh-MAN a {
+						border: 1px solid @hymn_en_zh-CAN_zh-MAN_rgb;
+					}
+				}
+			}
+		}
+		.tabs-content .content {
+			margin-top: 0.5rem;
+		}
+		.lyrics-verse {
+			padding: 1rem;
+			border: 1px solid @grey;
+			margin-bottom: 1rem;
+			border-radius: 0.25rem;
+			position: relative;
+			&:hover {
+				border: 1px solid @med_grey;
+			}
+			.view-panel {
+				.lines, .verse, .action-panel {
+					display: inline-block;
+				}
+				.verse {
+					border: 1px solid @grey;
+					text-align: center;
+					width: 2rem;
+					border-radius: 2rem;
+					padding: 0.2rem 0.5rem;
+					vertical-align: top;
+					cursor: pointer;
+					&:hover {
+						border: 1px solid @med_grey;
+					}
+				}
+				.lines {
+					width: calc(~'100% - 5.7rem');
+					text-align: center;
+					cursor: pointer;
+					white-space: pre;
+				}
+				.action-panel {
+					width: 3rem;
+					vertical-align: top;
+					text-align: right;
+				}
+			}
+			.view-panel.ng-hide-remove,
+			.edit-panel.ng-hide-remove {
+				.animation_flipInX(1s);
+			}
+		}
+
+	}
 }
-.hymn-content .left-panel,
-.hymn-content .lyrics-panel {
-	display: inline-block;
-	vertical-align: top;
-	margin-top: 2rem;
-}
-.hymn-content .left-panel {
-	width: 17rem;
-	margin-right: 1.5rem;
-}
-.hymn-content .lyrics-panel {
-	width: calc(~'100% - 19rem');
-}
-.hymn-content .lyrics-panel:hover,
-.hymn-content .lyrics-panel.is-hover {
-	background: @solid_white;
-}
-.hymn-content .left-panel .hymn-labels,
-.hymn-content .lyrics-panel {
-	background: @light_grey;
-	border: 1px solid @grey;
-	border-radius: 0.25rem;
-	padding: 0.5rem;
-}
-.hymn-content .left-panel .hymn-labels input {
-	background: transparent;
-	border: none;
-}
-.hymn-content .left-panel .hymn-labels ul {
-	margin-left: 0;
-	margin-bottom: 0.5rem;
-}
-.hymn-content .left-panel .hymn-labels ul li.label {
-	background: transparent;
-	border: 1px solid @grey;
-	color: @off_black;
-	padding: 0.4rem 0.6rem;
-	margin-right: 0.4rem;
-	font-size: 0.9rem;
-	border-radius: 0.9rem;
-	font-family: inherit;
-}
-.hymn-content .left-panel .hymn-labels ul li.label:hover {
-	border: 1px solid @med_grey;
-}
-.hymn-content .left-panel .hymn-labels ul li.label i.fa-remove {
-	font-size: 0.6rem;
-	cursor: pointer;
-}
-.hymn-content .left-panel .hymn-labels:hover {
-	background: @solid_white;
-}
-.hymn-content .lyrics-panel .add-lyrics-set .add-lyrics-set-toggler {
-	color: @med_grey;
-	cursor: pointer;
-}
-.hymn-content .lyrics-panel .add-lyrics-set .add-lyrics-set-toggler:hover {
-	color: @off_black;
-}
-.hymn-content .lyrics-panel .add-lyrics-set .add-lyrics-set-toggler,
-.hymn-content .lyrics-panel .add-lyrics-set .add-lyrics-set-lang-selector {
-	display: inline-block;
-}
-.hymn-content .lyrics-panel .add-lyrics-set .add-lyrics-set-lang-selector .lyric-langs-checkbox,
-.hymn-content .lyrics-panel .add-lyrics-set .add-lyrics-set-lang-selector .add-lyrics-btn {
-	display: inline-block;
-}
-.hymn-content .lyrics-panel .add-lyrics-set .add-lyrics-set-lang-selector {
-	font-size: 0.8rem;
-}
-.hymn-content .lyrics-panel .add-lyrics-set .ui-btn.add-lyrics-btn button {
-    padding: 0.3rem 0.4rem;
-    font-size: 0.6rem;
-}
-.hymn-content .lyrics-panel .tabs a {
-	background: transparent;
-	padding: 0.5rem 1rem;
-	font-family: inherit;
-	border-radius: 1.4rem;
-	border: 1px solid @grey;
-	margin-right: 0.5rem;
-}
-.hymn-content .lyrics-panel .tabs dd:not(.active) a:hover {
-	border: 1px solid @med_grey;
-}
-.hymn-content .lyrics-panel .tabs dd.active a {
-	background: transparent;
-}
-.hymn-content .lyrics-panel .tabs dd.active.en a {
-	border: 1px solid @hymn_en_rgb;
-}
-.hymn-content .lyrics-panel .tabs dd.active.zh-CAN a {
-	border: 1px solid @hymn_zh-CAN_rgb;
-}
-.hymn-content .lyrics-panel .tabs dd.active.zh-MAN a {
-	border: 1px solid @hymn_zh-MAN_rgb;
-}
-.hymn-content .lyrics-panel .tabs dd.active.zh-CAN.zh-MAN a {
-	border: 1px solid @hymn_zh-CAN_zh-MAN_rgb;
-}
-.hymn-content .lyrics-panel .tabs dd.active.en.zh-CAN a {
-	border: 1px solid @hymn_en_zh-CAN_rgb;
-}
-.hymn-content .lyrics-panel .tabs dd.active.en.zh-MAN a {
-	border: 1px solid @hymn_en_zh-MAN_rgb;
-}
-.hymn-content .lyrics-panel .tabs dd.active.en.zh-CAN.zh-MAN a {
-	border: 1px solid @hymn_en_zh-CAN_zh-MAN_rgb;
-}
-.hymn-content .lyrics-panel:hover .tabs dd.active a .tab-heading:hover {
-	border-bottom: 0;
-}
-.hymn-content .lyrics-panel:hover .tabs a .tab-heading:hover {
-	border-bottom: 1px solid @off_black;
-}
-.tabs-content .content {
-	margin-top: 0.5rem;
-}
-.hymn-content .lyrics-panel .no-lyrics-msg {
-	text-align: center;
-}
-.lyrics-verse {
-    padding: 1rem;
-    border: 1px solid @grey;
-    margin-bottom: 1rem;
-    border-radius: 0.25rem;
-    position: relative;
-}
-.lyrics-verse:hover {
-	border: 1px solid @med_grey;
-}
-.lyrics-verse .view-panel .lines,
-.lyrics-verse .view-panel .verse,
-.lyrics-verse .view-panel .action-panel {
-	display: inline-block;
-}
-.lyrics-verse .view-panel .lines {
-	width: calc(~'100% - 5.7rem');
-	text-align: center;
-	cursor: pointer;
-	white-space: pre;
-}
+
 .default-arrangement {
 	border: 1px solid @grey;
 	padding: 0.25rem 1rem;
 	float: right;
 	border-radius: 2rem;
-}
-.default-arrangement:hover {
-	border: 1px solid @med_grey;
-}
-.default-arrangement .placeholder {
-	font-size: 0.8rem;
-	color: @med_grey;
-}
-.default-arrangement .verse {
-	display: inline-block;
-	margin-right: 0.5rem;
-	border: 1px solid @grey;
-	text-align: center;
-	font-size: 0.8rem;
-	width: 1.5rem;
-	height: 1.5rem;
-	border-radius: 1.5rem;
-	padding: 0 0.35rem;
-	cursor: move;
-}
-.default-arrangement .verse:last-child {
-	margin: 0;
-}
-.default-arrangement .verse.selected,
-.default-arrangement .verse.selected:hover {
-	border: 1px solid @success_green;
-}
-.default-arrangement .verse:hover {
-	border: 1px solid @med_grey;
-}
-.default-arrangement .actions .fa.fa-trash {
-	color: @danger_red;
-	font-size: 0.8rem;
-	cursor: pointer;
-}
-.lyrics-verse .view-panel .verse {
-	border: 1px solid @grey;
-	text-align: center;
-	width: 2rem;
-	border-radius: 2rem;
-	padding: 0.2rem 0.5rem;
-	vertical-align: top;
-	cursor: pointer;
-}
-.lyrics-verse .action-panel {
-	width: 3rem;
-	vertical-align: top;
-	text-align: right;
-}
-.lyrics-verse:hover .view-panel .verse {
-	border: 1px solid @med_grey;
-}
-.lyrics-verse .view-panel.ng-hide-remove,
-.lyrics-verse .edit-panel.ng-hide-remove {
-    -webkit-animation: flipInX 1s;
-    -moz-animation: flipInX 1s;
-    animation: flipInX 1s;
+	&:hover {
+		border: 1px solid @med_grey;
+	}
+	.verse {
+		display: inline-block;
+		margin-right: 0.5rem;
+		border: 1px solid @grey;
+		text-align: center;
+		font-size: 0.8rem;
+		width: 1.5rem;
+		height: 1.5rem;
+		border-radius: 1.5rem;
+		padding: 0 0.35rem;
+		cursor: move;
+		&:hover {
+			border: 1px solid @med_grey;
+		}
+		&:last-child {
+			margin: 0;
+		}
+		&.selected,
+		&.selected:hover {
+			border: 1px solid @success_green;
+		}
+	}
+	.actions .fa.fa-trash {
+		color: @danger_red;
+		font-size: 0.8rem;
+		cursor: pointer;
+	}
 }
 
 /* modal css */

@@ -1,4 +1,5 @@
 /* define colors */
+/* animtions (using animcate.css) */
 /* hymn specific colors */
 .page-header i.create-new,
 .page-header i.filter-toggler {
@@ -110,14 +111,13 @@
 .list-group .list-entry .action-icon.right {
   right: 0.25rem;
 }
-.list-group .list-entry .hymn-info,
 .hymn-content .hymn-info {
   display: inline-block;
   position: relative;
   margin-right: 20px;
   vertical-align: top;
   background: #eeeeee;
-  height: 9rem;
+  height: auto;
   border-bottom: 1px solid #cccccc;
   border-left: 1px solid #cccccc;
   border-right: 1px solid #cccccc;
@@ -127,66 +127,52 @@
   text-align: center;
   margin-bottom: 1.5rem;
   width: 100%;
-  height: auto;
   margin: 0;
   padding: 1rem;
 }
-.list-group .list-entry .hymn-info:hover,
 .hymn-content .hymn-info:hover {
   background: #ffffff;
   border-top: 5px solid #915514;
 }
-.list-group .list-entry .hymn-info.en,
 .hymn-content .hymn-info.en {
   border-top: 5px solid #2426c9;
   border-top: 5px solid rgba(36, 38, 201, 0.7);
 }
-.list-group .list-entry .hymn-info.en:hover,
 .hymn-content .hymn-info.en:hover {
   border-top: 5px solid #2426c9;
 }
-.list-group .list-entry .hymn-info.zh-CAN,
 .hymn-content .hymn-info.zh-CAN {
   border-top: 5px solid #d4d420;
   border-top: 5px solid rgba(212, 212, 32, 0.7);
 }
-.list-group .list-entry .hymn-info.zh-CAN:hover,
 .hymn-content .hymn-info.zh-CAN:hover {
   border-top: 5px solid #d4d420;
 }
-.list-group .list-entry .hymn-info.zh-MAN,
 .hymn-content .hymn-info.zh-MAN {
   border-top: 5px solid #ba1818;
   border-top: 5px solid rgba(186, 24, 24, 0.7);
 }
-.list-group .list-entry .hymn-info.zh-MAN:hover,
 .hymn-content .hymn-info.zh-MAN:hover {
   border-top: 5px solid #ba1818;
 }
-.list-group .list-entry .hymn-info.en.zh-CAN,
 .hymn-content .hymn-info.en.zh-CAN {
   border-top: 5px solid #24911f;
   border-top: 5px solid rgba(36, 145, 31, 0.7);
 }
-.list-group .list-entry .hymn-info.en.zh-CAN:hover,
 .hymn-content .hymn-info.en.zh-CAN:hover {
   border-top: 5px solid #24911f;
 }
-.list-group .list-entry .hymn-info.en.zh-MAN,
 .hymn-content .hymn-info.en.zh-MAN {
   border-top: 5px solid #e62089;
   border-top: 5px solid rgba(230, 32, 137, 0.7);
 }
-.list-group .list-entry .hymn-info.en.zh-MAN:hover,
 .hymn-content .hymn-info.en.zh-MAN:hover {
   border-top: 5px solid #e62089;
 }
-.list-group .list-entry .hymn-info.en.zh-CAN.zh-MAN,
 .hymn-content .hymn-info.en.zh-CAN.zh-MAN {
   border-top: 5px solid #6c1f99;
   border-top: 5px solid rgba(108, 31, 153, 0.7);
 }
-.list-group .list-entry .hymn-info.en.zh-CAN.zh-MAN:hover,
 .hymn-content .hymn-info.en.zh-CAN.zh-MAN:hover {
   border-top: 5px solid #6c1f99;
 }
@@ -359,12 +345,10 @@ a.underline:hover {
 .edit-form {
   border: 1px solid #cccccc;
   border-radius: 0.25rem;
-  margin: 1rem 0;
-  padding: 1rem;
-  position: relative;
-  padding: 0;
-  padding-top: 2rem;
   margin: 0;
+  padding: 0;
+  position: relative;
+  padding-top: 2rem;
 }
 .edit-form .sub-header {
   position: absolute;
@@ -434,12 +418,12 @@ form .row .row.form-group .columns {
   padding-left: 0.9375rem;
   padding-right: 0.9375rem;
 }
-.checkbox {
-  display: inline-block;
-}
 form .select2-container {
   width: 100%;
   margin-bottom: 1rem;
+}
+.checkbox {
+  display: inline-block;
 }
 /* hymn detail page style */
 .hymn-content {
@@ -449,29 +433,21 @@ form .select2-container {
   margin-right: auto;
   margin-bottom: 4rem;
 }
-.hymn-content .left-panel,
-.hymn-content .lyrics-panel {
+.hymn-content .left-panel {
   display: inline-block;
   vertical-align: top;
   margin-top: 2rem;
-}
-.hymn-content .left-panel {
   width: 17rem;
   margin-right: 1.5rem;
 }
-.hymn-content .lyrics-panel {
-  width: calc(100% - 19rem);
-}
-.hymn-content .lyrics-panel:hover,
-.hymn-content .lyrics-panel.is-hover {
-  background: #ffffff;
-}
-.hymn-content .left-panel .hymn-labels,
-.hymn-content .lyrics-panel {
+.hymn-content .left-panel .hymn-labels {
   background: #eeeeee;
   border: 1px solid #cccccc;
   border-radius: 0.25rem;
   padding: 0.5rem;
+}
+.hymn-content .left-panel .hymn-labels:hover {
+  background: #ffffff;
 }
 .hymn-content .left-panel .hymn-labels input {
   background: transparent;
@@ -498,30 +474,37 @@ form .select2-container {
   font-size: 0.6rem;
   cursor: pointer;
 }
-.hymn-content .left-panel .hymn-labels:hover {
+.hymn-content .lyrics-panel {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 2rem;
+  background: #eeeeee;
+  border: 1px solid #cccccc;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  width: calc(100% - 19rem);
+}
+.hymn-content .lyrics-panel:hover,
+.hymn-content .lyrics-panel.is-hover {
   background: #ffffff;
 }
-.hymn-content .lyrics-panel .add-lyrics-set .add-lyrics-set-toggler {
-  color: #999999;
-  cursor: pointer;
+.hymn-content .lyrics-panel:hover .tabs a .tab-heading:hover {
+  border-bottom: 1px solid #333333;
 }
-.hymn-content .lyrics-panel .add-lyrics-set .add-lyrics-set-toggler:hover {
-  color: #333333;
-}
-.hymn-content .lyrics-panel .add-lyrics-set .add-lyrics-set-toggler,
 .hymn-content .lyrics-panel .add-lyrics-set .add-lyrics-set-lang-selector {
   display: inline-block;
+  font-size: 0.8rem;
 }
 .hymn-content .lyrics-panel .add-lyrics-set .add-lyrics-set-lang-selector .lyric-langs-checkbox,
 .hymn-content .lyrics-panel .add-lyrics-set .add-lyrics-set-lang-selector .add-lyrics-btn {
   display: inline-block;
 }
-.hymn-content .lyrics-panel .add-lyrics-set .add-lyrics-set-lang-selector {
-  font-size: 0.8rem;
-}
 .hymn-content .lyrics-panel .add-lyrics-set .ui-btn.add-lyrics-btn button {
   padding: 0.3rem 0.4rem;
   font-size: 0.6rem;
+}
+.hymn-content .lyrics-panel .no-lyrics-msg {
+  text-align: center;
 }
 .hymn-content .lyrics-panel .tabs a {
   background: transparent;
@@ -534,8 +517,8 @@ form .select2-container {
 .hymn-content .lyrics-panel .tabs dd:not(.active) a:hover {
   border: 1px solid #999999;
 }
-.hymn-content .lyrics-panel .tabs dd.active a {
-  background: transparent;
+.hymn-content .lyrics-panel .tabs dd.active a .tab-heading:hover {
+  border-bottom: 0;
 }
 .hymn-content .lyrics-panel .tabs dd.active.en a {
   border: 1px solid #2426c9;
@@ -558,38 +541,52 @@ form .select2-container {
 .hymn-content .lyrics-panel .tabs dd.active.en.zh-CAN.zh-MAN a {
   border: 1px solid #6c1f99;
 }
-.hymn-content .lyrics-panel:hover .tabs dd.active a .tab-heading:hover {
-  border-bottom: 0;
-}
-.hymn-content .lyrics-panel:hover .tabs a .tab-heading:hover {
-  border-bottom: 1px solid #333333;
-}
-.tabs-content .content {
+.hymn-content .lyrics-panel .tabs-content .content {
   margin-top: 0.5rem;
 }
-.hymn-content .lyrics-panel .no-lyrics-msg {
-  text-align: center;
-}
-.lyrics-verse {
+.hymn-content .lyrics-panel .lyrics-verse {
   padding: 1rem;
   border: 1px solid #cccccc;
   margin-bottom: 1rem;
   border-radius: 0.25rem;
   position: relative;
 }
-.lyrics-verse:hover {
+.hymn-content .lyrics-panel .lyrics-verse:hover {
   border: 1px solid #999999;
 }
-.lyrics-verse .view-panel .lines,
-.lyrics-verse .view-panel .verse,
-.lyrics-verse .view-panel .action-panel {
+.hymn-content .lyrics-panel .lyrics-verse .view-panel .lines,
+.hymn-content .lyrics-panel .lyrics-verse .view-panel .verse,
+.hymn-content .lyrics-panel .lyrics-verse .view-panel .action-panel {
   display: inline-block;
 }
-.lyrics-verse .view-panel .lines {
+.hymn-content .lyrics-panel .lyrics-verse .view-panel .verse {
+  border: 1px solid #cccccc;
+  text-align: center;
+  width: 2rem;
+  border-radius: 2rem;
+  padding: 0.2rem 0.5rem;
+  vertical-align: top;
+  cursor: pointer;
+}
+.hymn-content .lyrics-panel .lyrics-verse .view-panel .verse:hover {
+  border: 1px solid #999999;
+}
+.hymn-content .lyrics-panel .lyrics-verse .view-panel .lines {
   width: calc(100% - 5.7rem);
   text-align: center;
   cursor: pointer;
   white-space: pre;
+}
+.hymn-content .lyrics-panel .lyrics-verse .view-panel .action-panel {
+  width: 3rem;
+  vertical-align: top;
+  text-align: right;
+}
+.hymn-content .lyrics-panel .lyrics-verse .view-panel.ng-hide-remove,
+.hymn-content .lyrics-panel .lyrics-verse .edit-panel.ng-hide-remove {
+  -webkit-animation: flipInX 1s;
+  -moz-animation: flipInX 1s;
+  animation: flipInX 1s;
 }
 .default-arrangement {
   border: 1px solid #cccccc;
@@ -599,10 +596,6 @@ form .select2-container {
 }
 .default-arrangement:hover {
   border: 1px solid #999999;
-}
-.default-arrangement .placeholder {
-  font-size: 0.8rem;
-  color: #999999;
 }
 .default-arrangement .verse {
   display: inline-block;
@@ -616,6 +609,9 @@ form .select2-container {
   padding: 0 0.35rem;
   cursor: move;
 }
+.default-arrangement .verse:hover {
+  border: 1px solid #999999;
+}
 .default-arrangement .verse:last-child {
   margin: 0;
 }
@@ -623,36 +619,10 @@ form .select2-container {
 .default-arrangement .verse.selected:hover {
   border: 1px solid #1e9731;
 }
-.default-arrangement .verse:hover {
-  border: 1px solid #999999;
-}
 .default-arrangement .actions .fa.fa-trash {
   color: #cd3948;
   font-size: 0.8rem;
   cursor: pointer;
-}
-.lyrics-verse .view-panel .verse {
-  border: 1px solid #cccccc;
-  text-align: center;
-  width: 2rem;
-  border-radius: 2rem;
-  padding: 0.2rem 0.5rem;
-  vertical-align: top;
-  cursor: pointer;
-}
-.lyrics-verse .action-panel {
-  width: 3rem;
-  vertical-align: top;
-  text-align: right;
-}
-.lyrics-verse:hover .view-panel .verse {
-  border: 1px solid #999999;
-}
-.lyrics-verse .view-panel.ng-hide-remove,
-.lyrics-verse .edit-panel.ng-hide-remove {
-  -webkit-animation: flipInX 1s;
-  -moz-animation: flipInX 1s;
-  animation: flipInX 1s;
 }
 /* modal css */
 .reveal-modal {
