@@ -32,7 +32,7 @@
 			</ul>
 
 			<ul class="left" data-ng-if="menu.shouldRender(authentication.user);">
-				<div data-ng-repeat="item in menu.items | orderBy: 'position'" data-ng-if="item.shouldRender(authentication.user);">
+				<span data-ng-repeat="item in menu.items | orderBy: 'position'" data-ng-if="item.shouldRender(authentication.user);">
 					<li ng-class="{active: ($uiRoute)}" data-ng-show="item.menuItemType === 'dropdown'" has-dropdown>
 						<a href="#" onclick="return false;">
 							<span data-ng-bind="item.title"></span>
@@ -46,7 +46,7 @@
 					<li ng-class="{active: ($uiRoute)}" data-ng-show="item.menuItemType === 'link'">
 						<a href="/#!/{{item.link}}" data-ng-bind="item.title"></a>
 					</li>
-				</div>
+				</span>
 			</ul>
 		</top-bar-section>
 	</top-bar>
