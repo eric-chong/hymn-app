@@ -31,6 +31,9 @@ module.exports = function(app) {
 		.put(users.requiresLogin, hymnbooks.hasAuthorization, hymnbooks.update)
 		.delete(users.requiresLogin, hymnbooks.hasAuthorization, hymnbooks.delete);
 
+	app.route('/hymnbooks/:hymnbookId/hymnsCount')
+		.get(hymns.countByHymnbook);
+
 	app.route('/hymnbooks')
 		.get(hymnbooks.list)
 		.post(users.requiresLogin, hymnbooks.create);

@@ -127,12 +127,16 @@ exports.countByPublisher = function(req, res) {
  * Hymnbook middleware
  */
 exports.hymnbookById = function(req, res, next, id) {
-	Hymnbook.findById(id).populate('user').populate('publisher').exec(function(err, hymnbook) {
-		if (err) return next(err);
-		if (!hymnbook) return next(new Error('Failed to load hymnbook ' + id));
-		req.hymnbook = hymnbook;
+	if (id === 'unknown') {
 		next();
-	});
+	} else {
+		Hymnbook.findById(id).populate('user').populate('publisher').exec(function(err, hymnbook) {
+			if (err) return next(err);
+			if (!hymnbook) return next(new Error('Failed to load hymnbook ' + id));
+			req.hymnbook = hymnbook;
+			next();
+		});		
+	}
 };
 
 /**

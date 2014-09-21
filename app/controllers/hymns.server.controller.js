@@ -123,8 +123,9 @@ exports.countByHymnbook = function(req, res) {
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
+			var hymnbookId = hymnbook && hymnbook._id || !hymnbook && 'unknown';
 			res.jsonp({
-				hymnbookId: hymnbook._id,
+				hymnbookId: hymnbookId,
 				hymnsCount: count
 			});
 		}

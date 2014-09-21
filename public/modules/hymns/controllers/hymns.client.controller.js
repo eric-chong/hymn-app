@@ -308,10 +308,14 @@ angular.module('hymns')
 				validateHymnForm($scope.newHymnForm, $scope.newHymn);
 				if ($scope.newHymnForm.$valid) {
 					var hymnToSave = new Hymns({
-						hymnbookId: $stateParams.hymnbookId,
 						names: [],
 						lyricLangs: []
 					});
+					if ($scope.newHymn.hymnbookId) {
+						hymnToSave.hymnbookId = $scope.newHymn.hymnbookId;	
+					} else {
+						hymnToSave.hymnbookId = 'unknown';
+					}
 					$scope.newHymn.names.forEach(function(elem) {
 						if (elem.name) hymnToSave.names.push(elem);
 					});
