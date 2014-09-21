@@ -409,7 +409,7 @@ angular.module('hymns')
 				if ($stateParams.hymnbookId && $stateParams.hymnbookId !== 'unknown') {
 					$scope.newHymn.hymnbookId = $stateParams.hymnbookId;
 					$scope.newHymn.publisherId = $scope.parentInfo.obj.publisher._id;
-					lyricLangs: angular.copy($scope.parentInfo.obj.lyricLangs);
+					$scope.newHymn.lyricLangs = angular.copy($scope.parentInfo.obj.lyricLangs);
 				}
 			}
 
