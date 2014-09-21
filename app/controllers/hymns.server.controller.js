@@ -117,16 +117,22 @@ exports.getLabels = function(req, res) {
  */
 exports.countByHymnbook = function(req, res) {
 	var hymnbook = req.hymnbook;
-	Hymn.count({hymnbook: hymnbook}, function(err, count) {
+	Hymn.find({hymnbook: hymnbook}, function(err, hymns) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
+			var count = hymns.length;
+			var langs = [];
+			hymns.forEach(function(item) {
+				langs = langs.concat(item.lyricLangs);
+			});
 			var hymnbookId = hymnbook && hymnbook._id || !hymnbook && 'unknown';
 			res.jsonp({
 				hymnbookId: hymnbookId,
-				hymnsCount: count
+				hymnsCount: count,
+				lyricLangs: _.uniq(langs)
 			});
 		}
 	});
