@@ -479,7 +479,7 @@ angular.module('hymns')
 						// TO-DO success message
 					});
 				}
-				$scope.newLabel = "";
+				$scope.newLabel = '';
 			};
 
 			$scope.removeLabel = function(label) {
