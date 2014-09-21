@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/mean-dev',
+	db: 'mongodb://localhost/hymn-app-dev',
 	app: {
 		title: 'Praise & Worship (Dev)'
 	},
