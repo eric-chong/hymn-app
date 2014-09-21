@@ -81,7 +81,7 @@
 	</div>
 	<ng-include src="'/modules/hymns/views/filter-hymnbook.client.view.html'"></ng-include>
 	<ul class="list-group small-block-grid-2 medium-block-grid-3 large-block-grid-4">
-		<li data-ng-repeat="hymnbook in hymnbooks | filterHymnOrHymnbook:search">		
+		<li data-ng-repeat="hymnbook in hymnbooks | filterHymnOrHymnbook:search">
 			<div class="list-entry {{hymnbook.lyricLangs|lyricLangsCssClass}}">
 				<div class="entry-header">
 					<div data-ng-repeat="nameEntry in hymnbook.names">
@@ -101,6 +101,22 @@
 					<div class="action-icon right" tooltip="Delete" tooltip-placement="left">
 						<i class="fa fa-trash" ng-click="delete(hymnbook)" />
 					</div>
+				</div>
+			</div>
+		</li>
+		<li>
+			<div class="list-entry {{unknownHymnbook.lyricLangs|lyricLangsCssClass}}">
+				<div class="entry-header">
+					<div>
+						<a class="underline" data-ng-href="#!/hymnbooks/unknown/hymns">未知詩集</a>
+					</div>
+					<div>
+						<a class="underline" data-ng-href="#!/hymnbooks/unknown/hymns">Unknown Hymn Book</a>
+					</div>
+				</div>
+				<div class="hymn-count entry-stats" ng-class="{zero: unknownHymnbook.hymnsCount === 0}">
+					<span ng-hide="unknownHymnbook.$resolved"><i class="fa fa-circle-o-notch fa-spin" /></span>
+					<span ng-show="unknownHymnbook.$resolved" tooltip="Number of hymns" tooltip-placement="bottom">{{unknownHymnbook.hymnsCount}}</span>
 				</div>
 			</div>
 		</li>

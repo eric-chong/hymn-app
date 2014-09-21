@@ -46,6 +46,10 @@ angular.module('hymns')
 					method: 'GET',
 					url: 'hymnbooks/:hymnbookId/hymnsCount'
 				},
+				getUnknownHymnbook: {
+					method: 'GET',
+					url: 'hymnbooks/unknown/hymnsCount'
+				},
 				saveWithNoPublisher: {
 					method: 'POST',
 					url: 'hymnbooks'

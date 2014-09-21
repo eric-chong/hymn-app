@@ -139,6 +139,7 @@ angular.module('hymns')
 					});
 				} else {
 					$scope.hymnbooks = Hymnbooks.getAll();
+					$scope.unknownHymnbook = Hymnbooks.getUnknownHymnbook();
 					$scope.publishersList = Publishers.query();
 				}
 			};
@@ -403,10 +404,13 @@ angular.module('hymns')
 						{ lang: 'zh', name: '' },
 						{ lang: 'en', name: '' }
 					],
-					lyricLangs: angular.copy($scope.parentInfo.obj.lyricLangs),
-					hymnbookId: $stateParams.hymnbookId,
-					publisherId: $scope.parentInfo.obj.publisher._id
+					lyricLangs: []
 				};
+				if ($stateParams.hymnbookId && $stateParams.hymnbookId !== 'unknown') {
+					$scope.newHymn.hymnbookId = $stateParams.hymnbookId;
+					$scope.newHymn.publisherId = $scope.parentInfo.obj.publisher._id;
+					lyricLangs: angular.copy($scope.parentInfo.obj.lyricLangs);
+				}
 			}
 
 			function validateHymnForm(form, obj) {
