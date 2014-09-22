@@ -55,7 +55,7 @@
 						{{publisher.hymnbooksCount}}
 					</span>
 				</div>
-				<div class="action-icons" ng-if="authentication.user && authentication.user._id == publisher.user._id">
+				<div class="action-icons" ng-if="hasWriteAuthorization(publisher)">
 					<div class="action-icon left" tooltip="Edit" tooltip-placement="right">
 						<i class="fa fa-edit" ng-click="edit(publisher)" />
 					</div>

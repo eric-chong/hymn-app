@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('hymns')
-	.controller('PublishersController', ['$scope', '$modal', 'Authentication', 'Publishers', 
-		function($scope, $modal, Authentication, Publishers) {
+	.controller('PublishersController', ['$scope', '$modal', 'Authentication', 'AuthService', 'Publishers', 
+		function($scope, $modal, Authentication, AuthService, Publishers) {
 			$scope.authentication = Authentication;
 
 			$scope.show = {
@@ -87,6 +87,10 @@ angular.module('hymns')
 				resetNewPublisherList();
 			};
 
+			$scope.hasWriteAuthorization = function(item) {
+				return AuthService.hasWriteAuthorization($scope.authentication, item);
+			};
+
 			function resetNewPublisherList() {
 				$scope.newPublisher = {
 					names: [
@@ -107,8 +111,8 @@ angular.module('hymns')
 			resetNewPublisherList();
 		}])
 
-	.controller('HymnbooksController', ['$scope', '$state', '$stateParams', '$timeout', '$modal', 'Authentication', 'Publishers', 'Hymnbooks', 'HymnConfig',
-		function($scope, $state, $stateParams, $timeout, $modal, Authentication, Publishers, Hymnbooks, HymnConfig){
+	.controller('HymnbooksController', ['$scope', '$state', '$stateParams', '$timeout', '$modal', 'Authentication', 'AuthService', 'Publishers', 'Hymnbooks', 'HymnConfig',
+		function($scope, $state, $stateParams, $timeout, $modal, Authentication, AuthService, Publishers, Hymnbooks, HymnConfig){
 			$scope.currentState = $state.current;
 			$scope.authentication = Authentication;
 
@@ -249,6 +253,10 @@ angular.module('hymns')
 				resetNewHymnbookObj();
 			};
 
+			$scope.hasWriteAuthorization = function(item) {
+				return AuthService.hasWriteAuthorization($scope.authentication, item);
+			};
+
 			function resetNewHymnbookObj() {
 				$scope.newHymnbook = {
 					names: [
@@ -270,8 +278,8 @@ angular.module('hymns')
 			resetNewHymnbookObj();	
 		}])
 
-	.controller('HymnsController', ['$scope', '$state', '$stateParams', '$timeout', '$modal', 'Authentication', 'Publishers', 'Hymnbooks', 'Hymns', 'HymnConfig',
-		function($scope, $state, $stateParams, $timeout, $modal, Authentication, Publishers, Hymnbooks, Hymns, HymnConfig) {
+	.controller('HymnsController', ['$scope', '$state', '$stateParams', '$timeout', '$modal', 'Authentication', 'AuthService', 'Publishers', 'Hymnbooks', 'Hymns', 'HymnConfig',
+		function($scope, $state, $stateParams, $timeout, $modal, Authentication, AuthService, Publishers, Hymnbooks, Hymns, HymnConfig) {
 			$scope.currentState = $state.current;
 			$scope.authentication = Authentication;
 
@@ -398,6 +406,10 @@ angular.module('hymns')
 				resetNewHymnObj();
 			};
 
+			$scope.hasWriteAuthorization = function(item) {
+				return AuthService.hasWriteAuthorization($scope.authentication, item);
+			};
+
 			function resetNewHymnObj() {
 				$scope.newHymn = {
 					names: [
@@ -431,8 +443,8 @@ angular.module('hymns')
 				});
 		}])
 
-	.controller('HymnController', ['$scope', '$state', '$stateParams', '$modal', 'Authentication', 'Publishers', 'Hymnbooks', 'Hymns', 'HymnConfig', 'HymnClipboard',
-		function($scope, $state, $stateParams, $modal, Authentication, Publishers, Hymnbooks, Hymns, HymnConfig, HymnClipboard) {
+	.controller('HymnController', ['$scope', '$state', '$stateParams', '$modal', 'Authentication', 'AuthService', 'Publishers', 'Hymnbooks', 'Hymns', 'HymnConfig', 'HymnClipboard',
+		function($scope, $state, $stateParams, $modal, Authentication, AuthService, Publishers, Hymnbooks, Hymns, HymnConfig, HymnClipboard) {
 			var selectedTab = 0;
 			$scope.currentState = $state.current;
 			$scope.authentication = Authentication;
@@ -595,6 +607,11 @@ angular.module('hymns')
 			$scope.hasAuthorization = function(item) {
 				return $scope.authentication.user && $scope.authentication.user._id === item.user._id;
 			};
+
+			$scope.hasWriteAuthorization = function(item) {
+				return AuthService.hasWriteAuthorization($scope.authentication, item);
+			};
+
 
 			$scope.updateSelectedTab = function() {
 				$scope.verseIndexSelected = -1;

@@ -95,7 +95,7 @@
 						</a>
 					</div>
 				</div>
-				<div class="action-icons" ng-if="authentication.user && authentication.user._id == hymn.user._id">
+				<div class="action-icons" ng-if="hasWriteAuthorization(hymn)">
 					<div class="action-icon left" tooltip="Edit" tooltip-placement="right">
 						<i class="fa fa-edit" ng-click="edit(hymn)" />
 					</div>

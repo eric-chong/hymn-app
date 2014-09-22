@@ -94,7 +94,7 @@
 					<span ng-hide="hymnbooks.$resolved"><i class="fa fa-circle-o-notch fa-spin" /></span>
 					<span ng-show="hymnbooks.$resolved" tooltip="Number of hymns" tooltip-placement="bottom">{{hymnbook.hymnsCount}}</span>
 				</div>
-				<div class="action-icons" ng-if="authentication.user && authentication.user._id == hymnbook.user._id">
+				<div class="action-icons" ng-if="hasWriteAuthorization(hymnbook)">
 					<div class="action-icon left" tooltip="Edit" tooltip-placement="right">
 						<i class="fa fa-edit" ng-click="edit(hymnbook)" />
 					</div>
