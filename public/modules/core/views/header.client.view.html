@@ -1,7 +1,7 @@
-<div class="container" data-ng-controller="HeaderController">
+<div class="top-bar container" data-ng-controller="HeaderController">
 	<top-bar is-hover="false">
 		<ul class="title-area">
-			<li class="name"><h1><a href="/#!/">HYMN</a></h1></li>
+			<li class="name"><h1><a href="/#!/"><i class="fa fa-music"></i></a></h1></li>
 			<li toggle-top-bar class="menu-icon">
 				<a href="#" onclick="return false;"><i class="fa fa-bars" /></a>
 			</li>
@@ -9,20 +9,20 @@
 		<top-bar-section>
 			<ul class="right">
 				<li ui-route="/signin" data-ng-hide="authentication.user" >
-					<a href="/#!/signin">Sign In</a>
+					<a href="/#!/signin"><i class="fa fa-sign-in"></i>Sign In</a>
 				</li>
 				<li has-dropdown data-ng-show="authentication.user">
 					<a href="#" onclick="return false;">
 						<span data-ng-bind="authentication.user.displayName"></span>
 					</a>
 					<ul top-bar-dropdown>
-						<li><a href="/#!/settings/profile">Edit Profile</a></li>
+						<li><a href="/#!/settings/profile"><i class="fa fa-briefcase"></i>Edit Profile</a></li>
 						<li data-ng-show="authentication.user.provider === 'local'">
-							<a href="/#!/settings/password">Change Password</a>
+							<a href="/#!/settings/password"><i class="fa fa-key"></i>Change Password</a>
 						</li>
 						<li class="divider"></li>
 						<li>
-							<a href="/auth/signout">Signout</a>
+							<a href="/auth/signout"><i class="fa fa-sign-out"></i>Signout</a>
 						</li>
 					</ul>
 				</li>

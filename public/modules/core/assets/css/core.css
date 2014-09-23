@@ -102,3 +102,7 @@ a:hover {
 a.underline:hover {
   border-bottom: 1px solid #4a4a4a;
 }
+/* top bar style */
+.top-bar li a i.fa {
+  margin-right: 0.5rem;
+}

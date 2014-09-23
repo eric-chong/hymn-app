@@ -67,7 +67,3 @@
 .change-password-form .row {
   max-width: none;
 }
-/* user setting nav item */
-.has-dropdown.setting-nav ul.dropdown li a i.fa {
-  margin-right: 0.25rem;
-}
