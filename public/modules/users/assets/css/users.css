@@ -67,3 +67,26 @@
 .change-password-form .row {
   max-width: none;
 }
+.sign-in-form {
+  border: 1px solid #cccccc;
+  border-radius: 0.25rem;
+  margin: 1rem 0;
+  padding: 1rem;
+  padding-top: 2rem;
+  position: relative;
+  width: 25rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+.sign-in-form .sub-header {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-right: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
+  padding: 0.1rem 0.25rem;
+  font-size: 0.75rem;
+}
+.sign-in-form .row {
+  max-width: none;
+}
