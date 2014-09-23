@@ -23,7 +23,7 @@ angular.module('users').config(['$stateProvider',
 		}).
 		state('addUser', {
 			url: '/users/add',
-			templateUrl: 'modules/users/views/authentication/signup.client.view.html'
+			templateUrl: 'modules/users/views/authentication/create-user.client.view.html'
 		}).
 		state('signin', {
 			url: '/signin',

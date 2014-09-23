@@ -40,6 +40,8 @@ angular.module('users').controller('SigninController', ['$scope', '$http', '$loc
 		$scope.availableRoles = UserUntil.getRoles($scope.authentication.user.roles);
 
 		$scope.addUser = function() {
+			// TO-DO: validation
+			
 			$http.post('/auth/signup', $scope.credentials).success(function(response) {
 				// If successful we assign the response to the global user model
 				$scope.authentication.user = response;
