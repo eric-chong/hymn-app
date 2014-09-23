@@ -13,7 +13,7 @@ angular.module('users')
 		}
 	])
 
-	.factory('UserUntil', [function() {
+	.factory('UserUtil', [function() {
 		var roles = {
 			'user': 'User',
 			'admin': 'Admin',
