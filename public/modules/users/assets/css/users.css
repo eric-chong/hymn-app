@@ -1,4 +1,69 @@
+/* define colors */
+/* form css */
 /* users module css */
+.create-user-form {
+  border: 1px solid #cccccc;
+  border-radius: 0.25rem;
+  margin: 1rem 0;
+  padding: 1rem;
+  padding-top: 2rem;
+  position: relative;
+}
+.create-user-form .sub-header {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-right: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
+  padding: 0.1rem 0.25rem;
+  font-size: 0.75rem;
+}
+.create-user-form .row {
+  max-width: none;
+}
 .create-user-form .ui-group-checkbox {
   margin-bottom: 1rem;
+}
+.edit-profile-form {
+  border: 1px solid #cccccc;
+  border-radius: 0.25rem;
+  margin: 1rem 0;
+  padding: 1rem;
+  padding-top: 2rem;
+  position: relative;
+}
+.edit-profile-form .sub-header {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-right: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
+  padding: 0.1rem 0.25rem;
+  font-size: 0.75rem;
+}
+.edit-profile-form .row {
+  max-width: none;
+}
+.edit-profile-form .ui-group-checkbox {
+  margin-bottom: 1rem;
+}
+.change-password-form {
+  border: 1px solid #cccccc;
+  border-radius: 0.25rem;
+  margin: 1rem 0;
+  padding: 1rem;
+  padding-top: 2rem;
+  position: relative;
+}
+.change-password-form .sub-header {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-right: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
+  padding: 0.1rem 0.25rem;
+  font-size: 0.75rem;
+}
+.change-password-form .row {
+  max-width: none;
 }
