@@ -18,6 +18,11 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
 			return false;
 		};
 
+		$scope.hasAdminAuthentication = function() {
+			return $scope.user && 
+				(_.indexOf($scope.user.roles, 'admin') > -1 || _.indexOf($scope.user.roles, 'master') > -1);
+		};
+
 		// Check if provider is already in use with current user
 		$scope.isConnectedSocialAccount = function(provider) {
 			return $scope.user.provider === provider || ($scope.user.additionalProvidersData && $scope.user.additionalProvidersData[provider]);
