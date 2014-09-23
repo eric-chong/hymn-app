@@ -8,11 +8,11 @@
 		</ul>
 		<top-bar-section>
 			<ul class="right">
-				<li ui-route="/signin" ng-class="{active: $uiRoute}" data-ng-hide="authentication.user" >
+				<li ui-route="/signin" data-ng-hide="authentication.user" >
 					<a href="/#!/signin">Sign In</a>
 				</li>
 				<li has-dropdown data-ng-show="authentication.user">
-					<a href="#">
+					<a href="#" onclick="return false;">
 						<span data-ng-bind="authentication.user.displayName"></span>
 					</a>
 					<ul top-bar-dropdown>
@@ -24,6 +24,13 @@
 						<li>
 							<a href="/auth/signout">Signout</a>
 						</li>
+					</ul>
+				</li>
+				<li has-dropdown class="setting-nav" ng-if="showUsersMenu()">
+					<a href="#" onclick="return false;"><i class="fa fa-gear"></i></a>
+					<ul top-bar-dropdown>
+						<li><a href="/#!/users/add"><i class="fa fa-user"></i> Create User</a></li>
+						<li><a href="/#!/users/list"><i class="fa fa-users"></i> View Users</a></li>
 					</ul>
 				</li>
 			</ul>

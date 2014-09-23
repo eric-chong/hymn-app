@@ -14,5 +14,10 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 		$scope.$on('$stateChangeSuccess', function() {
 			$scope.isCollapsed = false;
 		});
+
+		$scope.showUsersMenu = function() {
+			return $scope.authentication.user && 
+				(_.indexOf($scope.authentication.user.roles, 'admin') > -1 || _.indexOf($scope.authentication.user.roles, 'master') > -1);
+		};
 	}
 ]);
