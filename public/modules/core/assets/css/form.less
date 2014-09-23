@@ -1,0 +1,25 @@
+/* form css */
+.general_form_layout(@padding, @margin) {
+    border: 1px solid @grey;
+    border-radius: 0.25rem;
+    margin: @padding;
+    padding: @margin;
+    padding-top: 2rem;
+    position: relative;	
+    .sub-header {
+	    position: absolute;
+	    left: 0;
+	    top: 0;
+	    border-right: 1px solid @grey;
+	    border-bottom: 1px solid @grey;
+	    padding: 0.1rem 0.25rem;
+	    font-size: 0.75rem;
+    }
+    .row {
+    	max-width: none;
+    }
+}
+.select2-container-common-style() {
+	width: 100%;
+	margin-bottom: 1rem;
+}

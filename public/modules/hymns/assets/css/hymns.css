@@ -1,5 +1,6 @@
 /* define colors */
 /* animtions (using animcate.css) */
+/* form css */
 /* hymn specific colors */
 .page-header i.create-new,
 .page-header i.filter-toggler {
@@ -313,7 +314,6 @@
   font-size: 0.9rem;
   margin-left: 1rem;
 }
-/* form css */
 .new-form {
   border: 1px solid #cccccc;
   border-radius: 0.25rem;
