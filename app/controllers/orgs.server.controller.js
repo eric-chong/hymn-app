@@ -87,7 +87,7 @@ exports.list = function(req, res) {
  * Org middleware
  */
 exports.orgByID = function(req, res, next, id) {
-	Org.findById({orgId: id}).exec(function(err, org) {
+	Org.findById(id).exec(function(err, org) {
 		if (err) return next(err);
 		if (!org) return next(new Error('Failed to load org ' + id));
 		req.org = org;

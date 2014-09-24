@@ -10,7 +10,7 @@ var mongoose = require('mongoose'),
  * Publisher Schema
  */
 var OrgSchema = new Schema({
-	orgId: { type: String, unique: true },
+	orgCode: { type: String, unique: true },
 	fullName: String
 });
 
