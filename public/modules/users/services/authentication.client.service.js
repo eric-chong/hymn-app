@@ -19,9 +19,15 @@ angular.module('users')
 		function() {
 			return {
 				hasWriteAuthorization: function(auth, item) {
-					return auth.user && 
-						(auth.user._id === item.user._id || _.indexOf(auth.user.roles, 'admin') > -1 || _.indexOf(auth.user.roles, 'master') > -1);
-				}
+					return auth.user && (auth.user._id === item.user._id || this.hasAdminAuthorization(auth));
+				},
+				hasAdminAuthorization: function(auth) {
+					return auth.user && (_.indexOf(auth.user.roles, 'admin') > -1 || _.indexOf(auth.user.roles, 'master') > -1);
+				},
+				hasMasterAuthorization: function(auth) {
+					return auth.user && _.indexOf(auth.user.roles, 'master') > -1;
+				},
+
 			};
 		}
 	]);

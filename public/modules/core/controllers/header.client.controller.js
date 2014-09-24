@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('core').controller('HeaderController', ['$scope', 'Authentication', 'Menus',
-	function($scope, Authentication, Menus) {
+angular.module('core').controller('HeaderController', ['$scope', 'Authentication', 'AuthService', 'Menus',
+	function($scope, Authentication, AuthService, Menus) {
 		$scope.authentication = Authentication;
 		$scope.isCollapsed = false;
 		$scope.menu = Menus.getMenu('topbar');
@@ -16,8 +16,7 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 		});
 
 		$scope.showUsersMenu = function() {
-			return $scope.authentication.user && 
-				(_.indexOf($scope.authentication.user.roles, 'admin') > -1 || _.indexOf($scope.authentication.user.roles, 'master') > -1);
+			return AuthService.hasAdminAuthorization($scope.authentication);
 		};
 	}
 ]);
