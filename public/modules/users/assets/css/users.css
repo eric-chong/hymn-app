@@ -90,3 +90,24 @@
 .sign-in-form .row {
   max-width: none;
 }
+.list-entry.org,
+.list-entry.org:hover {
+  border-top: 1px solid #cccccc;
+}
+.list-entry.org .org-name,
+.list-entry.org:hover .org-name {
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+.list-entry.org .edit-org,
+.list-entry.org:hover .edit-org {
+  padding: 0.5rem 0;
+}
+.list-entry.org .edit-org form input,
+.list-entry.org:hover .edit-org form input {
+  margin: 0 0 0.5rem 0;
+}
+.list-entry.org .edit-org form input.error,
+.list-entry.org:hover .edit-org form input.error {
+  border: 1px solid #cd3948;
+}

@@ -59,6 +59,12 @@ angular.module('users').controller('OrgsController', ['$scope', '$location', '$m
 			resetNewOrgList();
 		};
 
+		$scope.saveOrg = function(org) {
+			org.$update(function(response) {
+				// load success message
+			});
+		};
+
 		$scope.hasWriteAuthorization = function(item) {
 			return AuthService.hasWriteAuthorization($scope.authentication, item);
 		};

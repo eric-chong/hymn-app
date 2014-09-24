@@ -28,3 +28,21 @@
 	margin-left: auto;
 	margin-right: auto;
 }
+
+.list-entry.org, 
+.list-entry.org:hover {
+	border-top: 1px solid @grey;
+	.org-name {
+		cursor: pointer;
+		margin-top: 0.5rem;
+	}
+	.edit-org {
+		padding: 0.5rem 0;
+		form input {
+			margin: 0 0 0.5rem 0;
+			&.error {
+				border: 1px solid @danger_red;
+			}
+		}
+	}
+}

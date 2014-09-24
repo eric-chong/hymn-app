@@ -22,8 +22,8 @@
 				</div>
 			</div>
 			<div class="row" ng-show="!newOrgForm.$valid">
-				<div class="large-4 columns form-error">Org Id is required.</div>
-				<div class="large-8 columns form-error">Org Name is required.</div>
+				<div class="large-4 columns form-error"><span ng-show="!newOrgForm.orgCode.$valid">Org Id is required.</span></div>
+				<div class="large-8 columns form-error"><span ng-show="!newOrgForm.fullName.$valid">Org Name is required.</span></div>
 			</div>
 			<div class="row padding_top_half padding_bottom_half">
 				<div class="large-12 columns">
@@ -47,7 +47,7 @@
 	<ul class="list-group small-block-grid-2 medium-block-grid-3 large-block-grid-4">
 		<li data-ng-repeat="org in orgs">
 			<div class="list-entry org" ng-hide="org.editMode">
-				<div ng-click="org.editMode=!org.editMode">
+				<div class="org-name" ng-click="org.editMode=!org.editMode">
 					<div>{{org.orgCode}}</div>
 					<div>{{org.fullName}}</div>
 				</div>
@@ -58,7 +58,35 @@
 				</div>
 			</div>
 			<div class="list-entry org" ng-show="org.editMode">
-				<span ng-click="org.editMode=!org.editMode">Edit Form</span>
+				<div class="edit-org">
+					<form role="form" ng-submit="saveOrg(org)" name="editOrgForm">
+						<div class="row form-group">
+							<div class="large-12 columns">
+								<label>
+									<input type="text" ng-model="org.orgCode" name="orgCode" ng-class="{error: !org.orgCode}" />
+								</label>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="large-12 columns">
+								<label>
+									<input type="text" ng-model="org.fullName" name="fullName" ng-class="{error: !org.fullName}" />
+								</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="large-12 columns">
+								<ui-btn
+									ui-btn-type="submit"
+									ui-btn-css-class="save-new-org-btn"
+									ui-btn-btn-css-class="success"
+									ui-btn-icon-class="save" 
+									ui-btn-label="Save">
+								</ui-btn>
+							</div>
+						</div>
+					</form>
+				</span>
 			</div>
 		</li>
 	</ul>
