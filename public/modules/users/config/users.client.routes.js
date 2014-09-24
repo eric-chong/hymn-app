@@ -44,6 +44,11 @@ angular.module('users').config(['$stateProvider',
 		state('reset', {
 			url: '/password/reset/:token',
 			templateUrl: 'modules/users/views/password/reset-password.client.view.html'
+		})
+
+		.state('manageOrgs', {
+			url: '/orgs',
+			templateUrl: 'modules/users/views/orgs/manage-orgs.client.view.html'	
 		});
 	}
 ]);
