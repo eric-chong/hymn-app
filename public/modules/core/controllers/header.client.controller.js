@@ -18,5 +18,9 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 		$scope.showUsersMenu = function() {
 			return AuthService.hasAdminAuthorization($scope.authentication);
 		};
+
+		$scope.hasMasterAuthorization = function() {
+			return AuthService.hasMasterAuthorization($scope.authentication);
+		};
 	}
 ]);

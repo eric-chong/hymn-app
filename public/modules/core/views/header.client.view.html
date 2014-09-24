@@ -30,7 +30,8 @@
 					<a href="#" onclick="return false;"><i class="fa fa-gear"></i></a>
 					<ul top-bar-dropdown>
 						<li><a href="/#!/users/add"><i class="fa fa-user"></i> Create User</a></li>
-						<li><a href="/#!/users/list"><i class="fa fa-users"></i> View Users</a></li>
+						<li><a href="/#!/users"><i class="fa fa-users"></i> View Users</a></li>
+						<li ng-if="hasMasterAuthorization()"><a href="/#!/orgs"><i class="fa fa-home"></i> Manage Orgs</a></li>
 					</ul>
 				</li>
 			</ul>
