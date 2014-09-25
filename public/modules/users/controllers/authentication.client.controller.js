@@ -21,13 +21,15 @@ angular.module('users').controller('SigninController', ['$scope', '$http', '$loc
 	}
 ])
 
-.controller('AddUserController', ['$scope', '$http', '$location', 'Authentication', 'UserUtil',
-	function($scope, $http, $location, Authentication, UserUtil) {
+.controller('AddUserController', ['$scope', '$http', '$location', 'Authentication', 'Orgs', 'UserUtil',
+	function($scope, $http, $location, Authentication, Orgs, UserUtil) {
 		$scope.authentication = Authentication;
 
 		$scope.credentials = {
 			roles: []
 		};
+
+		$scope.orgs = [];
 
 		function allowAddUser() {
 			return $scope.authentication.user && 
@@ -36,6 +38,12 @@ angular.module('users').controller('SigninController', ['$scope', '$http', '$loc
 
 		// If user is signed in then redirect back home
 		if ($scope.authentication.user && !allowAddUser()) $location.path('/');
+
+		if (_.indexOf($scope.authentication.user.roles, 'master') > -1) {
+			$scope.orgs = Orgs.query();
+		} else {
+			$scope.credentials.orgId = $scope.authentication.user.org;
+		}
 
 		$scope.availableRoles = UserUtil.getRoles($scope.authentication.user.roles);
 

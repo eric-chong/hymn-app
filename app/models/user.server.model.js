@@ -59,6 +59,10 @@ var UserSchema = new Schema({
 		default: '',
 		validate: [validateLocalStrategyPassword, 'Password should be longer']
 	},
+	org: {
+		type: Schema.ObjectId,
+		ref: 'Org'
+	},
 	salt: {
 		type: String
 	},

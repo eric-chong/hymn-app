@@ -39,7 +39,16 @@
 								ui-group-checkbox-labels="availableRoles.displayName">
 							</ui-group-checkbox>
 						</label>
-
+					</div>
+				</div>
+				<div class="row" ng-if="orgs && orgs.length > 0">
+					<div class="large-6 columns">
+						<label for="username">Org
+							<select ui-select2 ng-model="credentials.orgId">
+								<option value=""></option>
+							    <option value="{{org._id}}" ng-repeat="org in orgs">{{org.orgCode}} - {{org.fullName}}</option>
+							</select>
+						</label>
 					</div>
 				</div>
 				<div class="row">

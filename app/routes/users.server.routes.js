@@ -7,7 +7,8 @@ var passport = require('passport');
 
 module.exports = function(app) {
 	// User Routes
-	var users = require('../../app/controllers/users');
+	var users = require('../../app/controllers/users'),
+		orgs = require('../../app/controllers/orgs');
 
 	// Setting up the users profile api
 	app.route('/users/me').get(users.me);
@@ -21,7 +22,7 @@ module.exports = function(app) {
 	app.route('/auth/reset/:token').post(users.reset);
 
 	// Setting up the users authentication api
-	app.route('/auth/signup').post(users.signup);
+	app.route('/auth/signup').post(orgs.orgByIdInReq, users.signup);
 	app.route('/auth/signin').post(users.signin);
 	app.route('/auth/signout').get(users.signout);
 

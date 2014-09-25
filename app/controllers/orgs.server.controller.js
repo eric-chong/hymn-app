@@ -94,3 +94,16 @@ exports.orgByID = function(req, res, next, id) {
 		next();
 	});
 };
+
+exports.orgByIdInReq = function(req, res, next) {
+	if (req.body.orgId) {
+		Org.findById(req.body.orgId).exec(function(err, org) {
+			if (err) return next(err);
+			if (!org) return next(new Error('Failed to load org ' + req.body.orgId));
+			req.org = org;
+			next();
+		});
+	} else {
+		next();
+	}
+};
