@@ -4,7 +4,8 @@
  * Module dependencies.
  */
 var users = require('../../app/controllers/users'),
-	orgs = require('../../app/controllers/orgs');
+	orgs = require('../../app/controllers/orgs'),
+	users = require('../../app/controllers/users');
 
 module.exports = function(app) {
 	// User Routes
@@ -18,6 +19,9 @@ module.exports = function(app) {
 		.get(orgs.read)
 		.put(users.requiresLogin, orgs.update)
 		.delete(users.requiresLogin, orgs.delete);
+
+	app.route('/orgs/:orgId/users')
+		.get(users.list);
 
 	// Finish by binding the article middleware
 	app.param('orgId', orgs.orgByID);

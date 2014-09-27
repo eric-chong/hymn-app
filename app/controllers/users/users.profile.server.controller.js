@@ -48,6 +48,31 @@ exports.update = function(req, res) {
 	}
 };
 
+/*
+ * List of users
+ */
+exports.list = function(req, res) {
+	var user = req.user;
+	var org = req.org;
+
+	if (user) {
+		if (!org) {
+			// get list of all users.
+			User.find().populate('org').exec(function(err, users) {
+				res.jsonp(users);
+			});
+		} else {
+			User.find({org: org}).populate('org').exec(function(err, users) {
+				res.jsonp(users);
+			});
+		}
+	} else {
+		res.status(400).send({
+			message: 'User is not signed in'
+		});
+	}
+};
+
 /**
  * Send User
  */

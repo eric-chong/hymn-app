@@ -8,6 +8,11 @@ angular.module('users')
 			return $resource('users', {}, {
 				update: {
 					method: 'PUT'
+				},
+				getUsersInOrg: {
+					method: 'GET',
+					url: 'orgs/:orgId/users',
+					isArray: true
 				}
 			});
 		}

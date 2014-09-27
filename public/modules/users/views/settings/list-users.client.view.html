@@ -1,0 +1,24 @@
+<section ng-controller="UsersController">
+	<div class="page-header">
+		Users
+	</div>
+	<ul class="list-group small-block-grid-2 medium-block-grid-3 large-block-grid-4">
+		<li data-ng-repeat="user in users">
+			<div class="list-entry user">
+				<div class="display-name">{{user.displayName}}</div>
+				<div class="org-name" ng-if="user.org">
+					<div>{{user.org.orgCode}}</div>
+					<div>{{user.org.fullName}}</div>
+				</div>
+				<div class="action-icons">
+					<div class="action-icon right" tooltip="Delete" tooltip-placement="left">
+						<i class="fa fa-trash" ng-click="delete(org)" />
+					</div>
+				</div>
+			</div>
+		</li>
+	</ul>
+	<div class="alert alert-warning text-center" data-ng-if="users.$resolved && !users.length">
+		There is no user in the system.
+	</div>	
+</section>

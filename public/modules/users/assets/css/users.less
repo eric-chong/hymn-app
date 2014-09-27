@@ -29,13 +29,16 @@
 	margin-right: auto;
 }
 
-.list-entry.org, 
-.list-entry.org:hover {
+.generic-list-entry-block() {
 	border-top: 1px solid @grey;
-	.org-name {
+	.display-name {
 		cursor: pointer;
 		margin-top: 0.5rem;
 	}
+}
+.list-entry.org, 
+.list-entry.org:hover {
+	.generic-list-entry-block;
 	.edit-org {
 		padding: 0.5rem 0;
 		form input {
@@ -44,5 +47,14 @@
 				border: 1px solid @danger_red;
 			}
 		}
+	}
+}
+.list-entry.user, .list-entry.user:hover {
+	.generic-list-entry-block;
+	height: 6rem;
+	.org-name {
+		font-size: 0.8rem;
+		color: @dark_grey;
+		font-style: italic;
 	}
 }

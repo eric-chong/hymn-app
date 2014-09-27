@@ -48,7 +48,11 @@ angular.module('users').config(['$stateProvider',
 
 		.state('manageOrgs', {
 			url: '/orgs',
-			templateUrl: 'modules/users/views/orgs/manage-orgs.client.view.html'	
+			templateUrl: 'modules/users/views/orgs/manage-orgs.client.view.html'
+		})
+		.state('listUsers', {
+			url: '/users',
+			templateUrl: 'modules/users/views/settings/list-users.client.view.html'
 		});
 	}
 ]);

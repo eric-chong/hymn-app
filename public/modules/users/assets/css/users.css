@@ -94,8 +94,8 @@
 .list-entry.org:hover {
   border-top: 1px solid #cccccc;
 }
-.list-entry.org .org-name,
-.list-entry.org:hover .org-name {
+.list-entry.org .display-name,
+.list-entry.org:hover .display-name {
   cursor: pointer;
   margin-top: 0.5rem;
 }
@@ -110,4 +110,20 @@
 .list-entry.org .edit-org form input.error,
 .list-entry.org:hover .edit-org form input.error {
   border: 1px solid #cd3948;
+}
+.list-entry.user,
+.list-entry.user:hover {
+  border-top: 1px solid #cccccc;
+  height: 6rem;
+}
+.list-entry.user .display-name,
+.list-entry.user:hover .display-name {
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+.list-entry.user .org-name,
+.list-entry.user:hover .org-name {
+  font-size: 0.8rem;
+  color: #666666;
+  font-style: italic;
 }
