@@ -2,6 +2,7 @@
 
 @import '@{core_css_path}/colors.less';
 @import '@{core_css_path}/form.less';
+@import '@{core_css_path}/core.less';
 
 /* users module css */
 .create-user-form {
@@ -34,6 +35,10 @@
 	.display-name {
 		cursor: pointer;
 		margin-top: 0.5rem;
+	}
+	+.expand-panel {
+		position: relative;
+		margin-top: -0.5rem;
 	}
 }
 .list-entry.org, 

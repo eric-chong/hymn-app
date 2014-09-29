@@ -79,12 +79,14 @@ angular.module('users')
 		}
 	])
 
-	.controller('UsersController', ['$scope', '$http', '$location', 'Users', 'Authentication', 'AuthService',
-		function($scope, $http, $location, Users, Authentication, AuthService) {
+	.controller('UsersController', ['$scope', '$http', '$location', 'Users', 'Authentication', 'AuthService', 'UserUtil',
+		function($scope, $http, $location, Users, Authentication, AuthService, UserUtil) {
 			$scope.authentication = Authentication;
 
 			// If user is not signed in then redirect back home
 			if (!$scope.authentication.user) $location.path('/');
+
+			$scope.availableRoles = UserUtil.getRoles($scope.authentication.user.roles);
 
 			// Get all users for master
 			// Get only users in org for admin
@@ -98,8 +100,34 @@ angular.module('users')
 			} else {
 				$location.path('/');
 			}
-			
 
+			$scope.hasAdminAuthentication = function() {
+				return AuthService.hasAdminAuthorization($scope.authentication);
+			};
+			
+			$scope.toggleEditSection = function(user) {
+				user.editShow = !user.editShow;
+				if (user.editShow) {
+					closeOthers(user);
+				}
+			};
+
+			$scope.saveUser = function(user) {
+				user.$updateOneUser({userId: user._id},
+					function(response) {
+					$scope.success = true;
+				}, function(response) {
+					$scope.error = response.data.message;
+				});
+			};
+
+			function closeOthers(user) {
+				$scope.users.forEach(function(u) {
+					if (u._id !== user._id && u.editShow) {
+						u.editShow = false;
+					}
+				});
+			}
 
 		}
 	]);

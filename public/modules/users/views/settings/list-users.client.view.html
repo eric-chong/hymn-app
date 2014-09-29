@@ -5,16 +5,67 @@
 	<ul class="list-group small-block-grid-2 medium-block-grid-3 large-block-grid-4">
 		<li data-ng-repeat="user in users">
 			<div class="list-entry user">
-				<div class="display-name">{{user.displayName}}</div>
+				<div class="display-name" ng-click="toggleEditSection(user)">{{user.displayName}}</div>
 				<div class="org-name" ng-if="user.org">
 					<div>{{user.org.orgCode}}</div>
 					<div>{{user.org.fullName}}</div>
 				</div>
-				<div class="action-icons">
+				<div class="action-icons" ng-if="false">
 					<div class="action-icon right" tooltip="Delete" tooltip-placement="left">
 						<i class="fa fa-trash" ng-click="delete(org)" />
 					</div>
 				</div>
+			</div>
+			<div class="expand-panel" 
+				ng-show="user.editShow" 
+				list-entry-expand="{fullWidth: true}">
+				<form class="edit-form" ng-submit="saveUser(user)">
+					<div class="close-section" ng-click="user.editShow=false">x</div>
+					<div class="row">
+						<div class="large-6 columns">
+							<label for="firstName">First Name
+								<input type="text" id="firstName" name="firstName" class="form-control" data-ng-model="user.firstName" placeholder="First Name">
+							</label>
+						</div>
+						<div class="large-6 columns">
+							<label for="lastName">Last Name
+								<input type="text" id="lastName" name="lastName" class="form-control" data-ng-model="user.lastName" placeholder="Last Name">
+							</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="{{hasAdminAuthentication() && 'large-4' || 'large-6'}} columns">
+							<label for="email">Email
+								<input type="email" id="email" name="email" class="form-control" data-ng-model="user.email" placeholder="Email">
+							</label>
+						</div>
+						<div class="{{hasAdminAuthentication() && 'large-4' || 'large-6'}} columns">
+							<label for="username">Username
+								<input type="text" id="username" name="username" class="form-control" data-ng-model="user.username" placeholder="Username" ng-disabled="!hasAdminAuthentication()">
+							</label>
+						</div>
+						<div class="large-4 columns" ng-if="hasAdminAuthentication()">
+							<label for="roles">Roles
+								<ui-group-checkbox
+									ui-group-checkbox-model="user.roles" 
+									ui-group-checkbox-values="availableRoles.values"
+									ui-group-checkbox-labels="availableRoles.displayName">
+								</ui-group-checkbox>
+							</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="large-6 columns">
+							<ui-btn
+								ui-btn-type="submit"
+								ui-btn-css-class="add-user-btn"
+								ui-btn-btn-css-class="success"
+								ui-btn-icon-class="save" 
+								ui-btn-label="Save">
+							</ui-btn>
+						</div>
+					</div>
+				</form>
 			</div>
 		</li>
 	</ul>

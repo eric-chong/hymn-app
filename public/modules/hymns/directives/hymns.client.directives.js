@@ -37,4 +37,31 @@ angular.module('hymns')
 				var clip = new ZeroClipboard(elem);
 			}
 		};
+	}])
+
+	.directive('listEntryExpand', ['$window', function($window) {
+		return {
+			link: function(scope, elem, attrs) {
+                angular.element($window).bind('resize', function() {
+                    adjustWidth();
+                    setLeftOffsetPos();
+                    scope.$apply();
+                });
+
+                function adjustWidth() {
+                	var w = window.innerWidth - 95;
+					elem.css('width', window.innerWidth + 'px');
+                }
+
+                function setLeftOffsetPos() {
+                	// Remove left style first?
+                	console.log(elem.offset().left);
+                	elem.css('left', -Math.abs(elem.offset().left));
+                	console.log(elem.css('left'));
+                }
+
+                adjustWidth();
+                setLeftOffsetPos();
+			}
+		};
 	}]);

@@ -13,6 +13,10 @@ angular.module('users')
 					method: 'GET',
 					url: 'orgs/:orgId/users',
 					isArray: true
+				},
+				updateOneUser: {
+					method: 'PUT',
+					url: 'users/:userId'
 				}
 			});
 		}

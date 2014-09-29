@@ -14,7 +14,13 @@ var _ = require('lodash'),
  */
 exports.update = function(req, res) {
 	// Init Variables
-	var user = req.user;
+	var user;
+	var updateByAdmin = (req.profile);
+	if (updateByAdmin) {
+		user = req.profile;
+	} else {
+		user = req.user;
+	}
 	var message = null;
 
 	// For security measurement we remove the roles from the req.body object
@@ -32,13 +38,17 @@ exports.update = function(req, res) {
 					message: errorHandler.getErrorMessage(err)
 				});
 			} else {
-				req.login(user, function(err) {
-					if (err) {
-						res.status(400).send(err);
-					} else {
-						res.jsonp(user);
-					}
-				});
+				if (!updateByAdmin) {
+					req.login(user, function(err) {
+						if (err) {
+							res.status(400).send(err);
+						} else {
+							res.jsonp(user);
+						}
+					});
+				} else {
+					res.jsonp(user);
+				}
 			}
 		});
 	} else {
