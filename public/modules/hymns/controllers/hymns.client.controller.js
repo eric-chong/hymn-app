@@ -20,7 +20,7 @@ angular.module('hymns')
 						names: []
 					});
 					$scope.newPublisher.names.forEach(function(elem) {
-						if (elem.name) publisherToSave.names.push(elem);
+						if (elem.name !== undefined) publisherToSave.names.push(elem);
 					});
 					publisherToSave.$save(function(response) {
 						resetNewPublisherList();
@@ -165,7 +165,7 @@ angular.module('hymns')
 						});
 					}
 					$scope.newHymnbook.names.forEach(function(elem) {
-						if (elem.name) hymnbookToSave.names.push(elem);
+						if (elem.name !== undefined) hymnbookToSave.names.push(elem);
 					});
 					if ($scope.newHymnbook.year) {
 						hymnbookToSave.year = $scope.newHymnbook.year;
@@ -326,7 +326,7 @@ angular.module('hymns')
 						hymnToSave.hymnbookId = 'unknown';
 					}
 					$scope.newHymn.names.forEach(function(elem) {
-						if (elem.name) hymnToSave.names.push(elem);
+						if (elem.name !== undefined) hymnToSave.names.push(elem);
 					});
 					hymnToSave.lyricLangs = angular.copy($scope.newHymn.lyricLangs);
 					hymnToSave.hymnbookIndex = $scope.newHymn.hymnbookIndex;
