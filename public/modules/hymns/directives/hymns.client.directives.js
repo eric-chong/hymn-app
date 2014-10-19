@@ -55,9 +55,7 @@ angular.module('hymns')
 
                 function setLeftOffsetPos() {
                 	// Remove left style first?
-                	console.log(elem.offset().left);
                 	elem.css('left', -Math.abs(elem.offset().left));
-                	console.log(elem.css('left'));
                 }
 
                 adjustWidth();
