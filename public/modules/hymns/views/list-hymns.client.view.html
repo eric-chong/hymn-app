@@ -89,6 +89,9 @@
 		<li data-ng-repeat="hymn in hymns | filterHymnOrHymnbook:search | orderBy: 'hymnbookIndex'">
 			<div class="list-entry hymn {{hymn.lyricLangs|lyricLangsCssClass}}">
 				<div class="entry-header">
+					<div class="hymn-index" ng-if="hymn.hymnbookIndex!==undefined">
+						{{hymn.hymnbookIndex}}
+					</div>
 					<div data-ng-repeat="nameEntry in hymn.names">
 						<a class="underline" data-ng-href="#!/hymns/{{hymn._id}}">
 							{{nameEntry.name}}

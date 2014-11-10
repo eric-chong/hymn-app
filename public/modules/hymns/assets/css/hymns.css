@@ -33,6 +33,10 @@
   text-align: center;
   margin-bottom: 1.5rem;
 }
+.list-group .list-entry + .expand-panel {
+  position: relative;
+  margin-top: -0.5rem;
+}
 .list-group .list-entry.hymn {
   height: 6rem;
 }
@@ -94,6 +98,10 @@
   color: #333333;
   height: 6rem;
 }
+.list-group .list-entry .entry-header .hymn-index {
+  float: left;
+  padding-left: 0.5rem;
+}
 .list-group .list-entry .entry-stats {
   font-size: 24px;
   height: 2.5rem;
@@ -137,6 +145,10 @@
   width: 100%;
   margin: 0;
   padding: 1rem;
+}
+.hymn-content .hymn-info + .expand-panel {
+  position: relative;
+  margin-top: -0.5rem;
 }
 .hymn-content .hymn-info:hover {
   background: #ffffff;
