@@ -380,7 +380,7 @@ angular.module('hymns').controller('PublishersController', [
       if ($scope.newPublisherForm.$valid) {
         var publisherToSave = new Publishers({ names: [] });
         $scope.newPublisher.names.forEach(function (elem) {
-          if (elem.name)
+          if (elem.name !== undefined)
             publisherToSave.names.push(elem);
         });
         publisherToSave.$save(function (response) {
@@ -519,7 +519,7 @@ angular.module('hymns').controller('PublishersController', [
           });
         }
         $scope.newHymnbook.names.forEach(function (elem) {
-          if (elem.name)
+          if (elem.name !== undefined)
             hymnbookToSave.names.push(elem);
         });
         if ($scope.newHymnbook.year) {
@@ -667,7 +667,7 @@ angular.module('hymns').controller('PublishersController', [
           hymnToSave.hymnbookId = 'unknown';
         }
         $scope.newHymn.names.forEach(function (elem) {
-          if (elem.name)
+          if (elem.name !== undefined)
             hymnToSave.names.push(elem);
         });
         hymnToSave.lyricLangs = angular.copy($scope.newHymn.lyricLangs);
@@ -1093,9 +1093,7 @@ angular.module('hymns').directive('hymnCopyClipboard', [
         }
         function setLeftOffsetPos() {
           // Remove left style first?
-          console.log(elem.offset().left);
           elem.css('left', -Math.abs(elem.offset().left));
-          console.log(elem.css('left'));
         }
         adjustWidth();
         setLeftOffsetPos();
