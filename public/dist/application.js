@@ -342,23 +342,7 @@ angular.module('core').service('Menus', [function () {
 //Menu service used for managing  menus
 angular.module('core').service('NotifyService', [function () {
     var notifyService = {
-        messages: [
-          {
-            id: 'message1',
-            type: 'success',
-            message: 'Success Message'
-          },
-          {
-            id: 'message2',
-            type: 'alert',
-            message: 'Alert Message'
-          },
-          {
-            id: 'message3',
-            type: 'warning',
-            message: 'Warning Message'
-          }
-        ],
+        messages: [],
         addMessage: function (id, type, message) {
           this.alerts.push({
             id: id,
