@@ -192,6 +192,16 @@ angular.module('core').controller('HomeController', [
     $scope.authentication = Authentication;
   }
 ]);'use strict';
+angular.module('core').controller('MessageController', [
+  '$scope',
+  'NotifyService',
+  function ($scope, NotifyService) {
+    $scope.messages = NotifyService.messages;
+    $scope.closeMessage = function (index) {
+      NotifyService.removeMessageByIndex(index);
+    };
+  }
+]);'use strict';
 //Menu service used for managing  menus
 angular.module('core').service('Menus', [function () {
     // Define a set of default roles
@@ -328,6 +338,47 @@ angular.module('core').service('Menus', [function () {
     };
     //Adding the topbar menu
     this.addMenu('topbar', true);
+  }]);'use strict';
+//Menu service used for managing  menus
+angular.module('core').service('NotifyService', [function () {
+    var notifyService = {
+        messages: [
+          {
+            id: 'message1',
+            type: 'success',
+            message: 'Success Message'
+          },
+          {
+            id: 'message2',
+            type: 'alert',
+            message: 'Alert Message'
+          },
+          {
+            id: 'message3',
+            type: 'warning',
+            message: 'Warning Message'
+          }
+        ],
+        addMessage: function (id, type, message) {
+          this.alerts.push({
+            id: id,
+            type: type,
+            message: message
+          });
+          return this;
+        },
+        removeMessageById: function (id) {
+          return this;
+        },
+        removeMessageByIndex: function (index) {
+          return this;
+        }
+      };
+    function findMessageById() {
+    }
+    function findMessageByIndex() {
+    }
+    return notifyService;
   }]);'use strict';
 // Configuring the Articles module
 angular.module('hymns').run([
