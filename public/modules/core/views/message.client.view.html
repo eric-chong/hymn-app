@@ -1,0 +1,8 @@
+<div class="message-panel" ng-controller="MessageController">
+	<alert 
+		ng-repeat="msg in messages" 
+		id="msg.id"
+		type="msg.type + ' radius'" 
+		close="closeMessage($index)">{{msg.message}}
+	</alert>
+</div>
