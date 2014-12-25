@@ -686,7 +686,11 @@ angular.module('hymns').controller('PublishersController', [
       $scope.publishersList = Publishers.query();
       if ($scope.currentState.name === 'listHymnsInHymnbook') {
         $scope.parentInfo.obj = Hymnbooks.getOne({ hymnbookId: $stateParams.hymnbookId });
-        $scope.hymns = Hymns.query({ hymnbookId: $stateParams.hymnbookId });
+        $scope.hymns = Hymns.query({ hymnbookId: $stateParams.hymnbookId }, function () {
+          $scope.hymns.forEach(function (e) {
+            e.hymnbookIndexInt = parseInt(e.hymnbookIndex) || 999;
+          });
+        });
       }
     };
     $scope.createHymn = function () {
