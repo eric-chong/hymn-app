@@ -130,7 +130,8 @@ exports.publisherById = function(req, res, next, id) {
  * Publisher authorization middleware
  */
 exports.hasAuthorization = function(req, res, next) {
-	if (req.publisher.user.id !== req.user.id) {
+	var hasOverrideAuth = _.intersection(req.user.roles, ['master', 'admin']).length > 0;
+	if (req.publisher.user.id !== req.user.id && !hasOverrideAuth) {
 		return res.status(403).send({
 			message: 'User is not authorized'
 		});

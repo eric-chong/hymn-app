@@ -143,7 +143,8 @@ exports.hymnbookById = function(req, res, next, id) {
  * Hymnbook authorization middleware
  */
 exports.hasAuthorization = function(req, res, next) {
-	if (req.hymnbook.user.id !== req.user.id) {
+	var hasOverrideAuth = _.intersection(req.user.roles, ['master', 'admin']).length > 0;
+	if (req.hymnbook.user.id !== req.user.id && !hasOverrideAuth) {
 		return res.status(403).send({
 			message: 'User is not authorized'
 		});
