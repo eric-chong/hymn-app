@@ -309,6 +309,10 @@ angular.module('hymns')
 					});
 					$scope.hymns = Hymns.query({
 						hymnbookId: $stateParams.hymnbookId
+					}, function() {
+						$scope.hymns.forEach(function(e) {
+							e.hymnbookIndexInt = parseInt(e.hymnbookIndex) || 999;
+						});
 					});
 				}
 			};

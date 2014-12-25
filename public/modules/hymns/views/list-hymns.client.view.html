@@ -86,7 +86,7 @@
 	</div>
 	<ng-include src="'/modules/hymns/views/filter-hymn.client.view.html'"></ng-include>
 	<ul class="list-group small-block-grid-2 medium-block-grid-3 large-block-grid-4">
-		<li data-ng-repeat="hymn in hymns | filterHymnOrHymnbook:search | orderBy: 'hymnbookIndex'">
+		<li data-ng-repeat="hymn in hymns | filterHymnOrHymnbook:search | orderBy: ['hymnbookIndexInt', 'hymnbookIndex']">
 			<div class="list-entry hymn {{hymn.lyricLangs|lyricLangsCssClass}}">
 				<div class="entry-header">
 					<div class="hymn-index" ng-if="hymn.hymnbookIndex!==undefined">
