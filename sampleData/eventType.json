@@ -1,0 +1,78 @@
+eventType = {
+  id: 1,
+  name: "粵語主日崇拜",
+  programs: [
+    {
+      key: "BeforeWorship",
+      name: "哈巴谷書 2:20",
+      hasSlide: true,
+      slideType: "SingleScriptureSlide",
+      scripture: {
+        book: "Habakkuk",
+        chapter: 2,
+        verses: 20
+      }
+    },
+    {
+      key: "InHisHolyTemple",
+      name: "上主在祂的聖殿中",
+      hasSlide: true,
+      slideContents: [
+        "上主今在祂的聖殿中，",
+        "上主今在祂的聖殿中，",
+        "萬國的人當肅靜，",
+        "萬國的人在主前當肅靜，",
+        "當肅靜，在主前當肅靜，阿們"
+      ],
+      slideType: "SingleSimpleSlideWithTitle"
+    },
+    {
+      key: "CallToWorship",
+      name: "宣召",
+      hasSlide: true,
+      slideType: "SingleScriptureSlideWithTitle",
+    },
+    {
+      key: "PraiseAndWorship",
+      name: "敬拜讚美",
+      hasSlide: true,
+      slideType: "MultiHymnSlideWithTitle"
+    },
+    {
+      key: "WorshipScripture",
+      name: "崇拜讀經",
+      hasSlide: true,
+      slideType: "MultiScripturesSlideWithTitle"
+    },
+    {
+      key: "Scripture",
+      name: "講道讀經",
+      hasSlide: true,
+      slideType: "MultiScripturesSlideWithTitle"
+    },
+    {
+      key: "ResponseHymn",
+      name: "回應詩",
+      hasSlide: true,
+      slideType: "MultiHymnSlideWithTitle"
+    },
+    {
+      key: "Doxology",
+      name: "三一頌",
+      hasSlide: true,
+      slideContents: [
+        "讚美真神萬福之源，",
+        "世上萬民都當頌揚，",
+        "天使天軍讚美主名，",
+        "讚美聖父聖子聖靈，阿們。"
+      ],
+      slideType: "SingleSimpleSlideWithTitle"
+    },
+    {
+      key: "ClosingHymn",
+      name: "散會詩",
+      hasSlide: true,
+      slideType: "MultiHymnSlideWithTitle"
+    }
+  ]
+}
